@@ -1,11 +1,12 @@
-import Site from '../../../assets/site.jpg'
+import Site from '../../../../assets/site.jpg'
 import Image from 'next/image'
 import { CircleCheckBig } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 function Contractors() {
   return (
-    <div className='flex flex-col md:flex-row items-center gap-5 bg-green-50 py-8 lg:py-0'>
+    <div id="contractors" className='scroll-my-[80px] flex flex-col md:flex-row items-center gap-5 bg-green-50 py-8 lg:py-0'>
         <div className='flex-1 h-full px-2 mt-5 lg:mt-0 lg:px-0 lg:pl-10'>
             <Image src={Site} alt='construction materials' className='h-full rounded-lg object-cover'/>
         </div>
@@ -39,7 +40,9 @@ function Contractors() {
                 Gain valuable insights with our customized dashboards.
                 </li>
             </ul>
+            <Link href='/auth/signup/contractor'>
             <Button className='bg-jungle800 hover:bg-jungle700'>Join now</Button>
+            </Link>
             </div>
         </div>
     </div>

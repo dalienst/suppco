@@ -1,8 +1,9 @@
 import Image from "next/image";
-import HeroImage from "../../../assets/hero-bg.jpg";
+import HeroImage from "../../../../assets/hero-bg.jpg";
 import { Button } from "@/components/ui/button";
-import ContractorImage from "../../../assets/contractor.jpg";
-import SupplierImage from "../../../assets/supplier.jpg";
+import ContractorImage from "../../../../assets/contractor.jpg";
+import SupplierImage from "../../../../assets/supplier.jpg";
+import Link from "next/link";
 
 function Hero() {
   return (
@@ -24,9 +25,11 @@ function Hero() {
             and deliveries from your favourite suppliers.
           </p>
           <div className="flex justify-center mt-10">
-            <Button className="bg-blue900 hover:bg-blue700 rounded-full">
-              GET STARTED
-            </Button>
+            <Link href='/auth/signup/'>
+              <Button className="bg-blue900 hover:bg-blue700 rounded-full">
+                GET STARTED
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -47,9 +50,11 @@ function Hero() {
               <p>
                 Discover, compare, and connect with contractors in the industry.
               </p>
+              <Link href='/auth/signup/supplier'>
               <Button className="bg-blue900 mt-4 hover:bg-blue700">
                 Get started
               </Button>
+              </Link>
             </div>
           </div>
           <div className="bg-white shadow-md rounded-lg flex-1 flex items-center gap-4 px-4 py-6">
@@ -68,9 +73,12 @@ function Hero() {
                 Easily purchase construction equipment, create seamless orders,
                 and track deliveries.
               </p>
+              <Link href='/auth/signup/contractor'>
+              
               <Button className="bg-jungle800 mt-4 hover:bg-jungle600">
                 Register now
               </Button>
+              </Link>
             </div>
           </div>
         </div>
