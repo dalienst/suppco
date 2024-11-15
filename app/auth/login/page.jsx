@@ -24,7 +24,6 @@ function Login() {
       password: password,
     });
     const session = await getSession();
-
     setLoading(false);
     if (response?.error) {
       setLoading(false);
@@ -99,9 +98,7 @@ function Login() {
             disabled={loading}
           >
             {loading ? (
-              <div className="" role="status">
                 <span className="">Loading...</span>
-              </div>
             ) : (
               "Sign In"
             )}
@@ -109,7 +106,7 @@ function Login() {
 
           <p className="text-[#5f5e5e]">
             Don&apos;t have an account?{" "}
-            <Link className="text-blue900" href="/auth/signup/contractor">Create One</Link>
+            <Link className="text-blue900" href="/auth/signup">Create One</Link>
           </p>
           <p className="text-[#5f5e5e]">Forgot Password? <Link className="text-blue900" href="/auth/password/forgot-password">Reset Here</Link> </p>
         </form>
