@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import Hand from '../../../assets/hand.jpg'
-import Site from '../../../assets/site.jpg'
-import Materials from '../../../assets/materials.jpeg'
+import Hand from '../../../../assets/hand.jpg'
+import Site from '../../../../assets/site.jpg'
+import Materials from '../../../../assets/materials.jpeg'
 import { CircleCheckBig } from 'lucide-react'
 
 function About() {
   return (
-    <div className="my-8 lg:my-16 flex flex-col md:flex-row items-center gap-4 lg:w-3/4 lg:mx-auto">
+    <div id='about' className="scroll-my-[140px] my-8 lg:my-16 flex flex-col md:flex-row items-center gap-4 lg:w-3/4 lg:mx-auto">
         <div className="grid gap-1 max-w-[400px] max-h-[400px] grid-cols-[minmax(100px_200px)_minmax(100px_200px)] grid-rows-[minmax(100px_200px)_minmax(100px_200px)] ">
             <div className=" row-span-2 col-start-1 col-end-2 bg-slate-200 ">
                 <Image src={Hand} alt='shaking hands' className='h-full object-cover'/>

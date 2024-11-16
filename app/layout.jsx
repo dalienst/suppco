@@ -1,7 +1,8 @@
+
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import Footer from "./custom-components/footer/Footer";
-import Navbar from "./custom-components/navbar/Navbar";
+import { ToasterProvider } from "@/providers/ToastProvider";
+import NextAuthProvider from "@/providers/NextAuthProvider";
 
 const font = DM_Sans({ subsets: ["latin"] });
 
@@ -14,13 +15,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={font.className}>
-      <div className="h-[80px] fixed top-0 w-full z-50">
-          <Navbar />
-        </div>
-        <main className="pt-[80px]">
-          {children}
-        </main>
-        <Footer />
+        <ToasterProvider />
+        <NextAuthProvider>
+        {children}
+        </NextAuthProvider>
       </body>
     </html>
   );

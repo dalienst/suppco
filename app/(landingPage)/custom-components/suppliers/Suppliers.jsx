@@ -1,11 +1,12 @@
-import Materials from '../../../assets/materials.jpeg'
+import Materials from '../../../../assets/materials.jpeg'
 import Image from 'next/image'
 import { CircleCheckBig } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 function Suppliers() {
   return (
-    <div className='flex flex-col-reverse md:flex-row items-center gap-5 bg-sky-50 py-8 lg:py-0'>
+    <div id="suppliers" className='scroll-my-[80px] flex flex-col-reverse md:flex-row items-center gap-5 bg-sky-50 py-8 lg:py-0'>
         <div className='flex-1 py-3 lg:py-20'>
             <div className='px-4 lg:px-10 space-y-3'>
             <h1 className='text-lg lg:text-xl font-bold text-blue900'>SUPPLIERS</h1>
@@ -33,7 +34,10 @@ function Suppliers() {
                 </li>
              
             </ul>
+            <Link href='/auth/signup/supplier'>
+
             <Button className='bg-blue900 hover:bg-blue700'>Join now</Button>
+            </Link>
             </div>
         </div>
         <div className='flex-1 h-full mt-3 lg:mt-0 px-2 lg:px-0 lg:pr-10'>
