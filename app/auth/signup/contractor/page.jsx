@@ -4,7 +4,7 @@ import Register from "../Register";
 
 function ContractorSignUp() {
   return (
-    <div className="h-[100vh] flex flex-col justify-between">
+    <div className="h-[100vh] max-h-[100vh] flex flex-col justify-between">
       <h1 className="font-bold text-xl p-4 md:p-6">SUPPCO</h1>
       <div className="flex justify-center items-center">
         <Register role="contractor" />

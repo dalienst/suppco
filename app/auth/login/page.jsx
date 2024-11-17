@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/app/components/ui/button";
+import { Input } from "@/app/components/ui/input";
+import { Label } from "@/app/components/ui/label";
 import { getSession, signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -57,10 +57,10 @@ function Login() {
   };
 
   return (
-    <div className="h-[100vh] flex flex-col justify-between lg:justify-around">
+    <div className="h-[100vh] max-h-[100vh] flex flex-col justify-between lg:justify-around">
         <h1 className="font-bold text-xl p-4 md:p-6">SUPPCO</h1>
     <div className="flex justify-center items-center">
-        <form className="w-[300px] md:w-[460px] border py-10 px-5 md:p-10 space-y-5 rounded-lg">
+        <form className="w-[90vw] mx-auto md:w-[460px] border py-10 px-5 md:p-10 space-y-5 rounded-lg">
             <div>
         <h3 className="text-3xl font-semibold text-center">Sign in</h3>
                   <p className="text-center font-semibold">

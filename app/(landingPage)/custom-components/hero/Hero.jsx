@@ -1,6 +1,6 @@
 import Image from "next/image";
 import HeroImage from "../../../../assets/hero-bg.jpg";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import ContractorImage from "../../../../assets/contractor.jpg";
 import SupplierImage from "../../../../assets/supplier.jpg";
 import Link from "next/link";

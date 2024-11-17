@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ToasterProvider } from "@/providers/ToastProvider";
 import NextAuthProvider from "@/providers/NextAuthProvider";
+import TanstackQueryProvider from "@/providers/TanstackQueryProvider";
 
 const font = DM_Sans({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
       <body className={font.className}>
         <ToasterProvider />
         <NextAuthProvider>
-        {children}
+        <TanstackQueryProvider>{children}</TanstackQueryProvider>
         </NextAuthProvider>
       </body>
     </html>

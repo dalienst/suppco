@@ -1,7 +1,7 @@
 import Materials from '../../../../assets/materials.jpeg'
 import Image from 'next/image'
 import { CircleCheckBig } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/app/components/ui/button'
 import Link from 'next/link'
 
 function Suppliers() {

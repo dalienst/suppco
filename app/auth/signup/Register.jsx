@@ -1,7 +1,7 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import { Button } from "@/app/components/ui/button";
+import { Label } from "@/app/components/ui/label";
 import { signUpContractor, signUpSupplier } from "@/tools/api";
 import { RegistrationSchema } from "@/validation";
 import { ErrorMessage, Field, Form, Formik } from "formik";
@@ -15,7 +15,7 @@ function Register({role}) {
   const router = useRouter();
 
   return (
-      <div className="">
+      <div>
         <Formik
           initialValues={{
             email: "",
@@ -48,19 +48,19 @@ function Register({role}) {
           }}
         >
           {({ touched }) => (
-            <div className="w-[300px] md:w-[460px] border py-10 px-5 md:p-10 rounded-lg">
+            <div className="w-[90vw] mx-auto md:w-[460px] border py-10 px-5 md:p-10 rounded-lg">
                   <h3 className="text-3xl font-semibold text-center">Sign up</h3>
                   <p className="text-center capitalize font-semibold">
                     {`Create your ${role} Account`}
                   </p>
               <Form className="mt-5">
                 <div className="flex flex-col gap-3 mb-3">
-                  <Label htmlFor="email" className="">
+                  <Label htmlFor="email">
                     Email
                   </Label>
                   <Field
                     type="email"
-                    className="border py-1 px-4 rounded-md"
+                    className="border py-2 px-4 rounded-md"
                     id="email"
                     name="email"
                     placeholder="Enter your email"
@@ -72,12 +72,12 @@ function Register({role}) {
                   />
                 </div>
                 <div className="flex flex-col gap-3 mb-3">
-                  <Label htmlFor="password" className="">
+                  <Label htmlFor="password">
                     Password
                   </Label>
                   <Field
                     type="password"
-                    className="border py-1 px-4 rounded-md"
+                    className="border py-2 px-4 rounded-md"
                     id="password"
                     name="password"
                     placeholder="Enter your password"
@@ -91,13 +91,12 @@ function Register({role}) {
                 <div className="flex flex-col gap-3 mb-3">
                   <Label
                     htmlFor="confirmPassword"
-                    className=""
                   >
                     Confirm Password
                   </Label>
                   <Field
                     type="password"
-                    className="border py-1 px-4 rounded-md"
+                    className="border py-2 px-4 rounded-md"
                     id="confirmPassword"
                     name="confirmPassword"
                     placeholder="Confirm your password"
