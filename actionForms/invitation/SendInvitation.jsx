@@ -5,8 +5,9 @@ import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import FormInput from "../formStructures/FormInput";
+import { Button } from "@/app/components/ui/button";
 
-function SendInvitation({ handleCloseModal, company }) {
+function SendInvitation({ onOpenChange, company }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
@@ -21,7 +22,7 @@ function SendInvitation({ handleCloseModal, company }) {
         try {
           await sendInvitation(values, axios);
           toast?.success("Invitation sent successfully. Refreshing page...");
-          handleCloseModal();
+          onOpenChange();
           setLoading(false);
         } catch (error) {
           toast?.error("Failed to send invitation");
@@ -35,27 +36,22 @@ function SendInvitation({ handleCloseModal, company }) {
         <Form>
           <FormInput
             name="email"
-            label="Enter Employee Email"
+            label="Employee Email"
             type="email"
-            placeholder="Enter email"
+            placeholder="Enter employee email"
           />
 
-          <button
+          <Button
             type="submit"
-            className="btn supplier-btn mt-3"
+            className='mt-10'
             disabled={loading}
           >
             {loading ? (
-              <div
-                className="spinner-border spinner-border-sm text-success"
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
+                <span>Sending invite...</span>
             ) : (
-              "Create"
+              "Send invite"
             )}
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

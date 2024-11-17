@@ -98,7 +98,7 @@ function UpdateCompany({ company, refetchCompany }) {
                 />
               </div>
             </div>
-            <div className="mt-4 border py-6 px-4 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="mt-4 border py-6 px-4 rounded-xl grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <FormInput
                   label="Company Name"
                   name="name"
@@ -127,7 +127,7 @@ function UpdateCompany({ company, refetchCompany }) {
           </section>
           <section id="financials" className="mt-8 scroll-mt-3">
               <h2 className="text-xl font-semibold">Financial settings</h2>
-              <div className="mt-3 border py-6 px-4 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="mt-3 border py-6 px-4 rounded-xl grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1">
                   <Label htmlFor="currency">
                     Currency
@@ -183,7 +183,7 @@ function UpdateCompany({ company, refetchCompany }) {
           </section>
           <section id="government" className="mt-8">
           <h2 className="text-xl font-semibold">Government</h2>
-            <div className="mt-3 border py-6 px-4 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="mt-3 border py-6 px-4 rounded-xl grid grid-cols-1 lg:grid-cols-2 gap-5">
                 <FormInput
                   label="Registration Number"
                   name="registration_number"
@@ -202,7 +202,7 @@ function UpdateCompany({ company, refetchCompany }) {
           </section>
           <section id="tax" className="mt-8">
           <h2 className="text-xl font-semibold">Tax Area</h2>
-          <div className="mt-3 border py-6 px-4 rounded-xl grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="mt-3 border py-6 px-4 rounded-xl grid grid-cols-1 lg:grid-cols-2 gap-5">
             <div className="flex gap-2 items-center">
               <Field
                 type="checkbox"
@@ -219,7 +219,7 @@ function UpdateCompany({ company, refetchCompany }) {
                 VAT Compliance
               </Label>
             </div>
-            <div className="flex gap-2 items-center">
+            <div className="flex flex-col lg:flex-row gap-2 lg:items-center">
                           <Label htmlFor="vat_number">VAT Number</Label>
                           <Field
                             type="text"

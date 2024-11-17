@@ -71,10 +71,10 @@ function SupplierSettings() {
   }
 
   return (
-    <div className="mx-4 mt-4 overflow-hidden p-2 md:p-6 bg-blue-50 rounded-t-lg">
+    <div className="mx-4 mt-4 overflow-hidden p-2 lg:p-6 rounded-t-lg">
       <h1 className="text-2xl mb-5">Account Settings</h1>
-      <div className="flex flex-col h-[calc(100vh-230px)] md:flex-row">
-        <ul className="flex flex-col md:flex-wrap rounded-lg p-2 px-2 md:px-8 md:pl-2 md:pt-4 w-full md:w-fit mb-2 md:mb-0  md:items-start md:flex-col md:border-r md:rounded-none md:rounded-l-xl gap-2 lg:gap-5 bg-white ">
+      <div className="flex flex-col h-[calc(100vh-135px)] md:flex-row">
+        <ul className="flex flex-col md:flex-wrap rounded-lg p-2 px-2 md:px-8 md:pl-2 md:pt-4 w-full md:w-fit mb-2 md:mb-0  md:items-start md:flex-col md:border-r md:rounded-none md:rounded-l-xl gap-2 lg:gap-5">
           {links.map((link) => (
             <li
               key={link.id}
@@ -87,7 +87,7 @@ function SupplierSettings() {
             </li>
           ))}
         </ul>
-        <div className="bg-white overflow-auto scroll-smooth flex-grow rounded-lg md:rounded-l-none p-2 md:p-6">
+        <div className="overflow-auto scroll-smooth flex-grow rounded-lg md:rounded-l-none p-2 md:p-6">
           <section id="personal" className="scroll-mt-3">
             <h2 className="text-xl font-semibold">Personal Info</h2>
             <div className="mt-3">
@@ -164,7 +164,7 @@ function SupplierSettings() {
                     </div>
                     <div className="mt-4 border py-6 px-4 rounded-xl">
                       <h2 className="font-semibold">Personal Information</h2>
-                      <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <div className="flex flex-col gap-1">
                           <Label htmlFor="first_name">First Name</Label>
                           <Field
@@ -215,7 +215,7 @@ function SupplierSettings() {
                     </div>
                     <div className="mt-4 border py-6 px-4 rounded-xl">
                       <h2 className="font-semibold">Personal Information</h2>
-                      <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <div className="flex flex-col gap-1">
                           <Label htmlFor="kra_pin">KRA PIN</Label>
                           <Field

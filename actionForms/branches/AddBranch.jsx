@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createBranch } from "@/services/branches";
+import { Label } from "@/app/components/ui/label";
+import { Button } from "@/app/components/ui/button";
 
-function AddBranch({ refetch, handleCloseModal, company }) {
+function AddBranch({ refetch, onOpenChange, company }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
@@ -26,7 +28,7 @@ function AddBranch({ refetch, handleCloseModal, company }) {
             await createBranch(values, axios);
             toast?.success("Branch created successfully. Refreshing page.");
             setLoading(false);
-            handleCloseModal();
+            onOpenChange();
             refetch();
           } catch (error) {
             toast?.error("Failed to create branch");
@@ -37,58 +39,54 @@ function AddBranch({ refetch, handleCloseModal, company }) {
         }}
       >
         {({ setFieldValue }) => (
-          <Form>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label fw-semibold">
+          <Form className="space-y-2">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="name">
                 Name
-              </label>
-              <Field type="text" name="name" className="form-control" />
+              </Label>
+              <Field type="text" required name="name" className="border rounded-lg p-2" />
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label fw-semibold">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="email">
                 Email
-              </label>
-              <Field type="email" name="email" className="form-control" />
+              </Label>
+              <Field type="email" required name="email" className="border rounded-lg p-2" />
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="phone" className="form-label fw-semibold">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="phone">
                 Phone
-              </label>
-              <Field type="text" name="phone" className="form-control" />
+              </Label>
+              <Field type="text" required name="phone" className="border rounded-lg p-2" />
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="address" className="form-label fw-semibold">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="address">
                 Address
-              </label>
-              <Field type="text" name="address" className="form-control" />
+              </Label>
+              <Field type="text" required name="address" className="border rounded-lg p-2" />
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="location" className="form-label fw-semibold">
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="location">
                 Location
-              </label>
-              <Field type="text" name="location" className="form-control" />
+              </Label>
+              <Field type="text" required name="location" className="border rounded-lg p-2" />
             </div>
 
-            <button
+            <Button
               type="submit"
-              className="btn supplier-btn mt-3"
+              className='bg-blue900 hover:bg-blue700'
               disabled={loading}
             >
               {loading ? (
-                <div
-                  className="spinner-border spinner-border-sm text-success"
-                  role="status"
-                >
+               
                   <span className="visually-hidden">Loading...</span>
-                </div>
               ) : (
                 "Create"
               )}
-            </button>
+            </Button>
           </Form>
         )}
       </Formik>
