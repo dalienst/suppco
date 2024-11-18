@@ -10,5 +10,6 @@ export const config = {
     "/admin/:path*",
     "/employees/:path*",
     "/workers/:path*",
+    "/branches/:path*",
   ],
 };

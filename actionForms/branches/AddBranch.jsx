@@ -15,7 +15,7 @@ function AddBranch({ refetch, onOpenChange, company }) {
     <>
       <Formik
         initialValues={{
-          company: company?.reference,
+          company: company?.slug,
           name: "",
           email: "",
           phone: "",
@@ -41,48 +41,62 @@ function AddBranch({ refetch, onOpenChange, company }) {
         {({ setFieldValue }) => (
           <Form className="space-y-2">
             <div className="flex flex-col gap-1">
-              <Label htmlFor="name">
-                Name
-              </Label>
-              <Field type="text" required name="name" className="border rounded-lg p-2" />
+              <Label htmlFor="name">Name</Label>
+              <Field
+                type="text"
+                required
+                name="name"
+                className="border rounded-lg p-2"
+              />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label htmlFor="email">
-                Email
-              </Label>
-              <Field type="email" required name="email" className="border rounded-lg p-2" />
+              <Label htmlFor="email">Email</Label>
+              <Field
+                type="email"
+                required
+                name="email"
+                className="border rounded-lg p-2"
+              />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label htmlFor="phone">
-                Phone
-              </Label>
-              <Field type="text" required name="phone" className="border rounded-lg p-2" />
+              <Label htmlFor="phone">Phone</Label>
+              <Field
+                type="text"
+                required
+                name="phone"
+                className="border rounded-lg p-2"
+              />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label htmlFor="address">
-                Address
-              </Label>
-              <Field type="text" required name="address" className="border rounded-lg p-2" />
+              <Label htmlFor="address">Address</Label>
+              <Field
+                type="text"
+                required
+                name="address"
+                className="border rounded-lg p-2"
+              />
             </div>
 
             <div className="flex flex-col gap-1">
-              <Label htmlFor="location">
-                Location
-              </Label>
-              <Field type="text" required name="location" className="border rounded-lg p-2" />
+              <Label htmlFor="location">Location</Label>
+              <Field
+                type="text"
+                required
+                name="location"
+                className="border rounded-lg p-2"
+              />
             </div>
 
             <Button
               type="submit"
-              className='bg-blue900 hover:bg-blue700'
+              className="bg-blue900 hover:bg-blue700"
               disabled={loading}
             >
               {loading ? (
-               
-                  <span className="visually-hidden">Loading...</span>
+                <span className="visually-hidden">Loading...</span>
               ) : (
                 "Create"
               )}
