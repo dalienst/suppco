@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import { verifyAccount } from "@/services/accounts";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -23,7 +23,7 @@ function VerifyAccount({ params: { uidb, token } }) {
     }
   };
   return (
-    <div className="h-[100vh] flex flex-col justify-between">
+    <div className="h-[100vh] max-h-[100vh] flex flex-col justify-between">
       <h1 className="font-bold text-xl p-4 md:p-6">SUPPCO</h1>
       <div className="flex justify-center items-center">
       <section className="flex flex-col space-y-3 items-center justify-center ">

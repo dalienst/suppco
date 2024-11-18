@@ -1,7 +1,7 @@
 import Site from '../../../../assets/site.jpg'
 import Image from 'next/image'
 import { CircleCheckBig } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/app/components/ui/button'
 import Link from 'next/link'
 
 function Contractors() {
@@ -41,7 +41,7 @@ function Contractors() {
                 </li>
             </ul>
             <Link href='/auth/signup/contractor'>
-            <Button className='bg-jungle800 hover:bg-jungle700'>Join now</Button>
+            <Button className='bg-jungle800 hover:bg-jungle600'>Join now</Button>
             </Link>
             </div>
         </div>
