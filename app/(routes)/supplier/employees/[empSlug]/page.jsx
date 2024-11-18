@@ -27,7 +27,6 @@ function EmployeeDetail({ params: { empSlug } }) {
   }
 
   return (
-    <>
       <div className="min-vh-100">
         <div className="card bg-white mt-3">
           <div className="card-header bg-white d-flex justify-content-between align-content-center">
@@ -82,7 +81,6 @@ function EmployeeDetail({ params: { empSlug } }) {
           </div>
         </div>
       </div>
-    </>
   );
 }
 
