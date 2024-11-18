@@ -37,6 +37,8 @@ export default function ItemDetail({
     return <div>Loading...</div>;
   }
 
+  console.log(shell);
+
   return (
     <>
       <div>
