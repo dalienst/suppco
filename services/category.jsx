@@ -68,7 +68,7 @@ export const getSubCategoryDetail = async (axios, slug) => {
     return response?.data
 }
 
-// Sub Cateories Items
+// Sub Categories Items
 export const getSubCategoryItem = async (axios) => {
     const response = await urlActions?.get(
         "/api/sublayeritems/",
