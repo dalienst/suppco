@@ -8,6 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/app/components/ui/popover"
+import Link from 'next/link';
 
 
 const StyledGridOverlay = styled('div')(({ theme }) => ({
@@ -38,7 +39,7 @@ function CustomNoRowsOverlay() {
     return (
       <StyledGridOverlay>
         <svg
-          style={{ flexShrink: 0 }}
+          style={{ flexShrink: 1 }}
           width="240"
           height="200"
           viewBox="0 0 184 152"
@@ -83,10 +84,7 @@ function CustomNoRowsOverlay() {
   }
 
 export default function UserTable({rows, columns}) {
-  const showDeleteModal = (id) =>{
-    console.log(id)
-  }
-
+  
   const actionColumn = {
     field:'action',
     headerName:'Action',
@@ -99,7 +97,7 @@ export default function UserTable({rows, columns}) {
               <Ellipsis size={18} style={{marginRight:'10px', cursor:'pointer'}}/>
             </PopoverTrigger>
             <PopoverContent className='flex flex-col gap-2 w-fit'>
-              <span className='flex items-center gap-1 cursor-pointer hover:text-primary' onClick={()=>showDeleteModal(params.row.id)}>View Details</span>
+              <Link href={`/branch/${params.row.id}/`} className='flex items-center gap-1 cursor-pointer hover:text-primary'>View Details</Link>
             </PopoverContent>
           </Popover>
         </div>
@@ -110,10 +108,9 @@ export default function UserTable({rows, columns}) {
   return (
     <Box sx={{ overflowX:'auto',  }}>
     <Box sx={{ width: "100%", display: "table", tableLayout: "fixed" }}>
-      <div style={{ display: 'flex', flexDirection: 'column', overflowX:'auto',  }}>
+      <div className={rows?.length === 0 ? 'h-[320px]' : ''} style={{ display: 'flex', flexDirection: 'column', overflowX:'auto',  }}>
       <DataGrid
-      className='dataGrid'
-        // autoPageSize
+      
         // autoHeight {...rows}
         rows={rows?rows:[]}
         columns={columns?[...columns, actionColumn]:[]}

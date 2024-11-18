@@ -29,3 +29,10 @@ export const companyBranchesColumn = [
       width: 180,
     },
   ]
+  export const branchColumn = [
+    {
+      field: 'name',
+      headerName: 'Name',
+      width: 180,
+    },
+  ]
