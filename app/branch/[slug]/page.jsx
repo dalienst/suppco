@@ -2,7 +2,7 @@
 import { useFetchBranchDetail } from "@/dataActions/branches/branchesActions";
 import React from "react";
 
-function Dashboard({ params: { slug } }) {
+function BranchDashboard({ params: { slug } }) {
   // TODO: the dashboard for the branch.
   // As branch is only for the supplier, the code for the dashboard can be written here unlike in the previous where there
   // were different layouts.
@@ -18,4 +18,4 @@ function Dashboard({ params: { slug } }) {
   return <div>{slug}</div>;
 }
 
-export default Dashboard;
+export default BranchDashboard;
