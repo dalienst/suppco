@@ -9,7 +9,14 @@ import { useQuery } from "@tanstack/react-query";
 import { getUser } from "@/services/accounts";
 import { usePathname } from "next/navigation";
 import { Button } from "@/app/components/ui/button";
-import { CircleUser, LayoutDashboard, LogOut, Menu, Settings, Users } from "lucide-react";
+import {
+  CircleUser,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Settings,
+  Users,
+} from "lucide-react";
 
 import {
   Sheet,
@@ -18,9 +25,8 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/app/components/ui/sheet"
+} from "@/app/components/ui/sheet";
 import Image from "next/image";
-
 
 function Navbar() {
   const axios = useAxiosAuth();
@@ -34,32 +40,32 @@ function Navbar() {
   const SidebarComponent = (
     <div>
       <div className="flex h-[85vh] flex-col pt-8 rounded-lg">
-        <div>
-        <div>
-                        {profile?.avatar ? (
-                          <Image
-                            src={profile?.avatar}
-                            alt="logo"
-                            width={60}
-                            height={60}
-                            className="rounded-full"
-                          />
-                        ) : (
-                          <CircleUser
-                            strokeWidth={1}
-                            className="size-[50px] text-[#b0b0b0]"
-                          />
-                        )}
-                      </div>
-        <Link href="/supplier/dashboard" className="text-2xl font-semibold">
-          {profile?.first_name === null ? "Dashboard" : profile?.first_name}
-        </Link>
+        <div className="mb-5">
+          <div>
+            {profile?.avatar ? (
+              <Image
+                src={profile?.avatar}
+                alt="logo"
+                width={60}
+                height={60}
+                className="rounded-full"
+              />
+            ) : (
+              <CircleUser
+                strokeWidth={1}
+                className="size-[50px] text-[#b0b0b0]"
+              />
+            )}
+          </div>
+          <Link href="/supplier/dashboard" className="text-2xl font-semibold">
+            {profile?.first_name === null ? "Dashboard" : profile?.first_name}
+          </Link>
         </div>
         <ul className="mt-5 flex flex-col gap-8">
           <li className="nav-item supplier-sidebar rounded">
             <Link
               href="/supplier/dashboard"
-              className='flex items-center gap-1'
+              className="flex items-center gap-1"
             >
               <LayoutDashboard />
               Dashboard
@@ -67,22 +73,22 @@ function Navbar() {
           </li>
 
           {profile?.companies?.name !== null ? (
-              <li className="nav-item supplier-sidebar rounded">
-                <Link
-                  href="/supplier/employees"
-                  className='flex items-center gap-1'
-                >
-                  <Users />
-                  Employees
-                </Link>
-              </li>
+            <li className="nav-item supplier-sidebar rounded">
+              <Link
+                href="/supplier/employees"
+                className="flex items-center gap-1"
+              >
+                <Users />
+                Employees
+              </Link>
+            </li>
           ) : null}
 
           {profile?.companies?.name !== null ? (
             <li className="nav-item supplier-sidebar rounded">
               <Link
                 href="/supplier/settings"
-                className='flex items-center gap-1'
+                className="flex items-center gap-1"
               >
                 <Settings />
                 Settings
@@ -102,35 +108,37 @@ function Navbar() {
                   </span>
                 </span>
               </Link>
-              {!pathname.includes('settings') && <p className="absolute right-0 w-[300px] bg-blue-50 top-[60px] p-5 rounded-b-3xl animate-bounce rounded-tl-3xl">
-                Quickly setup your account here to continue
-              </p>}
+              {!pathname.includes("settings") && (
+                <p className="absolute right-0 w-[300px] bg-blue-50 top-[60px] p-5 rounded-b-3xl animate-bounce rounded-tl-3xl">
+                  Quickly setup your account here to continue
+                </p>
+              )}
             </div>
           )}
         </ul>
       </div>
-            <Button onClick={() => signOut()} variant='outline' className="">
-            <LogOut color="#000000" />
-              Log Out
-            </Button>
+      <Button onClick={() => signOut()} variant="outline" className="">
+        <LogOut color="#000000" />
+        Log Out
+      </Button>
     </div>
-  )
+  );
 
   return (
     <nav className="p-4 h-[100vh]">
       <div className="md:hidden fixed my-4">
-      <Sheet>
-        <SheetTrigger asChild className="ml-2">
-          <Button variant="ghost" className="mt-[2px]"><Menu/></Button>
-        </SheetTrigger>
-        <SheetContent side='left' className="p-0 pl-4 pr-10 w-fit h-full">
-          {SidebarComponent}
-        </SheetContent>
-      </Sheet>
+        <Sheet>
+          <SheetTrigger asChild className="ml-2">
+            <Button variant="ghost" className="mt-[2px]">
+              <Menu />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="p-0 pl-4 pr-10 w-fit h-full">
+            {SidebarComponent}
+          </SheetContent>
+        </Sheet>
       </div>
-      <div className="hidden md:block h-full">
-        {SidebarComponent}
-      </div>
+      <div className="hidden md:block h-full">{SidebarComponent}</div>
     </nav>
   );
 }

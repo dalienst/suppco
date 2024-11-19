@@ -65,7 +65,7 @@ function SupplierDashboard() {
     <>
       {profile?.companies?.name !== null && (
         <div className="pt-7 px-2 md:p-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
             <div className="border p-4 rounded-xl flex items-center gap-4">
               <div>
                 {profile?.companies?.logo ? (
