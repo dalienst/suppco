@@ -33,14 +33,8 @@ function BranchDashboard({ params: { slug } }) {
   }, [branch, isSuccess]);
 
   return (
-  <div className="my-2 h-[calc(100vh-115px)]">
-    <Link href='/supplier/dashboard'>
-    <Button className='flex items-center gap-2' variant='outline'>
-      <ChevronLeft />
-      Back to Dashboard
-    </Button>
-    </Link>
-    <div className="mt-5 border-l border-t rounded-tl-xl p-4 h-full">
+  <div className="h-[calc(100vh-115px)]">
+    <div className="py-6 lg:p-4 h-full">
       <div className="flex flex-col">
       <span className="text-xl font-semibold">{branch?.name}</span> 
       <span className="text-[#707070] text-sm">{branch?.location} Branch</span>

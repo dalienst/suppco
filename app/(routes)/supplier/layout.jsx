@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../../components/supplier/Navbar";
+import Navbar from "../../../components/supplier/Navbar";
 
 function SupplierLayout({ children }) {
   return (
