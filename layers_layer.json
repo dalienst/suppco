@@ -1,0 +1,92 @@
+[
+  {
+    "created_at": "2024-11-18 19:55:22.312517+00",
+    "updated_at": "2024-11-21 07:42:36.13887+00",
+    "id": "34cc0485-05aa-48ad-90b1-b1a4c0069622",
+    "reference": "E08UY3KPFF",
+    "slug": "BivEDLqCc5lwKPjT",
+    "name": "Metal Work",
+    "inventory": "shell",
+    "identity": "metal-work"
+  },
+  {
+    "created_at": "2024-11-18 20:05:58.801064+00",
+    "updated_at": "2024-11-21 07:42:35.776765+00",
+    "id": "3a053683-e4e8-4405-8759-b7d8feb71284",
+    "reference": "IEAEWPIRKT",
+    "slug": "bjOpX3gfqH6zMvPr",
+    "name": "Ready mix Concrete",
+    "inventory": "shell",
+    "identity": "ready-mix-concrete"
+  },
+  {
+    "created_at": "2024-10-12 11:16:46.761514+00",
+    "updated_at": "2024-11-21 07:42:37.478963+00",
+    "id": "411fcbc0-88bb-4801-8ec8-1c6d015e3ba2",
+    "reference": "BCJ2NVXKOI",
+    "slug": "uqehQKG0OoAkNb21",
+    "name": "Aggregate",
+    "inventory": "shell",
+    "identity": "aggregate"
+  },
+  {
+    "created_at": "2024-11-19 21:27:59.648455+00",
+    "updated_at": "2024-11-21 07:42:34.574751+00",
+    "id": "8b936969-566e-4dc4-8a3a-825fa7e0b58d",
+    "reference": "9NWMFUZ70L",
+    "slug": "kxorTdwQ1wFClq6X",
+    "name": "Detail Subcomponents/accessories",
+    "inventory": "shell",
+    "identity": "detail-subcomponentsaccessories"
+  },
+  {
+    "created_at": "2024-11-19 21:45:39.142206+00",
+    "updated_at": "2024-11-21 07:42:34.113015+00",
+    "id": "9284ecde-2dd3-4ba7-8264-e56d22cd1312",
+    "reference": "LCACHNYGH2",
+    "slug": "Kp26Vqs017h3Fe8q",
+    "name": "Walls",
+    "inventory": "shell",
+    "identity": "walls"
+  },
+  {
+    "created_at": "2024-10-12 11:25:23.683812+00",
+    "updated_at": "2024-11-21 07:42:37.076421+00",
+    "id": "95712c94-0ae6-40e8-ac4f-a235f668f4e0",
+    "reference": "G68GWMWXOQ",
+    "slug": "DBFtEH9oBDwWljJX",
+    "name": "Roof",
+    "inventory": "shell",
+    "identity": "roof"
+  },
+  {
+    "created_at": "2024-11-19 11:54:03.656851+00",
+    "updated_at": "2024-11-21 07:42:34.973991+00",
+    "id": "9e1874b7-cbb3-4f14-9ca7-7c469db2c7eb",
+    "reference": "JZPAN2XLOM",
+    "slug": "qTpXgBYZ6zx9RX1x",
+    "name": "Pre-Cast",
+    "inventory": "shell",
+    "identity": "pre-cast"
+  },
+  {
+    "created_at": "2024-11-16 15:53:36.543186+00",
+    "updated_at": "2024-11-21 07:42:36.494848+00",
+    "id": "b2d4a5ac-79cf-4465-b887-1459a65edd63",
+    "reference": "GLDIZXMJHS",
+    "slug": "6Sta1T5j4WHInoMH",
+    "name": "Cement",
+    "inventory": "shell",
+    "identity": "cement"
+  },
+  {
+    "created_at": "2024-11-19 11:26:27.297402+00",
+    "updated_at": "2024-11-21 07:42:35.373984+00",
+    "id": "e309ee6a-e8f7-4df8-8c81-5ab39cfb4381",
+    "reference": "RJKQDK4Q4K",
+    "slug": "KWh1ttvhWPS3MlY2",
+    "name": "Formwork",
+    "inventory": "shell",
+    "identity": "formwork"
+  }
+]

@@ -21,6 +21,8 @@ function ShellEquipment({ params: { slug } }) {
     refetch: refetchCategories,
   } = useFetchCategoryByInventory("shell");
 
+  console.log(categories);
+
   const processedCategories = useMemo(() => {
     if (!categories) return null;
 
@@ -62,66 +64,65 @@ function ShellEquipment({ params: { slug } }) {
         <span className="text-blue800">Shell Equipment</span>{" "}
       </span>
       <div className="my-4">
-      <Input
-        type="text"
-        className='w-fit'
-        placeholder="Search"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      {searchQuery !== "" && (
-        <>
-          {filteredCategories?.length > 0 ? (
-            <div className="mt-2 border p-4 rounded-lg">
-              <span className="font-semibold text-lg">Your search results:</span>
-              {filteredCategories
-                .filter((category) =>
-                  category.sublayers.some(
-                    (sublayer) => sublayer.sublayeritems.length > 0
+        <Input
+          type="text"
+          className="w-fit"
+          placeholder="Search"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        {searchQuery !== "" && (
+          <>
+            {filteredCategories?.length > 0 ? (
+              <div className="mt-2 border p-4 rounded-lg">
+                <span className="font-semibold text-lg">
+                  Your search results:
+                </span>
+                {filteredCategories
+                  .filter((category) =>
+                    category.sublayers.some(
+                      (sublayer) => sublayer.sublayeritems.length > 0
+                    )
                   )
-                )
-                .map((category) => (
-                  <div key={category.slug}>
-                    <span className="ml-2">-&gt;{category.name}</span>
-                    {category.sublayers
-                      .filter((sublayer) => sublayer.sublayeritems.length > 0)
-                      .map((sublayer) => (
-                        <div key={sublayer.slug}>
-                          <span className="ml-4 text-red-300">
-                          -&gt;{sublayer.name}
-                          </span>
-                          {sublayer.sublayeritems
-                            .filter((item) =>
-                              item.name
-                                .toLowerCase()
-                                .includes(searchQuery.toLowerCase())
-                            )
-                            .map((item) => (
-                              <ul
-                                key={item.slug}
-                                className="list-inside"
-                              >
-                                <li>
-                                  <Link
-                                    className="ml-6 flex items-center justify-between bg-blue-50 border-blue-200 rounded-md px-5 py-2 mt-2 text-blue-900"
-                                    href={`/branch/${slug}/shell/${category.slug}/${item.slug}`}
-                                  >
-                                    -&gt;{item.name}
-                                    <Button variant='outline'>+ Add</Button>
-                                  </Link>
-                                </li>
-                              </ul>
-                            ))}
-                        </div>
-                      ))}
-                  </div>
-                ))}
-            </div>
-          ) : (
-            <p>No results found for your search query.</p>
-          )}
-        </>
-      )}
+                  .map((category) => (
+                    <div key={category.slug}>
+                      <span className="ml-2">-&gt;{category.name}</span>
+                      {category.sublayers
+                        .filter((sublayer) => sublayer.sublayeritems.length > 0)
+                        .map((sublayer) => (
+                          <div key={sublayer.slug}>
+                            <span className="ml-4 text-red-300">
+                              -&gt;{sublayer.name}
+                            </span>
+                            {sublayer.sublayeritems
+                              .filter((item) =>
+                                item.name
+                                  .toLowerCase()
+                                  .includes(searchQuery.toLowerCase())
+                              )
+                              .map((item) => (
+                                <ul key={item.slug} className="list-inside">
+                                  <li>
+                                    <Link
+                                      className="ml-6 flex items-center justify-between bg-blue-50 border-blue-200 rounded-md px-5 py-2 mt-2 text-blue-900"
+                                      href={`/branch/${slug}/shell/${category.slug}/${item.slug}`}
+                                    >
+                                      -&gt;{item.name}
+                                      <Button variant="outline">+ Add</Button>
+                                    </Link>
+                                  </li>
+                                </ul>
+                              ))}
+                          </div>
+                        ))}
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              <p>No results found for your search query.</p>
+            )}
+          </>
+        )}
       </div>
       <div>
         <Accordion type="single" collapsible className="border p-4 rounded-xl">
@@ -136,14 +137,17 @@ function ShellEquipment({ params: { slug } }) {
                       <AccordionContent>
                         {sublayer?.sublayeritems?.map((item) => (
                           <Accordion key={item.slug} type="single" collapsible>
-                            <AccordionItem className='border-none' value={item.slug}>
-                            <Link
-                                    className="ml-6 flex items-center justify-between bg-blue-50 border-blue-200 rounded-md px-5 py-2 mt-2 text-blue-900"
-                                    href={`/branch/${slug}/shell/${category.slug}/${item.slug}`}
-                                  >
-                                    -&gt;{item.name}
-                                    <Button variant='outline'>+ Add</Button>
-                                  </Link>
+                            <AccordionItem
+                              className="border-none"
+                              value={item.slug}
+                            >
+                              <Link
+                                className="ml-6 flex items-center justify-between bg-blue-50 border-blue-200 rounded-md px-5 py-2 mt-2 text-blue-900"
+                                href={`/branch/${slug}/shell/${category.slug}/${item.slug}`}
+                              >
+                                -&gt;{item.name}
+                                <Button variant="outline">+ Add</Button>
+                              </Link>
                             </AccordionItem>
                           </Accordion>
                         ))}
@@ -156,7 +160,6 @@ function ShellEquipment({ params: { slug } }) {
           ))}
         </Accordion>
       </div>
-      
     </div>
   );
 }
