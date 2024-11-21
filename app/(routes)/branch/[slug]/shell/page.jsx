@@ -21,7 +21,6 @@ function ShellEquipment({ params: { slug } }) {
     refetch: refetchCategories,
   } = useFetchCategoryByInventory("shell");
 
-  console.log(categories);
 
   const processedCategories = useMemo(() => {
     if (!categories) return null;

@@ -1,9 +1,19 @@
-import React from 'react'
+"use client";
+import useAxiosAuth from "@/hooks/useAxiosAuth";
+import { Formik } from "formik";
+import React, { useState } from "react";
 
-function AddAggregate() {
+function AddAggregate({ branch }) {
+  const [loading, isLoading] = useState(false);
+  const axios = useAxiosAuth();
+
   return (
-    <div>AddAggregate</div>
-  )
+    <Formik
+      initialValues={{
+        branch: branch?.reference,
+      }}
+    ></Formik>
+  );
 }
 
-export default AddAggregate
+export default AddAggregate;
