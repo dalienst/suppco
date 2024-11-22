@@ -112,7 +112,9 @@ function AddFormwork({ branch, company, item, category, refetchShell }) {
             );
             refetchShell();
             setLoading(false);
-          } catch (error) {}
+          } catch (error) {
+            toast?.error("Failed to create shell equipment");
+          }
         }}
       ></Formik>
     </>
