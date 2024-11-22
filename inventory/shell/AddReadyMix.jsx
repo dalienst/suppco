@@ -21,6 +21,7 @@ function AddReadyMix({ branch, company, item, category, refetchShell }) {
           source_location: "",
           product_name: "",
           description: "",
+          units_of_measurement: "",
           minimum_order_quantity: "",
           dimensions: "", // select field: inch, mm, cm, m
           texture: "", // select field: fine, coarse
@@ -46,6 +47,11 @@ function AddReadyMix({ branch, company, item, category, refetchShell }) {
             formData.append("source_location", values.source_location);
             formData.append("product_name", values.product_name);
             formData.append("description", values.description);
+            formData.append(
+              "units_of_measurement",
+              values.units_of_measurement
+            );
+
             formData.append(
               "minimum_order_quantity",
               values.minimum_order_quantity
