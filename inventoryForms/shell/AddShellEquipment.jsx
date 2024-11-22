@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 function AddShellEquipment({ item, company, handleCloseModal, refetchItem }) {
     const [loading, setLoading] = useState(false)
     const axios = useAxiosAuth();
+    
     return (
         <Formik
             initialValues={{
