@@ -93,7 +93,11 @@ function AddMetalWork({ branch, company, item, category, refetchShell }) {
             );
             setLoading(false);
             refetchShell();
-          } catch (error) {}
+          } catch (error) {
+            toast?.error("Failed to create shell equipment");
+          } finally {
+            setLoading(false);
+          }
         }}
       ></Formik>
     </>
