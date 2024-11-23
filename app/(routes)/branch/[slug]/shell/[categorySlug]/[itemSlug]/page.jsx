@@ -36,8 +36,6 @@ export default function ItemDetail({
     refetch: refetchSubCategoryItem,
   } = useFetchSubCategoryItemDetail(itemSlug);
 
-  console.log(category);
-
   const {
     isLoading: isLoadingShell,
     data: shell,
@@ -74,12 +72,9 @@ export default function ItemDetail({
   };
 
   return (
-    <>
       <div>
-        <h5 className="fw-medium text-green-700">{subCategoryItem?.name}</h5>
-
+        <h5 className="font-bold text-2xl">Product: {subCategoryItem?.name}</h5>
         {renderForm()}
       </div>
-    </>
   );
 }

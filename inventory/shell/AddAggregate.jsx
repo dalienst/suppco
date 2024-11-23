@@ -1,7 +1,11 @@
 "use client";
+import { Button } from "@/app/components/ui/button";
+import FormGenerator from "@/components/formGenerator/FormGenerator";
+import { formGeneratorInputFields } from "@/data/formGeneratorInputTypes";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createShellEquipment } from "@/services/shell";
 import { Field, Form, Formik } from "formik";
+import { ImagePlus } from "lucide-react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -44,10 +48,10 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
         setLoading(true);
         try {
           const formData = new FormData();
-          formData?.append("branch", values?.branch);
-          formData?.append("company", values?.company);
-          formData?.append("sublayeritem", values?.sublayeritem);
-          formData?.append("layer", values?.layer);
+          formData?.append("branch", branch?.reference);
+          formData?.append("company", company?.slug);
+          formData?.append("sublayeritem", item?.name);
+          formData?.append("layer", category?.name);
           if (values.image) {
             formData.append("image", values.image);
           }
@@ -86,10 +90,11 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
           );
           formData.append("other", values.other);
 
-          await createShellEquipment(formData, axios);
-          toast?.success("Shell Equipment created successfully. Refreshing...");
-          refetchShell();
-          setLoading(false);
+          // await createShellEquipment(formData, axios);
+          // toast?.success("Shell Equipment created successfully. Refreshing...");
+          // refetchShell();
+          // setLoading(false);
+          // console.log(formData)
         } catch (error) {
           toast?.error("Failed to create shell equipment");
         } finally {
@@ -99,8 +104,8 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
     >
       {({ setFieldValue }) => (
         <Form>
-          <div>
-            <label htmlFor="image">Image</label>
+          <div className="flex flex-col gap-1 mt-5 mb-5">
+            <label htmlFor="image" className="flex gap-2"><ImagePlus size={30}/> Product image</label>
             <input
               type="file"
               id="image"
@@ -109,14 +114,22 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
                 setFieldValue("image", event?.target?.files[0]);
               }}
             />
+            
           </div>
-
-          <div>
-            <label htmlFor="source_location">Source Location</label>
-            <Field type="text" id="source_location" name="source_location" />
+          <div className="grid grid-cols-2 gap-5">
+            {formGeneratorInputFields.map((field)=>(
+                <FormGenerator
+                key={field.name} 
+                name={field.name} 
+                placeholder={field.placeholder}
+                label={field.placeholder} 
+                inputType={field.inputType}
+                {...(field.options && { options: field.options })}
+                type="text"
+                />
+            ))}
           </div>
-
-          {/* other fields */}
+      <Button type="submit" className='mt-5 mb-5'>Submit</Button>
         </Form>
       )}
     </Formik>
