@@ -94,7 +94,7 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
           // toast?.success("Shell Equipment created successfully. Refreshing...");
           // refetchShell();
           // setLoading(false);
-          // console.log(formData)
+          console.log(formData)
         } catch (error) {
           toast?.error("Failed to create shell equipment");
         } finally {

@@ -31,6 +31,7 @@ function FormGenerator({type, inputType, options, name, label, placeholder}) {
                         name={name}
                         className="bg-white border-[1px] p-2 rounded-lg"
                     >
+                        <option value="">N/A</option>
                         {options?.length && options.map((option) => (
                             <option key={option.id} value={option.value} id={option.id}
                             className=""
