@@ -83,7 +83,7 @@ function CustomNoRowsOverlay() {
     );
   }
 
-export default function UserTable({rows, columns}) {
+export default function UserTable({rows, columns, redirectLink}) {
   
   const actionColumn = {
     field:'action',
@@ -96,9 +96,9 @@ export default function UserTable({rows, columns}) {
             <PopoverTrigger>
               <Ellipsis size={18} style={{marginRight:'10px', cursor:'pointer'}}/>
             </PopoverTrigger>
-            <PopoverContent className='flex flex-col gap-2 w-fit'>
+            {redirectLink !== '' && <PopoverContent className='flex flex-col gap-2 w-fit'>
               <Link href={`/branch/${params.row.id}/`} className='flex items-center gap-1 cursor-pointer hover:text-primary'>View Details</Link>
-            </PopoverContent>
+            </PopoverContent>}
           </Popover>
         </div>
       )

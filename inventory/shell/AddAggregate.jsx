@@ -4,16 +4,25 @@ import FormGenerator from "@/components/formGenerator/FormGenerator";
 import { formGeneratorInputFields } from "@/data/formGeneratorInputTypes";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createShellEquipment } from "@/services/shell";
-import { Field, Form, Formik } from "formik";
-import { ImagePlus } from "lucide-react";
+import { Form, Formik } from "formik";
+import { ChevronLeft, ChevronRight, ImagePlus, Loader2, ThumbsUp } from "lucide-react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import SupplierInputForm from "./SupplierInputForm";
 
 function AddAggregate({ branch, item, category, refetchShell }) {
   const [loading, setLoading] = useState(false);
+  const [supplierInputValues, setSupplierInputValues] = useState(null);
+  const [page, setPage] = useState(1);
+
+  const handleSupplierInputValues = (data) => {
+    setSupplierInputValues(data);
+  };
   const axios = useAxiosAuth();
 
   return (
+    <div>
+      <span>Page {page}</span>
     <Formik
       initialValues={{
         branch: branch?.reference,
@@ -44,8 +53,7 @@ function AddAggregate({ branch, item, category, refetchShell }) {
         environmental_specifications: "",
         other: "", // textfield
       }}
-      onSubmit={async (values) => {
-        console.log(values)
+      onSubmit={async (values, { resetForm }) => {
         setLoading(true);
         try {
           const formData = new FormData();
@@ -90,14 +98,19 @@ function AddAggregate({ branch, item, category, refetchShell }) {
             values.environmental_specifications
           );
           formData.append("other", values.other);
+          formData.append("offers_delivery", supplierInputValues?.offers_delivery);
+          formData.append("delivery_charges", supplierInputValues?.delivery_charges);
+          formData.append("quantity_available", supplierInputValues?.quantity_available);
+          formData.append("rate_per_unit", supplierInputValues?.rate_per_unit);
+          formData.append("plan_type", supplierInputValues?.plan_type);
+          formData.append("deposit_percentage", supplierInputValues?.deposit_percentage);
 
           await createShellEquipment(formData, axios);
           toast?.success("Shell Equipment created successfully. Refreshing...");
           // refetchShell();
-          // setLoading(false);
-          console.log(formData)
+          setLoading(false);
+          resetForm()
         } catch (error) {
-          console.log(error);
           toast?.error("Failed to create shell equipment");
         } finally {
           setLoading(false);
@@ -106,6 +119,7 @@ function AddAggregate({ branch, item, category, refetchShell }) {
     >
       {({ setFieldValue }) => (
         <Form>
+          {page === 1 ? <div>
           <div className="flex flex-col gap-1 mt-5 mb-5">
             <label htmlFor="image" className="flex gap-2">
               <ImagePlus size={30} /> Product image
@@ -132,12 +146,42 @@ function AddAggregate({ branch, item, category, refetchShell }) {
               />
             ))}
           </div>
-          <Button type="submit" className="mt-5 mb-5">
-            Submit
-          </Button>
+          <div className='mt-5 mb-5 flex justify-between gap-2'>
+          <Button onClick={()=>setPage(2)}>Next page <ChevronRight /></Button>
+            <p>Page {page} of 3</p>
+          </div>
+          </div>
+          :
+          page === 2 ?
+          <div className="">
+            <p className="font-semibold text-xl mt-5 mb-5">Payment and delivery information</p>
+            <SupplierInputForm onSupplierInputValues={handleSupplierInputValues}/>
+            <div className='mt-5 mb-5 flex justify-between gap-2'>
+              <div className="flex justify-between gap-2 ">
+                <Button onClick={()=>setPage(1)}><ChevronLeft /> Back</Button>
+                <Button disabled={supplierInputValues === null} onClick={()=>setPage(3)}>Next <ChevronRight /></Button>
+              </div>
+                <p>Page {page} of 3</p>
+            </div>
+          </div>
+          :
+          page === 3 ? 
+          <div>
+            {supplierInputValues && <Button disabled={loading} type="submit" className="mt-5 mb-5">
+              {loading ? <Loader2 className="animate-spin"/> : 'Submit'}
+            </Button>}
+            <div className="flex justify-between gap-2 ">
+                <Button disabled={loading} onClick={()=>setPage(2)}><ChevronLeft /> Back</Button>
+                <p>Page {page} of 3</p>
+              </div>
+          </div>
+          :
+          null}
         </Form>
       )}
     </Formik>
+    
+    </div>
   );
 }
 
