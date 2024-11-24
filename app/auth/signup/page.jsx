@@ -19,7 +19,7 @@ function UserRole() {
         <Button disabled={role === ''} className={`${role === '' ? 'cursor-not-allowed' :''} ${role === 'contractor' ? 'bg-jungle800 hover:bg-jungle600' :'bg-blue900 hover:bg-blue700'} rounded-full`}>{`Create account ${role === 'supplier' ? 'as a supplier' : role === 'contractor' ? 'as a contractor' : ''}`}</Button>
         </Link>
         <p className="text-[#5f5e5e]">
-            Don&apos;t have an account?{" "}
+            Already have an account?{" "}
             <Link className="text-blue900" href="/auth/login">Log in</Link>
           </p>
     </div>

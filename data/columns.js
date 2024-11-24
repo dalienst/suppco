@@ -31,8 +31,18 @@ export const companyBranchesColumn = [
   ]
   export const branchColumn = [
     {
-      field: 'name',
-      headerName: 'Name',
+      field: 'sublayeritem',
+      headerName: 'Category',
+      width: 180,
+    },
+    {
+      field: 'product_name',
+      headerName: 'Product name',
+      width: 180,
+    },
+    {
+      field: 'source_location',
+      headerName: 'Location',
       width: 180,
     },
   ]

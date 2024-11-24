@@ -1,19 +1,32 @@
 "use client";
+import { Button } from "@/app/components/ui/button";
+import FormGenerator from "@/components/formGenerator/FormGenerator";
+import { formGeneratorInputFields } from "@/data/formGeneratorInputTypes";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createShellEquipment } from "@/services/shell";
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
+import { ChevronLeft, ChevronRight, ImagePlus, Loader2, ThumbsUp } from "lucide-react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import SupplierInputForm from "./SupplierInputForm";
 
-function AddAggregate({ branch, company, item, category, refetchShell }) {
+function AddAggregate({ branch, item, category, refetchShell }) {
   const [loading, setLoading] = useState(false);
+  const [supplierInputValues, setSupplierInputValues] = useState(null);
+  const [page, setPage] = useState(1);
+
+  const handleSupplierInputValues = (data) => {
+    setSupplierInputValues(data);
+  };
   const axios = useAxiosAuth();
 
   return (
+    <div>
+      <span>Page {page}</span>
     <Formik
       initialValues={{
         branch: branch?.reference,
-        company: company?.slug,
+        company: branch?.company,
         sublayeritem: item?.name,
         layer: category?.name,
         image: null,
@@ -40,14 +53,14 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
         environmental_specifications: "",
         other: "", // textfield
       }}
-      onSubmit={async (values) => {
+      onSubmit={async (values, { resetForm }) => {
         setLoading(true);
         try {
           const formData = new FormData();
-          formData?.append("branch", values?.branch);
-          formData?.append("company", values?.company);
-          formData?.append("sublayeritem", values?.sublayeritem);
-          formData?.append("layer", values?.layer);
+          formData?.append("branch", branch?.reference);
+          formData?.append("company", branch?.company);
+          formData?.append("sublayeritem", item?.name);
+          formData?.append("layer", category?.name);
           if (values.image) {
             formData.append("image", values.image);
           }
@@ -85,11 +98,18 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
             values.environmental_specifications
           );
           formData.append("other", values.other);
+          formData.append("offers_delivery", supplierInputValues?.offers_delivery);
+          formData.append("delivery_charges", supplierInputValues?.delivery_charges);
+          formData.append("quantity_available", supplierInputValues?.quantity_available);
+          formData.append("rate_per_unit", supplierInputValues?.rate_per_unit);
+          formData.append("plan_type", supplierInputValues?.plan_type);
+          formData.append("deposit_percentage", supplierInputValues?.deposit_percentage);
 
           await createShellEquipment(formData, axios);
           toast?.success("Shell Equipment created successfully. Refreshing...");
-          refetchShell();
+          // refetchShell();
           setLoading(false);
+          resetForm()
         } catch (error) {
           toast?.error("Failed to create shell equipment");
         } finally {
@@ -99,8 +119,11 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
     >
       {({ setFieldValue }) => (
         <Form>
-          <div>
-            <label htmlFor="image">Image</label>
+          {page === 1 ? <div>
+          <div className="flex flex-col gap-1 mt-5 mb-5">
+            <label htmlFor="image" className="flex gap-2">
+              <ImagePlus size={30} /> Product image
+            </label>
             <input
               type="file"
               id="image"
@@ -110,16 +133,55 @@ function AddAggregate({ branch, company, item, category, refetchShell }) {
               }}
             />
           </div>
-
-          <div>
-            <label htmlFor="source_location">Source Location</label>
-            <Field type="text" id="source_location" name="source_location" />
+          <div className="grid grid-cols-2 gap-5">
+            {formGeneratorInputFields.map((field) => (
+              <FormGenerator
+                key={field.name}
+                name={field.name}
+                placeholder={field.placeholder}
+                label={field.placeholder}
+                inputType={field.inputType}
+                {...(field.options && { options: field.options })}
+                type="text"
+              />
+            ))}
           </div>
-
-          {/* other fields */}
+          <div className='mt-5 mb-5 flex justify-between gap-2'>
+          <Button onClick={()=>setPage(2)}>Next page <ChevronRight /></Button>
+            <p>Page {page} of 3</p>
+          </div>
+          </div>
+          :
+          page === 2 ?
+          <div className="">
+            <p className="font-semibold text-xl mt-5 mb-5">Payment and delivery information</p>
+            <SupplierInputForm onSupplierInputValues={handleSupplierInputValues}/>
+            <div className='mt-5 mb-5 flex justify-between gap-2'>
+              <div className="flex justify-between gap-2 ">
+                <Button onClick={()=>setPage(1)}><ChevronLeft /> Back</Button>
+                <Button disabled={supplierInputValues === null} onClick={()=>setPage(3)}>Next <ChevronRight /></Button>
+              </div>
+                <p>Page {page} of 3</p>
+            </div>
+          </div>
+          :
+          page === 3 ? 
+          <div>
+            {supplierInputValues && <Button disabled={loading} type="submit" className="mt-5 mb-5">
+              {loading ? <Loader2 className="animate-spin"/> : 'Submit'}
+            </Button>}
+            <div className="flex justify-between gap-2 ">
+                <Button disabled={loading} onClick={()=>setPage(2)}><ChevronLeft /> Back</Button>
+                <p>Page {page} of 3</p>
+              </div>
+          </div>
+          :
+          null}
         </Form>
       )}
     </Formik>
+    
+    </div>
   );
 }
 

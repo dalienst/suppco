@@ -36,8 +36,6 @@ export default function ItemDetail({
     refetch: refetchSubCategoryItem,
   } = useFetchSubCategoryItemDetail(itemSlug);
 
-  console.log(category);
-
   const {
     isLoading: isLoadingShell,
     data: shell,
@@ -48,6 +46,7 @@ export default function ItemDetail({
     return <div>Loading...</div>;
   }
 
+
   const renderForm = () => {
     switch (category?.identity) {
       case "metal-work":
@@ -55,7 +54,14 @@ export default function ItemDetail({
       case "ready-mix-concrete":
         return <AddReadyMix />;
       case "aggregate":
-        return <AddAggregate />;
+        return (
+          <AddAggregate
+            branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+          />
+        );
       case "detail-subcomponentsaccessories":
         return <AddAccessories />;
       case "walls":
@@ -74,12 +80,9 @@ export default function ItemDetail({
   };
 
   return (
-    <>
-      <div>
-        <h5 className="fw-medium text-green-700">{subCategoryItem?.name}</h5>
-
-        {renderForm()}
-      </div>
-    </>
+    <div>
+      <h5 className="font-bold text-2xl">Product: {subCategoryItem?.name}</h5>
+      {renderForm()}
+    </div>
   );
 }

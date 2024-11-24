@@ -35,11 +35,11 @@ function BranchDashboard({ params: { slug } }) {
   return (
   <div className="h-[calc(100vh-115px)]">
     <div className="py-6 lg:p-4 h-full">
-      <div className="flex flex-col">
+      <div className="lg:hidden flex flex-col">
       <span className="text-xl font-semibold">{branch?.name}</span> 
       <span className="text-[#707070] text-sm">{branch?.location} Branch</span>
       </div>
-      <hr className="mb-5 mt-3"/>
+      <hr className="lg:hidden mb-5 mt-3"/>
       <div>
         <div className="flex justify-between gap-4 mb-3">
           <span>{branch?.name} Inventory</span>
@@ -47,7 +47,7 @@ function BranchDashboard({ params: { slug } }) {
           <Button variant="outline" className='text-blue900 bg-blue-50 border-blue-200'>+ Add product</Button>
           </Link>
         </div>
-        <UserTable rows={rows} columns={branchColumn} />
+        <UserTable rows={rows} columns={branchColumn} redirectLink='' />
       </div>
     </div>
     </div>
