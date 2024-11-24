@@ -45,7 +45,8 @@ export default function ItemDetail({
   if (isLoadingBranch || isLoadingCategory || isLoadingSubCategoryItem) {
     return <div>Loading...</div>;
   }
-
+  
+  console.log(branch?.branch_employees);
 
   const renderForm = () => {
     switch (category?.identity) {
@@ -60,6 +61,7 @@ export default function ItemDetail({
             item={subCategoryItem}
             category={category}
             refetchShell={refetchShell}
+            employees={branch?.branch_employees}
           />
         );
       case "detail-subcomponentsaccessories":
