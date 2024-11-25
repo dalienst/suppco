@@ -46,8 +46,6 @@ export default function ItemDetail({
     return <div>Loading...</div>;
   }
   
-  console.log(branch?.branch_employees);
-
   const renderForm = () => {
     switch (category?.identity) {
       case "metal-work":

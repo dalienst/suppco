@@ -11,7 +11,8 @@ function SupplierInputForm({ onSupplierInputValues }) {
     quantity_available:'',
     rate_per_unit:'',
     plan_type:'fixed',
-    deposit_percentage:''
+    deposit_percentage:'',
+    delivery_mode:''
 });
 const [deliveryOffered, setDeliveryOffered] = useState(false);
 
@@ -97,6 +98,24 @@ const [deliveryOffered, setDeliveryOffered] = useState(false);
           </option>
           <option value="negotiable">
             Negotiable
+          </option>
+        </select>
+      </div>
+      <div className="flex flex-col gap-1">
+        <Label htmlFor="delivery_mode">Delivery mode</Label>
+        <select
+          id="delivery_mode"
+          name="delivery_mode"
+          className="bg-white border-[1px] p-2 rounded-lg"
+          onChange={handleChange}
+          value={supplierInput.delivery_mode}
+          required
+          >
+          <option value="distance">
+            Charged based on distance (km)
+          </option>
+          <option value="weight">
+            Charged based on weight (kg)
           </option>
         </select>
       </div>
