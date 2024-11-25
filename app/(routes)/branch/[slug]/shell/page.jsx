@@ -2,7 +2,7 @@
 import { useFetchCategoryByInventory } from "@/dataActions/categories/categoryActions";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import {
   Accordion,

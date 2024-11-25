@@ -203,3 +203,10 @@ select {
   50% { background-color: #03a9f4; box-shadow: 0 0 40px #03a9f4; }
   100% { background-color: #01579b; box-shadow: 0 0 3px #01579b; }
 }
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td{
+  padding: 5px;
+}

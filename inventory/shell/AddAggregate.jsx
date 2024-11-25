@@ -4,7 +4,7 @@ import FormGenerator from "@/components/formGenerator/FormGenerator";
 import { formGeneratorInputFields } from "@/data/formGeneratorInputTypes";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createShellEquipment } from "@/services/shell";
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import {
   ChevronLeft,
   ChevronRight,
@@ -15,11 +15,15 @@ import {
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import SupplierInputForm from "./SupplierInputForm";
+import { Label } from "@/app/components/ui/label";
+import { useParams, useRouter } from "next/navigation";
 
 function AddAggregate({ branch, item, category, refetchShell, employees }) {
   const [loading, setLoading] = useState(false);
   const [supplierInputValues, setSupplierInputValues] = useState(null);
   const [page, setPage] = useState(1);
+  const router = useRouter()
+  const {slug} = useParams();
 
   const handleSupplierInputValues = (data) => {
     setSupplierInputValues(data);
@@ -145,6 +149,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
               "Shell Equipment created successfully. Refreshing..."
             );
             // refetchShell();
+            router.push(`/branch/${slug}`)
             setLoading(false);
             resetForm();
           } catch (error) {
@@ -171,6 +176,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                     }}
                   />
                 </div>
+                
                 <div className="grid grid-cols-2 gap-5">
                   {formGeneratorInputFields.map((field) => (
                     <FormGenerator
@@ -194,8 +200,24 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
             ) : page === 2 ? (
               <div className="">
                 <p className="font-semibold text-xl mt-5 mb-5">
-                  Payment and delivery information
+                  Supplier Input Form
                 </p>
+                <div className="flex flex-col gap-1">
+                  <Label htmlFor='employee'>Employee</Label>
+                  <Field 
+                    as='select'
+                        id='employee'
+                        name='employees'
+                        className="bg-white border-[1px] p-2 rounded-lg"
+                    >
+                        <option value="">N/A</option>
+                        {employees?.length && employees.map((employee) => (
+                            <option key={employee.slug} value={employee.slug} id={employee.slug}
+                            className=""
+                            >{employee.user.first_name}{' '}{employee.user.last_name}</option>
+                        ))}
+                    </Field>
+                </div>
                 <SupplierInputForm
                   onSupplierInputValues={handleSupplierInputValues}
                 />
@@ -216,15 +238,19 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
               </div>
             ) : page === 3 ? (
               <div>
+                <div className="grid place-content-center">
+                  <p className="">You&apos;re done. <ThumbsUp/></p>
+                  <p>Click submit to save this information.</p>
                 {supplierInputValues && (
                   <Button
-                    disabled={loading}
-                    type="submit"
-                    className="mt-5 mb-5"
+                  disabled={loading}
+                  type="submit"
+                  className="mt-5 mb-5"
                   >
                     {loading ? <Loader2 className="animate-spin" /> : "Submit"}
                   </Button>
                 )}
+                </div>
                 <div className="flex justify-between gap-2 ">
                   <Button disabled={loading} onClick={() => setPage(2)}>
                     <ChevronLeft /> Back
