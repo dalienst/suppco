@@ -176,22 +176,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                     }}
                   />
                 </div>
-                <div>
-                  <Label htmlFor='employee'>Employee</Label>
-                  <Field 
-                    as='select'
-                        id='employee'
-                        name='employees'
-                        className="bg-white border-[1px] p-2 rounded-lg"
-                    >
-                        <option value="">N/A</option>
-                        {employees?.length && employees.map((employee) => (
-                            <option key={employee.slug} value={employee.slug} id={employee.slug}
-                            className=""
-                            >{employee.user.first_name}{' '}{employee.user.last_name}</option>
-                        ))}
-                    </Field>
-                </div>
+                
                 <div className="grid grid-cols-2 gap-5">
                   {formGeneratorInputFields.map((field) => (
                     <FormGenerator
@@ -215,8 +200,24 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
             ) : page === 2 ? (
               <div className="">
                 <p className="font-semibold text-xl mt-5 mb-5">
-                  Payment and delivery information
+                  Supplier Input Form
                 </p>
+                <div className="flex flex-col gap-1">
+                  <Label htmlFor='employee'>Employee</Label>
+                  <Field 
+                    as='select'
+                        id='employee'
+                        name='employees'
+                        className="bg-white border-[1px] p-2 rounded-lg"
+                    >
+                        <option value="">N/A</option>
+                        {employees?.length && employees.map((employee) => (
+                            <option key={employee.slug} value={employee.slug} id={employee.slug}
+                            className=""
+                            >{employee.user.first_name}{' '}{employee.user.last_name}</option>
+                        ))}
+                    </Field>
+                </div>
                 <SupplierInputForm
                   onSupplierInputValues={handleSupplierInputValues}
                 />
