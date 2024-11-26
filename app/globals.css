@@ -204,7 +204,8 @@ select {
   100% { background-color: #01579b; box-shadow: 0 0 3px #01579b; }
 }
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid gray;
+  border-radius: 20px;
   border-collapse: collapse;
 }
 th, td{

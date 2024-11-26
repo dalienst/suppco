@@ -1,10 +1,9 @@
-import React from 'react'
-
+import { Loader2 } from 'lucide-react';
 function SupplierLoadingSpinner() {
   return (
-    <section className="p-2 mt-3 d-flex justify-content-center align-items-center flex-column">
-      <div className="spinner-border text-success" role="status">
-        <span className="visually-hidden">Loading...</span>
+    <section className="h-[90vh] flex items-center justify-center">
+      <div>
+        <Loader2 className='animate-spin'/>
       </div>
     </section>
   );

@@ -12,7 +12,7 @@ import {
   Loader2,
   ThumbsUp,
 } from "lucide-react";
-import React, { useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import SupplierInputForm from "./SupplierInputForm";
 import { Label } from "@/app/components/ui/label";
@@ -31,8 +31,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
   const axios = useAxiosAuth();
 
   return (
-    <div>
-      <span>Page {page}</span>
+    <div className="">
       <Formik
         initialValues={{
           branch: branch?.reference,
@@ -163,9 +162,9 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
           <Form>
             {page === 1 ? (
               <div>
-                <div className="flex flex-col gap-1 mt-5 mb-5">
+                <div className="flex items-center gap-2 mt-3 mb-5">
                   <label htmlFor="image" className="flex gap-2">
-                    <ImagePlus size={30} /> Product image
+                    <ImagePlus size={30} />
                   </label>
                   <input
                     type="file"
@@ -176,8 +175,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                     }}
                   />
                 </div>
-                
-                <div className="grid grid-cols-2 gap-5">
+                <div className="grid grid-cols-2 gap-2 lg:gap-5">
                   {formGeneratorInputFields.map((field) => (
                     <FormGenerator
                       key={field.name}
@@ -199,10 +197,10 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
               </div>
             ) : page === 2 ? (
               <div className="">
-                <p className="font-semibold text-xl mt-5 mb-5">
+                <p className="font-semibold text-lg lg:text-xl mb-4">
                   Supplier Input Form
                 </p>
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-1 mb-2">
                   <Label htmlFor='employee'>Employee</Label>
                   <Field 
                     as='select'
@@ -245,7 +243,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                   <Button
                   disabled={loading}
                   type="submit"
-                  className="mt-5 mb-5"
+                  className="mt-10 mb-5"
                   >
                     {loading ? <Loader2 className="animate-spin" /> : "Submit"}
                   </Button>

@@ -58,12 +58,12 @@ function BranchDashboard({ params: { slug } }) {
 
   return (
   <div className="h-[calc(100vh-115px)]">
-    <div className="py-6 lg:p-4 h-full">
+    <div className="py-4 lg:p-4 h-full">
       <div className="lg:hidden flex flex-col">
-      <span className="text-xl font-semibold">{branch?.name}</span> 
+      <span className="text-lg md:text-xl font-semibold">{branch?.name}</span> 
       <span className="text-[#707070] text-sm">{branch?.location} Branch</span>
       </div>
-      <hr className="lg:hidden mb-5 mt-3"/>
+      <hr className="lg:hidden mb-4 mt-3"/>
       <div>
         <div className="flex justify-between gap-4 mb-3">
           <span>{branch?.name} Inventory</span>
@@ -71,8 +71,9 @@ function BranchDashboard({ params: { slug } }) {
           <Button variant="outline" className='text-blue900 bg-blue-50 border-blue-200'>+ Add product</Button>
           </Link>
         </div>
+        <hr className="lg:hidden mb-4 mt-3"/>
       {!secondTable && <div className="mb-3">
-      <Input className='w-fit border border-black mb-3' type="text" placeholder="Search by Category" onChange={(e) => setSearchTerm(e.target.value)} />
+      <Input className='w-fit border mb-3' type="text" placeholder="Search by Category" onChange={(e) => setSearchTerm(e.target.value)} />
         <table style={{"width":"100%"}}>
           <thead>
             <tr>
@@ -87,7 +88,7 @@ function BranchDashboard({ params: { slug } }) {
             <tr key={name}>
               <td>{name}</td>
               <td className="text-center">
-              <Button variant='outline' className='border border-black' onClick={()=>handleView(name)}>View details</Button>
+              <Button variant='outline' className='border border-slate-500 text-slate-600' onClick={()=>handleView(name)}>View details</Button>
               </td>
             </tr>
   
