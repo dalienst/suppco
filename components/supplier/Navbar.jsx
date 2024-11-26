@@ -129,11 +129,11 @@ function Navbar() {
       <div className="md:hidden fixed my-4">
         <Sheet>
           <SheetTrigger asChild className="ml-2">
-            <Button variant="ghost" className="mt-[2px]">
+            <Button variant="ghost" className="mt-[2px">
               <Menu />
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="p-0 pl-4 pr-10 w-fit h-full">
+          <SheetContent side="left" className="p-0 pl-4 pr-10 h-full">
             {SidebarComponent}
           </SheetContent>
         </Sheet>

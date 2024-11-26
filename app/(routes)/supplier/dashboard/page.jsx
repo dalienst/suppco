@@ -64,9 +64,9 @@ function SupplierDashboard() {
   return (
     <>
       {profile?.companies?.name !== null && (
-        <div className="pt-7 px-2 md:p-6">
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
-            <div className="border p-4 rounded-xl flex items-center gap-4">
+        <div className="pt-4 px-2 md:p-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-5">
+            <div className="border p-2 lg:p-4 rounded-lg lg:rounded-xl flex items-center gap-1 lg:gap-4">
               <div>
                 {profile?.companies?.logo ? (
                   <Image
@@ -80,45 +80,41 @@ function SupplierDashboard() {
                   <Image
                     src="/logo.png"
                     alt="Logo"
-                    width={40}
-                    height={40}
-                    className="border rounded-full"
+                    width={60}
+                    height={60}
                   />
                 )}
               </div>
-              <div>
+              <div className="text-sm lg:text-base">
                 <span>
                   {profile?.companies?.name}
                 </span>
               </div>
             </div>
-
-            <div className="border p-4 rounded-xl flex items-center gap-4">
+            <div className="border p-2 lg:p-4 rounded-lg lg:rounded-xl flex items-center gap-1 lg:gap-4">
               <Image
                 src="/branches.png"
                 alt="Branches"
-                width={40}
-                height={40}
+                width={60}
+                height={60}
                 className="rounded-full"
               />
-              <div className="flex-grow space-x-4">
+              <div className="flex-grow space-x-1 lg:space-x-4 text-sm lg:text-base">
                 <span>
                   {profile?.companies?.company_branches?.length}
                 </span>
                 <span>Branches</span>
               </div>
             </div>
-
-            <div className="border p-4 rounded-xl flex items-center gap-4">
+            <div className="border p-2 lg:p-4 rounded-lg lg:rounded-xl flex items-center gap-1 lg:gap-4">
               <Image
                 src="/employees.png"
                 alt="Employees"
-                width={40}
-                height={40}
-                className="supplier-sidebar-border"
-                style={{ borderRadius: "50%", objectFit: "contain" }}
+                width={60}
+                height={60}
+                
               />
-              <div className="flex-grow space-x-4">
+              <div className="flex-grow space-x-1 lg:space-x-4 text-sm lg:text-base">
                 <span>
                   {profile?.companies?.company_employees?.length}
                 </span>
@@ -126,7 +122,6 @@ function SupplierDashboard() {
               </div>
             </div>
           </div>
-
           <section className="mt-5">
             <hr />
             <div className="flex justify-between my-4">

@@ -1,6 +1,6 @@
 "use client";
 import { useFetchCategoryByInventory } from "@/dataActions/categories/categoryActions";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -52,13 +52,14 @@ function ShellEquipment({ params: { slug } }) {
   }, [categories, searchQuery]);
 
   if (isLoadingCategories) {
-    return <div>Loading...</div>;
+    return <div className="h-[90vh] flex justify-center items-center">
+      <Loader2 className="animate-spin"/>
+    </div>;
   }
 
   return (
-    <div className="py-6 md:p-4">
-      <span className="flex items-center font-semibold text-xl">
-        {" "}
+    <div className="py-3 md:p-4">
+      <span className="flex items-center font-semibold text-lg lg:text-xl">
         <span>Categories</span> <ChevronRight size={14} />{" "}
         <span className="text-blue800">Shell Equipment</span>{" "}
       </span>

@@ -5,7 +5,7 @@ function FormGenerator({type, inputType, options, name, label, placeholder}) {
     switch (inputType) {
         case 'input':
             return(
-                <Label className="flex flex-col gap-2 "
+                <Label className="flex flex-col gap-2 mb-2"
                 htmlFor={`input-${label}`}
                 >
                     {label && label}
@@ -21,7 +21,7 @@ function FormGenerator({type, inputType, options, name, label, placeholder}) {
             
         case 'select':
             return(
-                <Label className="flex flex-col gap-2 "
+                <Label className="flex flex-col gap-2 mb-2"
                 htmlFor={`select-${label}`}
                 >
                     {label && label}
@@ -43,7 +43,7 @@ function FormGenerator({type, inputType, options, name, label, placeholder}) {
             
         case 'textarea':
             return(
-                <Label className="flex flex-col gap-2 "
+                <Label className="flex flex-col gap-2 mb-2"
                 htmlFor={`textarea-${label}`}
                 >
                     {label && label}

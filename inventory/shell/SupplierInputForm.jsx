@@ -27,7 +27,7 @@ const [deliveryOffered, setDeliveryOffered] = useState(false);
 
   return (
     <div>
-    <div className="grid grid-cols-2 gap-5 mb-5">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
       <div role="group" aria-labelledby="my-radio-group" className=''>
       <label id="my-radio-group">Do you offer delivery</label>
         <div className="flex items-center gap-2">
