@@ -34,8 +34,8 @@ function Navbar() {
   } = useFetchBranchDetail(slug);
 
   const SidebarComponent = (
-    <div>
-      <div className="flex h-[85vh] flex-col pt-8 rounded-lg">
+    <div className="flex flex-col h-full justify-between">
+      <div className="flex flex-col pt-8 rounded-lg">
         <div>
           <div className="flex flex-col mb-5">
             <span className="text-xl font-semibold">{branch?.name}</span>
@@ -77,7 +77,7 @@ function Navbar() {
           ) : null}
         </ul>
       </div>
-      <Link href="/supplier/dashboard">
+      <Link href="/supplier/dashboard" className="mb-5">
         <Button className="flex items-center gap-2" variant="outline">
           <ChevronLeft />
           Back to Dashboard

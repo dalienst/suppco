@@ -48,7 +48,7 @@ export default function ItemDetail({
     <Loader2 className="animate-spin"/>
   </div>;
   }
-  
+  console.log(category?.identity)
   const renderForm = () => {
     switch (category?.identity) {
       case "metal-work":
@@ -74,7 +74,13 @@ export default function ItemDetail({
       case "pre-cast":
         return <AddPrecast />;
       case "cement":
-        return <AddCement />;
+        return( 
+        <AddCement
+        branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell} 
+        />);
       case "formwork":
         return <AddFormwork />;
       default:

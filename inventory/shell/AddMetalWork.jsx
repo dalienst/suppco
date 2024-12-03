@@ -1,15 +1,26 @@
 "use client";
+import { Button } from "@/app/components/ui/button";
+import FormGenerator from "@/components/formGenerator/FormGenerator";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createShellEquipment } from "@/services/shell";
-import { Field, Form, Formik } from "formik";
+import { Form, Formik } from "formik";
+import { ChevronLeft, ChevronRight, ImagePlus, Loader2, ThumbsUp } from "lucide-react";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import SupplierInputForm from "./SupplierInputForm";
+import { metalWorkInputFields } from "@/data/formGeneratorInputTypes";
 
-function AddMetalWork({ branch, company, item, category, refetchShell }) {
+function AddMetalWork({ branch, item, category, refetchShell }) {
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [supplierInputValues, setSupplierInputValues] = useState(null);
   const axios = useAxiosAuth();
+
+  const handleSupplierInputValues = (data) => {
+    setSupplierInputValues(data);
+  };
+
   return (
-    <>
       <Formik
         initialValues={{
           branch: branch?.reference,
@@ -99,8 +110,93 @@ function AddMetalWork({ branch, company, item, category, refetchShell }) {
             setLoading(false);
           }
         }}
-      ></Formik>
-    </>
+      >
+        {({ setFieldValue }) => (
+          <Form>
+            {page === 1 ? (
+              <div>
+                <div className="flex items-center gap-2 mt-3 mb-5">
+                  <label htmlFor="image" className="flex gap-2">
+                    <ImagePlus size={30} />
+                  </label>
+                  <input
+                    type="file"
+                    id="image"
+                    name="image"
+                    onChange={(event) => {
+                      setFieldValue("image", event?.target?.files[0]);
+                    }}
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-2 lg:gap-5">
+                  {metalWorkInputFields.map((field) => (
+                    <FormGenerator
+                      key={field.name}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      label={field.placeholder}
+                      inputType={field.inputType}
+                      {...(field.options && { options: field.options })}
+                      type="text"
+                    />
+                  ))}
+                </div>
+                <div className="mt-5 mb-5 flex justify-between gap-2">
+                  <Button onClick={() => setPage(2)}>
+                    Next page <ChevronRight />
+                  </Button>
+                  <p>Page {page} of 3</p>
+                </div>
+              </div>
+            ) : page === 2 ? (
+              <div className="">
+                <p className="font-semibold text-lg lg:text-xl mb-4">
+                  Supplier Input Form
+                </p>
+                <SupplierInputForm
+                  onSupplierInputValues={handleSupplierInputValues}
+                />
+                <div className="mt-5 mb-5 flex justify-between gap-2">
+                  <div className="flex justify-between gap-2 ">
+                    <Button onClick={() => setPage(1)}>
+                      <ChevronLeft /> Back
+                    </Button>
+                    <Button
+                      disabled={supplierInputValues === null}
+                      onClick={() => setPage(3)}
+                    >
+                      Next <ChevronRight />
+                    </Button>
+                  </div>
+                  <p>Page {page} of 3</p>
+                </div>
+              </div>
+            ) : page === 3 ? (
+              <div>
+                <div className="grid place-content-center">
+                  <p className="">You&apos;re done. <ThumbsUp/></p>
+                  <p>Click submit to save this information.</p>
+                {supplierInputValues && (
+                  <Button
+                  disabled={loading}
+                  type="submit"
+                  className="mt-10 mb-5"
+                  >
+                    {loading ? <Loader2 className="animate-spin" /> : "Submit"}
+                  </Button>
+                )}
+                </div>
+                <div className="flex justify-between gap-2 ">
+                  <Button disabled={loading} onClick={() => setPage(2)}>
+                    <ChevronLeft /> Back
+                  </Button>
+                  <p>Page {page} of 3</p>
+                </div>
+              </div>
+            ) : null}
+          </Form>
+        )}
+      </Formik>
   );
 }
 
