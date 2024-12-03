@@ -48,7 +48,7 @@ function Navbar() {
                 alt="logo"
                 width={60}
                 height={60}
-                className="rounded-full"
+                className="rounded-full object-cover"
               />
             ) : (
               <CircleUser
