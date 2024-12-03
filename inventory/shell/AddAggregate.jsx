@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/app/components/ui/button";
 import FormGenerator from "@/components/formGenerator/FormGenerator";
-import { formGeneratorInputFields } from "@/data/formGeneratorInputTypes";
+import { aggregateInputFields } from "@/data/formGeneratorInputTypes";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createShellEquipment } from "@/services/shell";
 import { Field, Form, Formik } from "formik";
@@ -176,7 +176,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-2 lg:gap-5">
-                  {formGeneratorInputFields.map((field) => (
+                  {aggregateInputFields.map((field) => (
                     <FormGenerator
                       key={field.name}
                       name={field.name}
