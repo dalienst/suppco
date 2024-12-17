@@ -10,18 +10,32 @@ function SupplierInputForm({ onSupplierInputValues }) {
     delivery_charges:'',
     quantity_available:'',
     rate_per_unit:'',
-    plan_type:'fixed',
     deposit_percentage:'',
     delivery_mode:''
 });
+const [planType, setPlanType] = useState({
+  fixed: false,
+  fixed_50_50: false,
+  payment_on_delivery: false,
+  negotiable: false,
+});
 const [deliveryOffered, setDeliveryOffered] = useState(false);
+
+const handleCheckboxChange = (e) => {
+  const { name, checked } = e.target;
+  setPlanType(prevState => ({
+    ...prevState,
+      [name]: checked
+  }));
+};
 
   const handleChange = (e) =>{
     setSupplierInput({...supplierInput, [e.target.name]: e.target.value });
   }
   const handleSubmit = (e) => {
     e.preventDefault();
-    const supplierInputValues = {...supplierInput, offers_delivery:deliveryOffered}
+    const selectedPlanTypes = Object.keys(planType).filter(key => planType[key]);
+    const supplierInputValues = {...supplierInput, offers_delivery:deliveryOffered, plan_type:selectedPlanTypes}
     onSupplierInputValues(supplierInputValues);
   }
 
@@ -79,27 +93,44 @@ const [deliveryOffered, setDeliveryOffered] = useState(false);
       </div>
       <div className="flex flex-col gap-1">
         <Label htmlFor="plan_type">Payment plan type</Label>
-        <select
-          id="plan_type"
-          name="plan_type"
-          className="bg-white border-[1px] p-2 rounded-lg"
-          onChange={handleChange}
-          value={supplierInput.plan_type}
-          required
-          >
-          <option value="fixed">
-            Fixed
-          </option>
-          <option value="fixed_50_50">
-            Fixed_50_50
-          </option>
-          <option value="payment_on_delivery">
-            Payment on Delivery
-          </option>
-          <option value="negotiable">
-            Negotiable
-          </option>
-        </select>
+        <div className="grid grid-cols-2 gap-2">
+        <label className="flex gap-1 items-center">
+          <input
+            type="checkbox"
+            name="fixed"
+            checked={planType.fixed}
+            onChange={handleCheckboxChange}
+          />
+          Fixed
+        </label>
+        <label className="flex gap-1 items-center">
+          <input
+            type="checkbox"
+            name="fixed_50_50"
+            checked={planType.fixed_50_50}
+            onChange={handleCheckboxChange}
+          />
+          Fixed 50/50
+        </label>
+        <label className="flex gap-1 items-center">
+          <input
+            type="checkbox"
+            name="payment_on_delivery"
+            checked={planType.payment_on_delivery}
+            onChange={handleCheckboxChange}
+          />
+          Payment on Delivery
+        </label>
+        <label className="flex gap-1 items-center">
+          <input
+            type="checkbox"
+            name="negotiable"
+            checked={planType.negotiable}
+            onChange={handleCheckboxChange}
+          />
+          Negotiable
+        </label>
+      </div>
       </div>
       <div className="flex flex-col gap-1">
         <Label htmlFor="delivery_mode">Delivery mode</Label>

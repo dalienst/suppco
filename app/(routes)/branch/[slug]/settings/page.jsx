@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useFetchBranchDetail } from "@/dataActions/branches/branchesActions";
+import UpdateBranch from "@/actionForms/branches/UpdateBranch";
 
 function BranchSettings({ params: { slug } }) {
   const {
@@ -9,9 +10,9 @@ function BranchSettings({ params: { slug } }) {
     refetch: refetchBranch,
   } = useFetchBranchDetail(slug);
 
-  //   updateBranch form is at actionForms\branches\UpdateBranch.jsx
-
-  return <div>BranchSettings</div>;
+  return <div>
+    <UpdateBranch isLoading={isLoadingBranch} branch={branch} refetchBranch={refetchBranch}/>
+  </div>;
 }
 
 export default BranchSettings;

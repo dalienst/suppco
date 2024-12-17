@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/app/components/ui/button";
 import FormGenerator from "@/components/formGenerator/FormGenerator";
-import { formGeneratorInputFields } from "@/data/formGeneratorInputTypes";
+import { aggregateInputFields } from "@/data/formGeneratorInputTypes";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createShellEquipment } from "@/services/shell";
 import { Field, Form, Formik } from "formik";
@@ -10,13 +10,13 @@ import {
   ChevronRight,
   ImagePlus,
   Loader2,
-  ThumbsUp,
 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import SupplierInputForm from "./SupplierInputForm";
 import { Label } from "@/app/components/ui/label";
 import { useParams, useRouter } from "next/navigation";
+import Image from "next/image";
 
 function AddAggregate({ branch, item, category, refetchShell, employees }) {
   const [loading, setLoading] = useState(false);
@@ -60,10 +60,9 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
           gradiation: "",
           standards_certifications: "",
           environmental_specifications: "",
-          other: "", // textfield
-          // Two fields added
-          employees: "", // select field from employees
-          delivery_mode: "", // select field: charged in km, charged in weight
+          other: "", 
+          employees: "", 
+          delivery_mode: "",
         }}
         onSubmit={async (values, { resetForm }) => {
           setLoading(true);
@@ -176,7 +175,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-2 lg:gap-5">
-                  {formGeneratorInputFields.map((field) => (
+                  {aggregateInputFields.map((field) => (
                     <FormGenerator
                       key={field.name}
                       name={field.name}
@@ -236,8 +235,9 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
               </div>
             ) : page === 3 ? (
               <div>
-                <div className="grid place-content-center">
-                  <p className="">You&apos;re done. <ThumbsUp/></p>
+                <div className="grid h-[70vh] place-content-center">
+                  <Image src='/thumbs.webp' alt="thumbs up" width={150} height={150} className="mx-auto"/>
+                  <span className="font-semibold text-2xl text-center">You&apos;re done.</span>
                   <p>Click submit to save this information.</p>
                 {supplierInputValues && (
                   <Button
@@ -250,7 +250,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                 )}
                 </div>
                 <div className="flex justify-between gap-2 ">
-                  <Button disabled={loading} onClick={() => setPage(2)}>
+                  <Button variant='outline' disabled={loading} onClick={() => setPage(2)}>
                     <ChevronLeft /> Back
                   </Button>
                   <p>Page {page} of 3</p>

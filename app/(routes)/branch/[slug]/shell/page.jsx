@@ -145,7 +145,7 @@ function ShellEquipment({ params: { slug } }) {
                                 className="ml-6 flex items-center justify-between bg-blue-50 border-blue-200 rounded-md px-5 py-2 mt-2 text-blue-900"
                                 href={`/branch/${slug}/shell/${category.slug}/${item.slug}`}
                               >
-                                -&gt;{item.name}
+                                {item.name}
                                 <Button variant="outline">+ Add</Button>
                               </Link>
                             </AccordionItem>
