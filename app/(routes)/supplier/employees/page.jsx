@@ -34,7 +34,6 @@ function Employees() {
       setRows(rows);
     }
   }, [profile, isSuccess]);
-  console.log(profile)
 
   if (isLoadingUser) {
     return (

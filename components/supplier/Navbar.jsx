@@ -43,17 +43,19 @@ function Navbar() {
         <div className="mb-5">
           <div>
             {profile?.avatar ? (
-              <Image
+              <div>
+                <Image
                 src={profile?.avatar}
                 alt="logo"
-                width={60}
-                height={60}
-                className="rounded-full object-cover"
+                width={70}
+                height={70}
+                className="rounded-full h-[70px] w-[70px] object-cover"
               />
+              </div>
             ) : (
               <CircleUser
                 strokeWidth={1}
-                className="size-[50px] text-[#b0b0b0]"
+                className="size-[70px] text-[#b0b0b0]"
               />
             )}
           </div>
@@ -83,8 +85,6 @@ function Navbar() {
               </Link>
             </li>
           ) : null}
-
-          {profile?.companies?.name !== null ? (
             <li className="nav-item supplier-sidebar rounded">
               <Link
                 href="/supplier/settings"
@@ -94,27 +94,6 @@ function Navbar() {
                 Settings
               </Link>
             </li>
-          ) : (
-            <div className="relative w-fit">
-              <Link
-                href="/supplier/settings"
-                className="relative border border-blue-200 w-fit px-5 py-1 bg-blue-50 rounded"
-              >
-                Settings
-                <span className="absolute top-[-7px] right-[-5px]">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-300 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-300"></span>
-                  </span>
-                </span>
-              </Link>
-              {!pathname.includes("settings") && (
-                <p className="absolute right-0 w-[300px] bg-blue-50 top-[60px] p-5 rounded-b-3xl animate-bounce rounded-tl-3xl">
-                  Quickly setup your account here to continue
-                </p>
-              )}
-            </div>
-          )}
         </ul>
       </div>
       <Button onClick={() => signOut()} variant="outline" className="">

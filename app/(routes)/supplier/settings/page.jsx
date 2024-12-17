@@ -13,7 +13,7 @@ import UpdateCompany from "@/actionForms/company/UpdateCompany";
 import { useRouter } from "next/navigation";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
-import { CircleUser, CircleUserRound } from "lucide-react";
+import { CircleUser, CircleUserRound, Loader2 } from "lucide-react";
 
 const links = [
   { id: 1, href: "#personal", label: "Personal Info" },
@@ -60,12 +60,9 @@ function SupplierSettings() {
   if (isLoadingUser || isLoadingCompany) {
     return (
       <section
-        className="p-2 mt-3 d-flex justify-content-center align-items-center flex-column"
-        style={{ height: "100vh" }}
+        className="grid place-content-center"
       >
-        <div className="spinner-border text-success" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
+        <Loader2 className="animate-spin" />
       </section>
     );
   }
@@ -244,7 +241,7 @@ function SupplierSettings() {
                       disabled={loading}
                     >
                       {loading ? (
-                          <span className="visually-hidden">Loading...</span>
+                          <Loader2 className="animate-spin" />
                       ) : (
                         "Update"
                       )}

@@ -63,7 +63,7 @@ function SupplierDashboard() {
 
   return (
     <>
-      {profile?.companies?.name !== null && (
+      {profile?.companies?.name !== null ? (
         <div className="pt-4 px-2 md:p-6">
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-5">
             <div className="border p-2 lg:p-4 rounded-lg lg:rounded-xl flex items-center gap-1 lg:gap-4">
@@ -74,7 +74,7 @@ function SupplierDashboard() {
                     alt="Logo"
                     width={40}
                     height={40}
-                    className="rounded-full object-cover"
+                    className="rounded-full h-[40px] w-[40px] object-cover"
                   />
                 ) : (
                   <Image
@@ -167,7 +167,11 @@ function SupplierDashboard() {
             </div>
           </section>
         </div>
-      )}
+      ):
+      <div className="bg-red-50 border border-red-400 rounded-xl px-2 py-4 m-6">
+        <p className='text-lg'>Setup your account information first! Click <Link href="/supplier/settings" className="text-blue-600">here</Link> or  &apos;Settings&apos; on the navbar.</p>
+      </div> 
+      }
     </>
   );
 }

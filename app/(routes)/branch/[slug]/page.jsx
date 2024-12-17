@@ -66,19 +66,20 @@ function BranchDashboard({ params: { slug } }) {
       <hr className="lg:hidden mb-4 mt-3"/>
       <div>
         <div className="flex justify-between gap-4 mb-3">
-          <span>{branch?.name} Inventory</span>
+          <span className="font-semibold text-lg">{branch?.name} Inventory</span>
           <Link href={`/branch/${slug}/shell`}>
           <Button variant="outline" className='text-blue900 bg-blue-50 border-blue-200'>+ Add product</Button>
           </Link>
         </div>
         <hr className="lg:hidden mb-4 mt-3"/>
-      {!secondTable && <div className="mb-3">
+      {!secondTable && groupedData.length > 0 && 
+       <div className="mb-3">
       <Input className='w-fit border mb-3' type="text" placeholder="Search by Category" onChange={(e) => setSearchTerm(e.target.value)} />
         <table style={{"width":"100%"}}>
           <thead>
             <tr>
               <th className="text-left">Category</th>
-              <th>Action</th>
+              <th className="w-[20%]">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -88,7 +89,7 @@ function BranchDashboard({ params: { slug } }) {
             <tr key={name}>
               <td>{name}</td>
               <td className="text-center">
-              <Button variant='outline' className='border border-slate-500 text-slate-600' onClick={()=>handleView(name)}>View details</Button>
+              <Button variant='outline' className='border border-[#707070] text-[#707070]' onClick={()=>handleView(name)}>View products</Button>
               </td>
             </tr>
   
@@ -96,6 +97,7 @@ function BranchDashboard({ params: { slug } }) {
           </tbody>
         </table>
       </div>}
+      {groupedData.length === 0 && <p className="text-center h-[70vh] grid place-content-center">This branch does not have any inventory. Products you add will be shown here.</p> }
         {newRows.length > 0 && secondTable ? 
         <div>
           <Button className='mb-3' onClick={()=>setSecondTable(false)}>Close</Button>
