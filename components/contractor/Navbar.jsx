@@ -55,7 +55,7 @@ function ContractorNavbar() {
             {profile?.first_name === null ? "Contractor" : profile?.first_name}
           </Link>
         </div>
-        <ul className="mt-5 flex flex-col gap-6">
+        <ul className="flex flex-col gap-6">
           <li className="nav-item rounded">
             <Link
               href="/contractor/dashboard"

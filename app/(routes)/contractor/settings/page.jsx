@@ -35,7 +35,6 @@ function ContractorSettings() {
     data: profile,
     refetch: refetchProfile,
   } = useFetchProfile();
-  console.log("settings profile", profile);
 
   const companySlug = profile?.companies?.slug;
 
@@ -44,8 +43,6 @@ function ContractorSettings() {
     data: company,
     refetch: refetchCompany,
   } = useFetchCompany(companySlug);
-
-  console.log("company details", company);
 
   const handleDelete = async (companySlug) => {
     setLoading(true);

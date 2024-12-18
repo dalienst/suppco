@@ -36,8 +36,6 @@ function ContractorDashboard() {
     queryFn: () => getUser(userId, axios),
   });
 
-  console.log(profile)
-
   const {
     isLoading: isLoadingSite,
     data: sites,
@@ -47,6 +45,9 @@ function ContractorDashboard() {
     queryKey: ["sites"],
     queryFn: () => getSites(axios),
   });
+
+  console.log(profile,'profile')
+  console.log(sites,'sites')
 
   useEffect(() => {
     if (isSuccess) {
@@ -63,8 +64,6 @@ function ContractorDashboard() {
   if (isLoadingUser) {
     return <SupplierLoadingSpinner />;
   }
-
-  console.log(sites)
 
   return (
     <>
@@ -108,7 +107,7 @@ function ContractorDashboard() {
                 <span>
                   {profile?.companies?.company_branches?.length}
                 </span>
-                <span>Branches</span>
+                <span>Sites</span>
               </div>
             </div>
             <div className="border p-2 lg:p-4 rounded-lg lg:rounded-xl flex items-center gap-1 lg:gap-4">
@@ -123,7 +122,7 @@ function ContractorDashboard() {
                 <span>
                   {profile?.companies?.company_employees?.length}
                 </span>
-                <span className="">Employees</span>
+                <span className="">Workers</span>
               </div>
             </div>
           </div>
