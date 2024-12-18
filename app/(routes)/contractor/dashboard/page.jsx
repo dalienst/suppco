@@ -64,6 +64,8 @@ function ContractorDashboard() {
     return <SupplierLoadingSpinner />;
   }
 
+  console.log(sites)
+
   return (
     <>
       {profile?.companies?.name !== null ? (

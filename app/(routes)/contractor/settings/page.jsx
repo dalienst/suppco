@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
 import { CircleUser, CircleUserRound, Loader2 } from "lucide-react";
-import useFetchSiteDetail from "@/dataActions/site-equipment/FetchSiteDetail";
+import useFetchCompany from "@/dataActions/company/FetchCompany";
 
 const links = [
   { id: 1, href: "#personal", label: "Personal Info" },
@@ -35,17 +35,17 @@ function ContractorSettings() {
     data: profile,
     refetch: refetchProfile,
   } = useFetchProfile();
-  console.log('settings profile', profile);
-  
-  const companySlug = profile?.companies?.slug;
-  
-  const {
-    isLoading: isLoadingSite,
-    data: site,
-    refetch: refetchSite,
-  } = useFetchSiteDetail(profile?.companies?.slug);
+  console.log("settings profile", profile);
 
-  console.log('site details', site)
+  const companySlug = profile?.companies?.slug;
+
+  const {
+    isLoading: isLoadingCompany,
+    data: company,
+    refetch: refetchCompany,
+  } = useFetchCompany(companySlug);
+
+  console.log("company details", company);
 
   const handleDelete = async (companySlug) => {
     setLoading(true);
@@ -60,11 +60,9 @@ function ContractorSettings() {
     }
   };
 
-  if (isLoadingUser || isLoadingSite) {
+  if (isLoadingUser) {
     return (
-      <section
-        className="grid place-content-center"
-      >
+      <section className="grid place-content-center">
         <Loader2 className="animate-spin" />
       </section>
     );
@@ -243,7 +241,7 @@ function ContractorSettings() {
                       disabled={loading}
                     >
                       {loading ? (
-                          <Loader2 className="animate-spin" />
+                        <Loader2 className="animate-spin" />
                       ) : (
                         "Update"
                       )}
@@ -253,9 +251,12 @@ function ContractorSettings() {
               </Formik>
             </div>
           </section>
-            <section className="mt-8">
-              <UpdateCompany company={profile?.companies?.slug} refetchCompany={refetchSite} />
-            </section>
+          <section className="mt-8">
+            <UpdateCompany
+              company={profile?.companies?.slug}
+              refetchCompany={refetchCompany}
+            />
+          </section>
         </div>
       </div>
     </div>
