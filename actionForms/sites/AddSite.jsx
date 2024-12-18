@@ -5,7 +5,7 @@ import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-function AddSite({ refetch, handleCloseModal, company }) {
+function AddSite({ refetch, onOpenChange, company }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
@@ -33,7 +33,7 @@ function AddSite({ refetch, handleCloseModal, company }) {
           await createSite(formData, axios);
           toast.success("Site created successfully. Refreshing page...");
           setLoading(false);
-          handleCloseModal();
+          onOpenChange();
           refetch();
         } catch (error) {
           toast.error("Failed to create site");

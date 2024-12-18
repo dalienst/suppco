@@ -9,7 +9,6 @@ export const getUser = async (userId, axios) => {
     `/api/accounts/profile/${userId}/`,
     axios
   );
-
   return response.data;
 };
 

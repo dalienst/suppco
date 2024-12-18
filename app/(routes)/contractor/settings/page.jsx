@@ -7,13 +7,13 @@ import { updateUser } from "@/services/accounts";
 import Image from "next/image";
 import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
-import useFetchCompany from "@/dataActions/company/FetchCompany";
 import Link from "next/link";
 import UpdateCompany from "@/actionForms/company/UpdateCompany";
 import { useRouter } from "next/navigation";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
 import { CircleUser, CircleUserRound, Loader2 } from "lucide-react";
+import useFetchSiteDetail from "@/dataActions/site-equipment/FetchSiteDetail";
 
 const links = [
   { id: 1, href: "#personal", label: "Personal Info" },
@@ -23,7 +23,7 @@ const links = [
   { id: 5, href: "#tax", label: "Tax Info" },
 ];
 
-function SupplierSettings() {
+function ContractorSettings() {
   const axios = useAxiosAuth();
   const userId = useUserId();
   const [loading, setLoading] = useState(false);
@@ -35,14 +35,17 @@ function SupplierSettings() {
     data: profile,
     refetch: refetchProfile,
   } = useFetchProfile();
-
+  console.log('settings profile', profile);
+  
   const companySlug = profile?.companies?.slug;
-
+  
   const {
-    isLoading: isLoadingCompany,
-    data: company,
-    refetch: refetchCompany,
-  } = useFetchCompany(companySlug);
+    isLoading: isLoadingSite,
+    data: site,
+    refetch: refetchSite,
+  } = useFetchSiteDetail(profile?.companies?.slug);
+
+  console.log('site details', site)
 
   const handleDelete = async (companySlug) => {
     setLoading(true);
@@ -57,7 +60,7 @@ function SupplierSettings() {
     }
   };
 
-  if (isLoadingUser || isLoadingCompany) {
+  if (isLoadingUser || isLoadingSite) {
     return (
       <section
         className="grid place-content-center"
@@ -145,7 +148,6 @@ function SupplierSettings() {
                           />
                         )}
                       </div>
-
                       <div>
                         <input
                           type="file"
@@ -252,7 +254,7 @@ function SupplierSettings() {
             </div>
           </section>
             <section className="mt-8">
-              <UpdateCompany company={company?.slug} refetchCompany={refetchCompany} />
+              <UpdateCompany company={profile?.companies?.slug} refetchCompany={refetchSite} />
             </section>
         </div>
       </div>
@@ -260,4 +262,4 @@ function SupplierSettings() {
   );
 }
 
-export default SupplierSettings;
+export default ContractorSettings;

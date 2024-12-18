@@ -18,7 +18,7 @@
     "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-popover": "^1.1.2",
-    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.1",
     "@tanstack/react-query": "^5.60.5",
     "@tanstack/react-query-devtools": "^5.60.5",
     "axios": "^1.7.7",
@@ -38,6 +38,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@types/node": "22.10.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",

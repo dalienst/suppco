@@ -48,7 +48,7 @@ function UpdateCompany({ company, refetchCompany }) {
           formData?.append("registration_number", values?.registration_number);
           formData?.append("vat_number", values?.vat_number);
           formData?.append("vat_compliance", values?.vat_compliance);
-          await updateCompany(formData, axios, company?.slug);
+          await updateCompany(formData, axios, company);
           toast.success("Company updated successfully. Refreshing...");
           refetchCompany();
         } catch (error) {
@@ -79,7 +79,7 @@ function UpdateCompany({ company, refetchCompany }) {
                     alt="logo"
                     width={60}
                     height={60}
-                    className="rounded-full"
+                    className="rounded-full h-[60px] w-[60px] object-cover"
                   />
                 ) : (
                   <CircleUser
