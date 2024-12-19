@@ -45,7 +45,7 @@ function ContractorEmployees({ params: { slug } }) {
           {isLoadingUser ? (
             <SupplierLoadingSpinner />
           ) : profile?.companies?.company_workers?.length > 0 ?  (
-            <UserTable rows={profile?.companies?.company_workers} columns={employeeColumn} />
+            <UserTable rows={profile?.companies?.company_workers} columns={employeeColumn} redirectLink={`/contractor/employees/`} />
           ) : (
             <div className="place-content-center text-center">
               <h6>You have no Employees</h6>
