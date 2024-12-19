@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import FormInput from "../formStructures/FormInput";
 import { sendInvite } from "@/services/invites";
+import { Button } from "@/app/components/ui/button";
 
 function SendInvite({ handleCloseModal, company }) {
   const [loading, setLoading] = useState(false);
@@ -40,7 +41,7 @@ function SendInvite({ handleCloseModal, company }) {
             placeholder="Enter email"
           />
 
-          <button
+          <Button
             type="submit"
             className="btn contractor-btn mt-3"
             disabled={loading}
@@ -53,9 +54,9 @@ function SendInvite({ handleCloseModal, company }) {
                 <span className="visually-hidden">Loading...</span>
               </div>
             ) : (
-              "Create"
+              "Invite"
             )}
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

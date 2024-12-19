@@ -87,7 +87,7 @@ function Site() {
               {isLoadingSite ? (
                 <SupplierLoadingSpinner />
               ) : sites && sites.length > 0 ? (
-                <UserTable rows={rows} columns={companyBranchesColumn} redirectLink='/contractor/sites' />
+                <UserTable rows={rows} columns={companyBranchesColumn} redirectLink='/sites' />
               ) : (
                 <p className="text-center text-bg-warning rounded p-2">
                   No sites found. Click Add to create one.
