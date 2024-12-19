@@ -5,6 +5,9 @@ import { useFetchWorkerDetail } from "@/dataActions/workers/workersActions";
 import { useRouter } from "next/navigation";
 
 function EmployeeDetail({ params: { workerSlug } }) {
+  // FIXME: The workerSlug is referencing the logged in user id instead of the worker id
+  // This is because the workerSlug is not being passed to the EmployeeDetail component
+  // Ideally, the workerSlug should be a slug not an ID and should be passed to the EmployeeDetail component
   const {
     isLoading: isLoadingWorker,
     data: worker,
@@ -39,6 +42,7 @@ function EmployeeDetail({ params: { workerSlug } }) {
 
           <div className="card-body">
             <h6 className="card-title">Employee Details</h6>
+            <p>{workerSlug}</p>
             <p className="card-text">
               <strong>Email:</strong> {worker?.email}
             </p>
@@ -70,10 +74,7 @@ function EmployeeDetail({ params: { workerSlug } }) {
               </>
             )}
 
-            <UpdateWorker
-              worker={worker}
-              refetchWorker={refetchWorker}
-            />
+            <UpdateWorker worker={worker} refetchWorker={refetchWorker} />
           </div>
         </div>
       </div>
