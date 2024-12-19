@@ -49,7 +49,7 @@ function SiteEmployees({ params: { slug } }) {
           {siteLoading ? (
             <SupplierLoadingSpinner />
           ) : site?.site_workers && site?.site_workers?.length > 0 ?  (
-            <UserTable rows={site?.site_workers} columns={employeeColumn} />
+            <UserTable rows={site?.site_workers} columns={employeeColumn} redirectLink={`/sites/${slug}/employees/`}/>
           ) : (
             <div className="place-content-center text-center">
               <h6>You have no Employees</h6>

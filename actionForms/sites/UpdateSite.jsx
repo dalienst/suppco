@@ -6,11 +6,20 @@ import Image from 'next/image';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import FormInput from '../formStructures/FormInput';
+import { CircleUser, Loader2 } from 'lucide-react';
+import { Button } from '@/app/components/ui/button';
 
-function UpdateSite({ site, refetchSite }) {
+function UpdateSite({ isLoading, site, refetchSite }) {
     const axios = useAxiosAuth();
     const [loading, setLoading] = useState(false);
-
+    if (isLoading) {
+        return (
+          <div className="h-[80vh] grid place-content-center">
+            {" "}
+            <Loader2 className="animate-spin" />{" "}
+          </div>
+        );
+      }
     return (
         <Formik
             enableReinitialize
@@ -44,77 +53,54 @@ function UpdateSite({ site, refetchSite }) {
             }}
         >
             {({ values, setFieldValue }) => (
-                <Form>
-                    <section id="profile">
-                        <h6 className="card-title">Site Profile</h6>
-                        {/* <div className="d-flex gap-3 align-items-center mb-3">
-                            <div>
-                                {site?.logo ? (
-                                    <Image
-                                        src={site?.logo}
-                                        alt="logo"
-                                        width={60}
-                                        height={60}
-                                        className="supplier-sidebar-border"
-                                        style={{ borderRadius: "50%", objectFit: "cover" }}
-                                    />
-                                ) : (
-                                    <Image
-                                        src="/prof.jpg"
-                                        alt="logo"
-                                        width={60}
-                                        height={60}
-                                        className="supplier-sidebar-border"
-                                        style={{ borderRadius: "50%", objectFit: "cover" }}
-                                    />
-                                )}
-                            </div>
-                            <div>
-                                <input
-                                    type="file"
-                                    className="form-control form-control-sm"
-                                    onChange={(event) => {
-                                        setFieldValue("logo", event.currentTarget.files[0]);
-                                    }}
-                                />
-                            </div>
-                        </div> */}
-
-                        <div className="row">
-                            <div className="col-md-6 col-sm-12 mb-3">
+                <Form className="p-3">
+                    <section>
+                    <h2 className="text-xl font-semibold">Site Information</h2>
+            <div className="border mt-3 rounded-xl px-4 py-6">
+              <div>
+                {site?.logo ? (
+                  <Image
+                    src={site?.logo}
+                    alt="logo"
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <CircleUser
+                    strokeWidth={1}
+                    className="size-[50px] text-[#b0b0b0]"
+                  />
+                )}
+              </div>
+              <div>
+                <input
+                  type="file"
+                  className="form-control form-control-sm"
+                  onChange={(event) => {
+                    setFieldValue("logo", event.currentTarget.files[0]);
+                  }}
+                />
+              </div>
+            </div>
+                        <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <FormInput label="Site Name" name="name" type="text" placeholder={site?.name || "Enter site name"} />
-                            </div>
 
-                            <div className="col-md-6 col-sm-12 mb-3">
                                 <FormInput label="Site Email" name="email" type="email" placeholder={site?.email || "Enter site email"} />
-                            </div>
 
-                            <div className="col-md-6 col-sm-12 mb-3">
                                 <FormInput label="Site Address" name="address" type="text" placeholder={site?.address || "Enter site address"} />
-                            </div>
 
-                            <div className="col-md-6 col-sm-12 mb-3">
                                 <FormInput label="Site Phone" name="phone" type="text" placeholder={site?.phone || "Enter site phone"} />
-                            </div>
                         </div>
                     </section>
 
-                    <button
-                        type="submit"
-                        className="btn contractor-btn mt-3"
-                        disabled={loading}
-                    >
-                        {loading ? (
-                            <div
-                                className="spinner-border spinner-border-sm text-success"
-                                role="status"
-                            >
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                        ) : (
-                            "Update"
-                        )}
-                    </button>
+                   <Button
+                                 type="submit"
+                                 className="mt-4 bg-jungle800 hover:bg-jungle700"
+                                 disabled={loading}
+                               >
+                                 {loading ? <Loader2 className="animate-spin" /> : "Update"}
+                               </Button>
                 </Form>
             )}
         </Formik>
