@@ -97,7 +97,7 @@ export default function UserTable({rows, columns, redirectLink}) {
               <Ellipsis size={18} style={{marginRight:'10px', cursor:'pointer'}}/>
             </PopoverTrigger>
             {redirectLink !== '' && <PopoverContent className='flex flex-col gap-2 w-fit'>
-              <Link href={`/branch/${params.row.id}/`} className='flex items-center gap-1 cursor-pointer hover:text-primary'>View Details</Link>
+              <Link href={`${redirectLink}/${params.row.id}/`} className='flex items-center gap-1 cursor-pointer hover:text-primary'>View Details</Link>
             </PopoverContent>}
           </Popover>
         </div>
