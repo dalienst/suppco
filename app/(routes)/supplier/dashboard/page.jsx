@@ -151,14 +151,7 @@ function SupplierDashboard() {
               {isLoadingBranch ? (
                 <SupplierLoadingSpinner />
               ) : branches && branches.length > 0 ? (
-                <>
-                  {/* <BranchTable
-                        branches={branches}
-                        refetch={refetchBranches}
-                        company={profile?.companies}
-                      /> */}
-                  <UserTable rows={rows} columns={companyBranchesColumn} />
-                </>
+                  <UserTable rows={rows} columns={companyBranchesColumn} redirectLink='/branch' />
               ) : (
                 <p className="text-center text-bg-warning rounded p-2">
                   No branches found. Click Add to create one

@@ -7,9 +7,6 @@ import { getUser } from "@/services/accounts";
 import Link from "next/link";
 import SupplierLoadingSpinner from "@/components/supplier/LoadingSpinner";
 import Image from "next/image";
-import { getBranches } from "@/services/branches";
-import AddBranch from "@/actionForms/branches/AddBranch";
-import BranchTable from "@/components/supplier/BranchTable";
 import UserTable from "@/components/tables/InfoTable";
 import { companyBranchesColumn } from "@/data/columns";
 
@@ -46,8 +43,6 @@ function ContractorDashboard() {
     queryKey: ["sites"],
     queryFn: () => getSites(axios),
   });
-
-  console.log(sites, "sites");
 
   useEffect(() => {
     if (isSuccess) {
@@ -97,7 +92,7 @@ function ContractorDashboard() {
                 className="rounded-full"
               />
               <div className="flex-grow space-x-1 lg:space-x-4 text-sm lg:text-base">
-                <span>{profile?.companies?.company_branches?.length}</span>
+                <span>{sites?.length}</span>
                 <span>Sites</span>
               </div>
             </div>
@@ -109,12 +104,12 @@ function ContractorDashboard() {
                 height={60}
               />
               <div className="flex-grow space-x-1 lg:space-x-4 text-sm lg:text-base">
-                <span>{profile?.companies?.company_employees?.length}</span>
+                <span>{profile?.companies?.workers?.length}</span>
                 <span className="">Workers</span>
               </div>
             </div>
           </div>
-          <section className="mt-5">
+          {/* <section className="mt-5">
             <hr />
             <div className="flex justify-between my-4">
               <h2 className="font-semibold text-lg">
@@ -145,7 +140,6 @@ function ContractorDashboard() {
                 </Dialog>
               </div>
             </div>
-
             <div className="">
               {isLoadingSite ? (
                 <SupplierLoadingSpinner />
@@ -157,7 +151,7 @@ function ContractorDashboard() {
                 </p>
               )}
             </div>
-          </section>
+          </section> */}
         </div>
       ) : (
         <div className="bg-red-50 border border-red-400 rounded-xl px-2 py-4 m-6">
