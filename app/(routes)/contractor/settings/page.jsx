@@ -7,13 +7,13 @@ import { updateUser } from "@/services/accounts";
 import Image from "next/image";
 import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
-import useFetchCompany from "@/dataActions/company/FetchCompany";
 import Link from "next/link";
 import UpdateCompany from "@/actionForms/company/UpdateCompany";
 import { useRouter } from "next/navigation";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
 import { CircleUser, CircleUserRound, Loader2 } from "lucide-react";
+import useFetchCompany from "@/dataActions/company/FetchCompany";
 
 const links = [
   { id: 1, href: "#personal", label: "Personal Info" },
@@ -23,7 +23,7 @@ const links = [
   { id: 5, href: "#tax", label: "Tax Info" },
 ];
 
-function SupplierSettings() {
+function ContractorSettings() {
   const axios = useAxiosAuth();
   const userId = useUserId();
   const [loading, setLoading] = useState(false);
@@ -57,11 +57,9 @@ function SupplierSettings() {
     }
   };
 
-  if (isLoadingUser || isLoadingCompany) {
+  if (isLoadingUser) {
     return (
-      <section
-        className="grid place-content-center"
-      >
+      <section className="grid place-content-center">
         <Loader2 className="animate-spin" />
       </section>
     );
@@ -145,7 +143,6 @@ function SupplierSettings() {
                           />
                         )}
                       </div>
-
                       <div>
                         <input
                           type="file"
@@ -241,7 +238,7 @@ function SupplierSettings() {
                       disabled={loading}
                     >
                       {loading ? (
-                          <Loader2 className="animate-spin" />
+                        <Loader2 className="animate-spin" />
                       ) : (
                         "Update"
                       )}
@@ -251,13 +248,16 @@ function SupplierSettings() {
               </Formik>
             </div>
           </section>
-            <section className="mt-8">
-              <UpdateCompany company={company?.slug} refetchCompany={refetchCompany} />
-            </section>
+          <section className="mt-8">
+            <UpdateCompany
+              company={profile?.companies?.slug}
+              refetchCompany={refetchCompany}
+            />
+          </section>
         </div>
       </div>
     </div>
   );
 }
 
-export default SupplierSettings;
+export default ContractorSettings;

@@ -5,7 +5,6 @@ export const getBranches = async (axios) => {
         "/api/branches/",
         axios
     );
-
     return response.data?.results;
 }
 
@@ -14,7 +13,6 @@ export const getBranchDetail = async (slug, axios) => {
         `/api/branches/${slug}/`,
         axios
     );
-
     return response.data;
 };
 
@@ -29,7 +27,6 @@ export const updateBranch = async (formData, axios, slug) => {
         axios
     )
 }
-
 
 export const deleteBranch = async (slug, axios) => {
     await urlMultipartActions?.delete(`/api/branches/${slug}/`, axios);

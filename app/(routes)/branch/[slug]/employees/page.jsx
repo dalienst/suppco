@@ -30,7 +30,6 @@ function BranchEmployees() {
           {isLoadingBranch ? (
             <SupplierLoadingSpinner />
           ) : branch?.branch_employees?.length > 0 ? (
-            // <EmployeesTable employees={profile?.companies?.company_employees} />
             <UserTable rows={branch?.branch_employees} columns={employeeColumn} />
           ) : (
             <div className="place-content-center text-center">

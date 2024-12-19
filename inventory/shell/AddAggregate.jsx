@@ -199,7 +199,8 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                 <p className="font-semibold text-lg lg:text-xl mb-4">
                   Supplier Input Form
                 </p>
-                <div className="flex flex-col gap-1 mb-2">
+                <div className="flex flex-col gap-1 mb-2 border p-4 rounded-lg">
+                  <span className="text-lg font-semibold block mb-4">Employee Allocation</span>
                   <Label htmlFor='employee'>Employee</Label>
                   <Field 
                     as='select'
