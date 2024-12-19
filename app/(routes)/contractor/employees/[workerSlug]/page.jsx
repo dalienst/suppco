@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import UpdateWorker from "@/actionForms/workers/UpdateWorker";
-import { useFetchWorkerDetail } from "@/dataActions/workers/workersActions";
 import { useRouter } from "next/navigation";
+import { useFetchWorkerDetail } from "@/dataActions/workers/workersActions";
 
 function EmployeeDetail({ params: { workerSlug } }) {
   const {
@@ -10,7 +10,7 @@ function EmployeeDetail({ params: { workerSlug } }) {
     data: worker,
     refetch: refetchWorker,
   } = useFetchWorkerDetail(workerSlug);
-
+console.log(worker)
   if (isLoadingWorker) {
     return (
       <section
