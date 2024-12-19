@@ -83,11 +83,13 @@ function CustomNoRowsOverlay() {
 }
 
 export default function UserTable({ rows, columns, redirectLink }) {
+  
   const actionColumn = {
     field: "action",
     headerName: "Action",
     width: 80,
     renderCell: (params) => {
+      const targetSlug = redirectLink === '/contractor/employees/' ? params.row?.slug : params.row?.id;
       return (
         <div className="flex h-full items-center justify-center">
           <Popover>
@@ -100,9 +102,7 @@ export default function UserTable({ rows, columns, redirectLink }) {
             {redirectLink !== "" && (
               <PopoverContent className="flex flex-col gap-2 w-fit">
                 <Link
-                  // NOTE: I changed the id to slug. I hope it does not ruin anything.
-                  // href={`${redirectLink}/${params.row?.id}/`}
-                  href={`${redirectLink}/${params.row?.slug}/`}
+                  href={`${redirectLink}/${targetSlug}`}
                   className="flex items-center gap-1 cursor-pointer hover:text-primary"
                 >
                   View Details

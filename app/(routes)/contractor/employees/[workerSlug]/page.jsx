@@ -28,22 +28,9 @@ console.log(worker)
   }
 
   return (
-    <>
-      <div className="min-vh-100">
-        <div className="card bg-white mt-3">
-          <div className="card-header bg-white d-flex justify-content-between align-content-center">
-            <div className="d-flex gap-3 align-items-center flex-row">
-              <button className="btn btn-sm" onClick={() => router.back()}>
-                <i className="bi bi-arrow-left text-success"></i>
-              </button>
-              <h5 className="card-title">{worker?.reference}</h5>
-            </div>
-          </div>
-
-          <div className="card-body">
-            <h6 className="card-title">Employee Details</h6>
-            <p>{workerSlug}</p>
-            <p className="card-text">
+          <div className="p-4">
+            <h1 className="text-lg font-semibold">Employee Details</h1>
+            <p className="">
               <strong>Email:</strong> {worker?.email}
             </p>
             {worker?.user?.first_name === null ? (
@@ -76,9 +63,6 @@ console.log(worker)
 
             <UpdateWorker worker={worker} refetchWorker={refetchWorker} />
           </div>
-        </div>
-      </div>
-    </>
   );
 }
 

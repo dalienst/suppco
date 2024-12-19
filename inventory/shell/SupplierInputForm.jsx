@@ -6,12 +6,6 @@ import { useState } from "react";
 import { Input } from "@/app/components/ui/input";
 
 function SupplierInputForm({ onSupplierInputValues }) {
-  const supplierInputValues = {
-    fixed_terms: "",
-    fixed_fifty_terms: "",
-    pod_terms: "",
-    negotiable_terms:"",
-  };
   const [supplierInput, setSupplierInput] = useState({
     delivery_charges:'',
     quantity_available:'',
@@ -45,8 +39,7 @@ const handleCheckboxChange = (e) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const supplierInputValues = {...supplierInput, offers_delivery:deliveryOffered, ...planType}
-    console.log(supplierInputValues)
-    // onSupplierInputValues(supplierInputValues);
+    onSupplierInputValues(supplierInputValues);
   }
 
   return (

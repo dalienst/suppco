@@ -5,6 +5,8 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import FormInput from "../formStructures/FormInput";
 import { sendSubContractorInvite } from "@/services/subcontractorInvite";
+import { Button } from "@/app/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 function SubContractorInvite({ handleCloseModal, company }) {
   const [loading, setLoading] = useState(false);
@@ -39,22 +41,17 @@ function SubContractorInvite({ handleCloseModal, company }) {
             placeholder="Enter email"
           />
 
-          <button
+          <Button
             type="submit"
-            className="btn contractor-btn mt-3"
+            className="mt-3"
             disabled={loading}
           >
             {loading ? (
-              <div
-                className="spinner-border spinner-border-sm text-primary"
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
+              <Loader2 className="animate-spin" />
             ) : (
-              "Create"
+              "Invite"
             )}
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

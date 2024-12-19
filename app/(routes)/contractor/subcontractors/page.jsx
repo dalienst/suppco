@@ -19,8 +19,10 @@ import {
 } from "@/app/components/ui/dialog";
 import { Button } from "@/app/components/ui/button";
 import useFetchProfile from "@/dataActions/accounts/FetchProfile";
+import SubContractorInvite from "@/actionForms/subcontractorInvite/SubContractorInvite";
+import { ChevronDown } from "lucide-react";
 
-function ContractorEmployees() {
+function SubContractors() {
   const [open, setOpen] = useState(false);
 
   const {
@@ -28,46 +30,47 @@ function ContractorEmployees() {
     data: profile,
     refetch: refetchProfile,
   } = useFetchProfile();
+  console.log(profile,'from subContractor page');
 
   return (
     <div className="p-3">
       <div>
         <div className="flex justify-between my-3">
-          <h2 className="text-xl font-semibold">Your Employees</h2>
+          <h2 className="text-xl font-semibold">Your Subcontractors</h2>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button
                 variant="outline"
                 className="text-blue900 bg-blue-50 border-blue-200"
               >
-                + Invite Employee
+                + Invite Subcontractor
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
-                <DialogTitle>Invite employee</DialogTitle>
+                <DialogTitle>Invite Subcontractor</DialogTitle>
                 <DialogDescription>
-                  Inviting an employee will add them to your dashboard
+                  Inviting a Subcontractor will add them to your dashboard
                 </DialogDescription>
               </DialogHeader>
-              <SendInvite
-                company={profile?.companies}
-                handleCloseModal={setOpen}
-              />
+              <SubContractorInvite
+                  handleCloseModal={setOpen}
+                  company={profile?.companies}
+                />
             </DialogContent>
           </Dialog>
         </div>
         {isLoadingUser ? (
           <SupplierLoadingSpinner />
-        ) : profile?.companies?.company_workers?.length > 0 ? (
+        ) : profile?.companies?.company_subcontractors?.length > 0 ? (
           <UserTable
-            rows={profile?.companies?.company_workers}
+            rows={profile?.companies?.company_subcontractors}
             columns={employeeColumn}
-            redirectLink={`/contractor/employees/`}
+            redirectLink={`/contractor/subcontractor/`}
           />
         ) : (
           <div className="place-content-center text-center">
-            <h6>You have no Employees</h6>
+            <h6>You have no Subcontractors</h6>
           </div>
         )}
       </div>
@@ -75,4 +78,4 @@ function ContractorEmployees() {
   );
 }
 
-export default ContractorEmployees;
+export default SubContractors;
