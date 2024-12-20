@@ -35,11 +35,11 @@ function SiteEmployees({ params: { slug } }) {
         if (checked) {
           return [...prevState, value];
         } else {
-          return prevState.filter(id => id !== value);
+          return prevState.filter(email => email !== value);
         }
       });
     };
-    console.log(selectedEmployeeIds)
+    console.log(profile,'profile i want')
 
     if (siteLoading) {
         return (<SupplierLoadingSpinner />)
@@ -70,9 +70,9 @@ function SiteEmployees({ params: { slug } }) {
               <label className="flex gap-1 text-[#6c6c6c] text-sm items-center">
                 <input
                   type="checkbox"
-                  name={worker?.id}
+                  name={worker?.email}
                   onChange={handleCheckboxChange}
-                  value={worker?.id}
+                  value={worker?.email}
                 />
                 {worker?.user?.first_name}{worker?.user?.last_name}
               </label>
