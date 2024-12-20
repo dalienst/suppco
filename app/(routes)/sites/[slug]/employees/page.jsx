@@ -10,6 +10,7 @@ import useUserId from "@/hooks/useUserId";
 import { useQuery } from "@tanstack/react-query";
 import { getUser } from "@/services/accounts";
 import { ChevronDown } from "lucide-react";
+import AddWorker from "@/actionForms/sites/AddWorker";
 
 function SiteEmployees({ params: { slug } }) {
   const [open, setOpen] = useState(false);
@@ -50,7 +51,6 @@ function SiteEmployees({ params: { slug } }) {
     console.log(selectedEmployeeIds);
   }, [selectedEmployeeIds]);
 
-
   if (siteLoading) {
     return <SupplierLoadingSpinner />;
   }
@@ -60,6 +60,22 @@ function SiteEmployees({ params: { slug } }) {
       <div>
         <div className="flex justify-between my-3">
           <h2 className="text-xl font-semibold">Your Employees</h2>
+
+          {/* FIX: Adding employees */}
+          {/* TODO: I don't know how you will handle this */}
+          {/* Create a table or sth or a modal */}
+          <section>
+            <h2 className="text-xl font-semibold">Add Employee</h2>
+
+            <AddWorker
+              site={site}
+              profile={profile}
+              slug={slug}
+              refetchSite={refetchSite}
+            />
+          </section>
+          {/* End */}
+
           <div className="relative">
             {!openEmployeeSelectionPanel ? (
               <button
@@ -105,8 +121,10 @@ function SiteEmployees({ params: { slug } }) {
         </div>
         {siteLoading ? (
           <SupplierLoadingSpinner />
-        ) : site?.site_workers && site?.site_workers?.length > 0 ? (
+        ) : site?.employees && site?.employees?.length > 0 ? (
           <UserTable
+          // FIX: You might have to use index and not ID as they do not reflect on the array
+            // rows={site?.employees}
             rows={site?.site_workers}
             columns={employeeColumn}
             redirectLink={`/sites/${slug}/employees/`}
