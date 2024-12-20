@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getUser } from "@/services/accounts";
 import { ChevronDown } from "lucide-react";
 import AddWorker from "@/actionForms/sites/AddWorker";
+import AddWorkerCheckbox from "@/actionForms/sites/AddWorkerCheckBox";
 
 function SiteEmployees({ params: { slug } }) {
   const [open, setOpen] = useState(false);
@@ -67,6 +68,19 @@ function SiteEmployees({ params: { slug } }) {
           <section>
             <h2 className="text-xl font-semibold">Add Employee</h2>
 
+            <section className="mb-3">
+              {/*1️⃣ Using checkboxes */}
+              <AddWorkerCheckbox
+                site={site}
+                profile={profile}
+                slug={slug}
+                refetchSite={refetchSite}
+              />
+            </section>
+
+            {/* Choose your favourite  💀☠️*/}
+
+            {/* 2️⃣Using select multiple */}
             <AddWorker
               site={site}
               profile={profile}
@@ -119,12 +133,12 @@ function SiteEmployees({ params: { slug } }) {
             )}
           </div>
         </div>
-        {siteLoading ? (
+        {/* Fetch with site?.employees and not site?.site_workers */}
+        {/* {siteLoading ? (
           <SupplierLoadingSpinner />
         ) : site?.employees && site?.employees?.length > 0 ? (
           <UserTable
-          // FIX: You might have to use index and not ID as they do not reflect on the array
-            // rows={site?.employees}
+            
             rows={site?.site_workers}
             columns={employeeColumn}
             redirectLink={`/sites/${slug}/employees/`}
@@ -133,7 +147,7 @@ function SiteEmployees({ params: { slug } }) {
           <div className="place-content-center text-center">
             <h6>You have no Employees</h6>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );
