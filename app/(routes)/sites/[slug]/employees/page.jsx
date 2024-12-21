@@ -61,37 +61,8 @@ function SiteEmployees({ params: { slug } }) {
       <div>
         <div className="flex justify-between my-3">
           <h2 className="text-xl font-semibold">Your Employees</h2>
-
-          {/* FIX: Adding employees */}
-          {/* TODO: I don't know how you will handle this */}
-          {/* Create a table or sth or a modal */}
-          <section>
-            <h2 className="text-xl font-semibold">Add Employee</h2>
-
-            <section className="mb-3">
-              {/*1️⃣ Using checkboxes */}
-              <AddWorkerCheckbox
-                site={site}
-                profile={profile}
-                slug={slug}
-                refetchSite={refetchSite}
-              />
-            </section>
-
-            {/* Choose your favourite  💀☠️*/}
-
-            {/* 2️⃣Using select multiple */}
-            <AddWorker
-              site={site}
-              profile={profile}
-              slug={slug}
-              refetchSite={refetchSite}
-            />
-          </section>
-          {/* End */}
-
+          
           <div className="relative">
-            {!openEmployeeSelectionPanel ? (
               <button
                 onClick={() => setOpenEmployeeSelectionPanel((prev) => !prev)}
                 className="border border-grayBlue rounded-lg p-2 flex gap-2 items-center"
@@ -99,47 +70,25 @@ function SiteEmployees({ params: { slug } }) {
                 <span>Add employee(s) to this site</span>
                 <ChevronDown size={16} />
               </button>
-            ) : (
-              <div className="w-[300px] flex justify-between gap-2">
-                <Button disabled={selectedEmployeeIds.length === 0}>
-                  Add employee(s)
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => setOpenEmployeeSelectionPanel(false)}
-                >
-                  Cancel
-                </Button>
-              </div>
-            )}
+             
             {openEmployeeSelectionPanel && (
-              <ul className="absolute bg-white z-50 mt-2 border shadow max-h-[300px] overflow-auto rounded-lg right-0 p-2 w-[300px]">
-                <span className="text-lg underline">Select employee(s) :</span>
-                {profile?.companies?.company_workers?.map((worker) => (
-                  <li key={worker?.id} className="py-2">
-                    <label className="flex gap-1 text-[#6c6c6c] text-sm items-center">
-                      <input
-                        type="checkbox"
-                        name={worker?.email}
-                        value={worker?.email}
-                        onChange={handleCheckboxChange}
-                      />
-                      {worker?.user?.first_name}
-                      {worker?.user?.last_name}
-                    </label>
-                  </li>
-                ))}
-              </ul>
+              <div className="absolute bg-white z-50 mt-2 border shadow rounded-lg right-0 p-2 w-[320px]">
+                <AddWorkerCheckbox
+              site={site}
+              profile={profile}
+              slug={slug}
+              refetchSite={refetchSite}
+              closeEmployeeSelectionPanel={()=>setOpenEmployeeSelectionPanel(false)}
+            />
+              </div>
             )}
           </div>
         </div>
-        {/* Fetch with site?.employees and not site?.site_workers */}
-        {/* {siteLoading ? (
+        {siteLoading ? (
           <SupplierLoadingSpinner />
         ) : site?.employees && site?.employees?.length > 0 ? (
           <UserTable
-            
-            rows={site?.site_workers}
+            rows={site?.employees}
             columns={employeeColumn}
             redirectLink={`/sites/${slug}/employees/`}
           />
@@ -147,7 +96,7 @@ function SiteEmployees({ params: { slug } }) {
           <div className="place-content-center text-center">
             <h6>You have no Employees</h6>
           </div>
-        )} */}
+        )}
       </div>
     </div>
   );

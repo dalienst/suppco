@@ -5,7 +5,7 @@ import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-function AddWorkerCheckbox({ site, profile, slug, refetchSite, closeEmployeeSelectionPanel }) {
+function AddEmployeeToBranch({ site, branch, profile, slug, refetchSite, closeEmployeeSelectionPanel }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
@@ -13,7 +13,7 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite, closeEmployeeSele
     <Formik
       enableReinitialize
       initialValues={{
-        employees: site?.employees || [],
+        employees: branch?.employees || [],
       }}
       onSubmit={async (values) => {
         setLoading(true);
@@ -23,10 +23,10 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite, closeEmployeeSele
             formData.append("employees", employee)
           );
           await updateSite(slug, formData, axios);
-          toast.success("Workers added successfully. Refreshing...");
+          toast.success("Employee(s) added successfully. Refreshing...");
           refetchSite();
         } catch (error) {
-          toast.error("Failed to add workers");
+          toast.error("Failed to add employee(s)");
         } finally {
           setLoading(false);
         }
@@ -44,21 +44,21 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite, closeEmployeeSele
                       onChange={(e) => {
                         const isChecked = e.target.checked;
                         const allWorkers =
-                          profile?.companies?.company_workers?.map(
+                          profile?.companies?.company_employees?.map(
                             (worker) => worker.email
                           );
                         setFieldValue("employees", isChecked ? allWorkers : []);
                       }}
                       checked={
                         values.employees.length ===
-                        profile?.companies?.company_workers?.length
+                        profile?.companies?.company_employees?.length
                       }
                     />
                     <span className="text-sm">Select All</span>
                   </div>
                 </div>
                 <ul className="max-h-[300px] overflow-auto">
-                  {profile?.companies?.company_workers?.map((worker) => (
+                  {profile?.companies?.company_employees?.map((worker) => (
                     <li key={worker?.id} className="flex items-center py-2">
                       <input
                         type="checkbox"
@@ -105,4 +105,4 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite, closeEmployeeSele
   );
 }
 
-export default AddWorkerCheckbox;
+export default AddEmployeeToBranch;
