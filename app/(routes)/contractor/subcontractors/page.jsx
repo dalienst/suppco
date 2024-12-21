@@ -21,16 +21,28 @@ import { Button } from "@/app/components/ui/button";
 import useFetchProfile from "@/dataActions/accounts/FetchProfile";
 import SubContractorInvite from "@/actionForms/subcontractorInvite/SubContractorInvite";
 import { ChevronDown } from "lucide-react";
+import { getSites } from "@/services/sites";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosAuth from "@/hooks/useAxiosAuth";
 
 function SubContractors() {
   const [open, setOpen] = useState(false);
+  const axios = useAxiosAuth();
 
   const {
     isLoading: isLoadingUser,
     data: profile,
     refetch: refetchProfile,
   } = useFetchProfile();
-  console.log(profile,'from subContractor page');
+
+  const {
+    data: sites,
+    isSuccess,
+  } = useQuery({
+    queryKey: ["sites"],
+    queryFn: () => getSites(axios),
+  });
+  console.log(sites,'sites from subContractor page');
 
   return (
     <div className="p-3">
@@ -56,6 +68,7 @@ function SubContractors() {
               <SubContractorInvite
                   handleCloseModal={setOpen}
                   company={profile?.companies}
+                  sites={sites}
                 />
             </DialogContent>
           </Dialog>
