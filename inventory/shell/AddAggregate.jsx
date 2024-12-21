@@ -5,12 +5,7 @@ import { aggregateInputFields } from "@/data/formGeneratorInputTypes";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createShellEquipment } from "@/services/shell";
 import { Field, Form, Formik } from "formik";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ImagePlus,
-  Loader2,
-} from "lucide-react";
+import { ChevronLeft, ChevronRight, ImagePlus, Loader2 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import SupplierInputForm from "./SupplierInputForm";
@@ -22,8 +17,8 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
   const [loading, setLoading] = useState(false);
   const [supplierInputValues, setSupplierInputValues] = useState(null);
   const [page, setPage] = useState(1);
-  const router = useRouter()
-  const {slug} = useParams();
+  const router = useRouter();
+  const { slug } = useParams();
 
   const handleSupplierInputValues = (data) => {
     setSupplierInputValues(data);
@@ -60,8 +55,8 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
           gradiation: "",
           standards_certifications: "",
           environmental_specifications: "",
-          other: "", 
-          employees: "", 
+          other: "",
+          employees: [],
           delivery_mode: "",
         }}
         onSubmit={async (values, { resetForm }) => {
@@ -139,7 +134,11 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
               "deposit_percentage",
               supplierInputValues?.deposit_percentage
             );
-            formData.append("employees", values.employees);
+            if (values.employees && values.employees.length > 0) {
+              values.employees.forEach((employee) =>
+                formData.append("employees", employee)
+              );
+            }
             formData.append("delivery_mode", values.delivery_mode);
 
             await createShellEquipment(formData, axios);
@@ -147,10 +146,11 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
               "Shell Equipment created successfully. Refreshing..."
             );
             // refetchShell();
-            router.push(`/branch/${slug}`)
+            router.push(`/branch/${slug}`);
             setLoading(false);
             resetForm();
           } catch (error) {
+            console.log(error);
             toast?.error("Failed to create shell equipment");
           } finally {
             setLoading(false);
@@ -199,21 +199,30 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                 <p className="font-semibold text-lg lg:text-xl mb-4">
                   Supplier Input Form
                 </p>
-                <div className="flex flex-col gap-1 mb-2">
-                  <Label htmlFor='employee'>Employee</Label>
-                  <Field 
-                    as='select'
-                        id='employee'
-                        name='employees'
-                        className="bg-white border-[1px] p-2 rounded-lg"
-                    >
-                        <option value="">N/A</option>
-                        {employees?.length && employees.map((employee) => (
-                            <option key={employee.slug} value={employee.slug} id={employee.slug}
-                            className=""
-                            >{employee.user.first_name}{' '}{employee.user.last_name}</option>
-                        ))}
-                    </Field>
+                <div className="flex flex-col gap-1 mb-2 border p-4 rounded-lg">
+                  <span className="text-lg font-semibold block mb-4">
+                    Employee Allocation
+                  </span>
+                  <Label htmlFor="employee">Employee</Label>
+                  <Field
+                    as="select"
+                    id="employee"
+                    name="employees"
+                    className="bg-white border-[1px] p-2 rounded-lg"
+                  >
+                    <option value="">N/A</option>
+                    {employees?.length &&
+                      employees.map((employee) => (
+                        <option
+                          key={employee.slug}
+                          value={employee.slug}
+                          id={employee.slug}
+                          className=""
+                        >
+                          {employee.user.first_name} {employee.user.last_name}
+                        </option>
+                      ))}
+                  </Field>
                 </div>
                 <SupplierInputForm
                   onSupplierInputValues={handleSupplierInputValues}
@@ -236,21 +245,37 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
             ) : page === 3 ? (
               <div>
                 <div className="grid h-[70vh] place-content-center">
-                  <Image src='/thumbs.webp' alt="thumbs up" width={150} height={150} className="mx-auto"/>
-                  <span className="font-semibold text-2xl text-center">You&apos;re done.</span>
+                  <Image
+                    src="/thumbs.webp"
+                    alt="thumbs up"
+                    width={150}
+                    height={150}
+                    className="mx-auto"
+                  />
+                  <span className="font-semibold text-2xl text-center">
+                    You&apos;re done.
+                  </span>
                   <p>Click submit to save this information.</p>
-                {supplierInputValues && (
-                  <Button
-                  disabled={loading}
-                  type="submit"
-                  className="mt-10 mb-5"
-                  >
-                    {loading ? <Loader2 className="animate-spin" /> : "Submit"}
-                  </Button>
-                )}
+                  {supplierInputValues && (
+                    <Button
+                      disabled={loading}
+                      type="submit"
+                      className="mt-10 mb-5"
+                    >
+                      {loading ? (
+                        <Loader2 className="animate-spin" />
+                      ) : (
+                        "Submit"
+                      )}
+                    </Button>
+                  )}
                 </div>
                 <div className="flex justify-between gap-2 ">
-                  <Button variant='outline' disabled={loading} onClick={() => setPage(2)}>
+                  <Button
+                    variant="outline"
+                    disabled={loading}
+                    onClick={() => setPage(2)}
+                  >
                     <ChevronLeft /> Back
                   </Button>
                   <p>Page {page} of 3</p>

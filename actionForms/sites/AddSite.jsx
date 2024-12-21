@@ -1,11 +1,15 @@
+import { Button } from "@/app/components/ui/button";
+import { Label } from "@/app/components/ui/label";
 import ContractorLoadingSpinner from "@/components/contractor/LoadingSpinner";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createSite } from "@/services/sites";
 import { Field, Form, Formik } from "formik";
+import { Loader2 } from "lucide-react";
+import Image from "next/image";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-function AddSite({ refetch, handleCloseModal, company }) {
+function AddSite({ refetch,company, onOpenChange }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
@@ -22,7 +26,7 @@ function AddSite({ refetch, handleCloseModal, company }) {
         setLoading(true);
         try {
           const formData = new FormData();
-          formData.append("company", values.company);
+          formData.append("company", company?.reference);
           formData.append("name", values.name);
           formData.append("address", values.address);
           formData.append("phone", values.phone);
@@ -33,7 +37,7 @@ function AddSite({ refetch, handleCloseModal, company }) {
           await createSite(formData, axios);
           toast.success("Site created successfully. Refreshing page...");
           setLoading(false);
-          handleCloseModal();
+          onOpenChange();
           refetch();
         } catch (error) {
           toast.error("Failed to create site");
@@ -43,58 +47,70 @@ function AddSite({ refetch, handleCloseModal, company }) {
       }}
     >
       {({ setFieldValue }) => (
-        <Form>
-          <div className="mb-3">
-            <label htmlFor="logo" className="form-label">
-              Site Logo
-            </label>
-            <input
-              type="file"
-              name="logo"
-              className="form-control"
-              onChange={(event) => {
-                setFieldValue("logo", event.currentTarget.files[0]);
-              }}
-            />
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="name" className="form-label">
-              Site Name
-            </label>
-            <Field type="text" name="name" className="form-control" />
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="address" className="form-label">
-              Site Address
-            </label>
-            <Field type="text" name="address" className="form-control" />
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="phone" className="form-label">
-              Site Phone
-            </label>
-            <Field type="text" name="phone" className="form-control" />
-          </div>
-
-          <button
-            type="submit"
-            className="btn contractor-btn mt-3"
-            disabled={loading}
-          >
-            {loading ? (
-              <div
-                className="spinner-border spinner-border-sm text-primary"
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
+        <Form className="space-y-2">
+          <div className="border mt-3 rounded-xl px-4 py-6">
+              <div>
+                {company?.logo && (
+                  <Image
+                    src={branch?.logo}
+                    alt="logo"
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                )}
               </div>
-            ) : (
-              "Create"
-            )}
-          </button>
+              <div>
+                <label htmlFor="logo" className={`mb-2 block ${company?.logo && 'hidden'}`}>Add site image</label>
+                <input
+                  type="file"
+                  name="logo"
+                  className="form-control form-control-sm"
+                  onChange={(event) => {
+                    setFieldValue("logo", event.currentTarget.files[0]);
+                  }}
+                />
+              </div>
+            </div>
+           <div className="flex flex-col gap-1">
+                        <Label htmlFor="name">Site Name</Label>
+                        <Field
+                          type="text"
+                          required
+                          name="name"
+                          className="border rounded-lg p-2"
+                        />
+                      </div>
+           <div className="flex flex-col gap-1">
+                        <Label htmlFor="address">Site address</Label>
+                        <Field
+                          type="text"
+                          required
+                          name="address"
+                          className="border rounded-lg p-2"
+                        />
+                      </div>
+           <div className="flex flex-col gap-1">
+                        <Label htmlFor="phone">Site phone</Label>
+                        <Field
+                          type="text"
+                          required
+                          name="phone"
+                          className="border rounded-lg p-2"
+                        />
+                      </div>
+
+                      <Button
+              type="submit"
+              className="bg-jungle800 hover:bg-jungle600"
+              disabled={loading}
+            >
+              {loading ? (
+                <Loader2 className="animate-spin" />
+              ) : (
+                "Create"
+              )}
+            </Button>
         </Form>
       )}
     </Formik>

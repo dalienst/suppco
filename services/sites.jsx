@@ -6,13 +6,11 @@ export const createSite = async (formData, axios) => {
 
 export const getSites = async (axios) => {
   const response = await urlMultipartActions?.get("/api/sites/", axios);
-
   return response?.data?.results;
 };
 
 export const getSiteDetail = async (slug, axios) => {
   const response = await urlMultipartActions?.get(`/api/sites/${slug}/`, axios);
-
   return response?.data;
 };
 

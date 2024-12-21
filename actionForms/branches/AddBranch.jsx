@@ -1,18 +1,18 @@
 "use client";
 import { Field, Form, Formik } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createBranch } from "@/services/branches";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 function AddBranch({ refetch, onOpenChange, company }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
   return (
-    <>
       <Formik
         initialValues={{
           company: company?.slug,
@@ -96,7 +96,7 @@ function AddBranch({ refetch, onOpenChange, company }) {
               disabled={loading}
             >
               {loading ? (
-                <span className="visually-hidden">Loading...</span>
+                <Loader2 className="animate-spin" />
               ) : (
                 "Create"
               )}
@@ -104,7 +104,6 @@ function AddBranch({ refetch, onOpenChange, company }) {
           </Form>
         )}
       </Formik>
-    </>
   );
 }
 
