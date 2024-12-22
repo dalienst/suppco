@@ -57,9 +57,7 @@ function SubContractorInvite({ handleCloseModal, company, sites }) {
                       {site?.name}-{site?.address}
                     </option>
                   ))}
-
-
-           </Field>
+                </Field>
               </div>
 
           <Button
