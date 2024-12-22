@@ -37,20 +37,12 @@ function SiteEmployees({ params: { slug } }) {
 
     setSelectedEmployeeIds((prevState) => {
       if (checked) {
-        // Add value to the array if checked
         return [...prevState, value];
       } else {
-        // Remove value from the array if unchecked
         return prevState.filter((email) => email !== value);
       }
     });
-
-    console.log(selectedEmployeeIds);
   };
-
-  useEffect(() => {
-    console.log(selectedEmployeeIds);
-  }, [selectedEmployeeIds]);
 
   if (siteLoading) {
     return <SupplierLoadingSpinner />;
