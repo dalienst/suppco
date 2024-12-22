@@ -74,7 +74,7 @@ function BranchEmployees() {
           )}
         </div>
       </div>
-      {isLoadingBranch ? (
+      {/* {isLoadingBranch ? (
         <SupplierLoadingSpinner />
       ) : branch?.employees?.length > 0 ? (
         <UserTable rows={branch?.employees} columns={employeeColumn} />
@@ -82,7 +82,7 @@ function BranchEmployees() {
         <div className="place-content-center text-center">
           <h6>You have no Employees</h6>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
