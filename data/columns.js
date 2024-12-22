@@ -46,3 +46,33 @@ export const companyBranchesColumn = [
       width: 180,
     },
   ]
+
+  export const shellEquipmentColumn = [
+    {
+      field: 'product_name',
+      headerName: 'Product name',
+      width: 180,
+    },
+    {
+      field: 'source_location',
+      headerName: 'Source location',
+      width: 180,
+    },
+    {
+      field: 'minimum_order_quantity',
+      headerName: 'Min order quantity',
+      width: 180,
+    },
+    {
+      field: 'offers_delivery',
+      headerName: 'Offers delivery',
+      width: 180,
+    },
+  ]
+  export const ordersColumn = [
+    {
+      field: 'status',
+      headerName: 'Order status',
+      width: 180,
+    },
+  ]

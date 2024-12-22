@@ -4,15 +4,17 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createOrder } from "@/services/orders";
+import { Button } from "@/app/components/ui/button";
+import { Loader2 } from "lucide-react";
 
-function CreateOrder({company, site}) {
+function CreateOrderForm({company, site, shellEquipmentRef}) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
   return (
     <Formik
       initialValues={{
-        company: company?.slug,
+        company: company?.reference,
         site: "", // use site reference
         shell_equipment: "", // use shell equipment reference
         employees: [], // not necessarily required
@@ -22,9 +24,9 @@ function CreateOrder({company, site}) {
         setLoading(true);
         try {
           const formData = new FormData();
-          formData.append("company", company?.slug);
+          formData.append("company", company?.reference);
           formData.append("site", site?.reference);
-          formData.append("shell_equipment", values.shell_equipment);
+          formData.append("shell_equipment", shellEquipmentRef);
           values.employees.forEach((employee) =>
             formData.append("employees", employee)
           );
@@ -32,10 +34,8 @@ function CreateOrder({company, site}) {
 
           await createOrder(formData, axios);
           toast.success("Order created successfully. Refreshing...");
-          setLoading(false);
         } catch (error) {
           toast.error("Failed to create order");
-          setLoading(false);
         } finally {
           setLoading(false);
         }
@@ -56,10 +56,13 @@ function CreateOrder({company, site}) {
                           ))}
                         </Field>
                       </div> */}
+                      <Button disabled={loading}>
+                        {loading ? <Loader2 className="animate-spin" /> : 'Order'}
+                      </Button>
         </Form>
         }
     </Formik>
   );
 }
 
-export default CreateOrder;
+export default CreateOrderForm;

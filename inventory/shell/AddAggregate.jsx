@@ -56,7 +56,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
           standards_certifications: "",
           environmental_specifications: "",
           other: "",
-          employees: [],
+          employees: employees || [],
           delivery_mode: "",
         }}
         onSubmit={async (values, { resetForm }) => {
@@ -166,7 +166,6 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
               "is_negotiable",
               supplierInputValues?.is_negotiable
             );
-
             await createShellEquipment(formData, axios);
             toast?.success(
               "Shell Equipment created successfully. Refreshing..."

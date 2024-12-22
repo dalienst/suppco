@@ -5,7 +5,8 @@ export const createOrder = async (formData, axios) => {
 };
 
 export const getOrders = async (axios) => {
-  return await urlMultipartActions?.get("/api/orders/", axios);
+  const orders = await urlMultipartActions?.get("/api/orders/", axios);
+  return orders?.data?.results
 };
 
 export const getOrder = async (slug, axios) => {

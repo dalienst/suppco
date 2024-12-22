@@ -50,7 +50,6 @@ export default function ItemDetail({
       </div>
     );
   }
-  console.log(category?.identity);
   const renderForm = () => {
     switch (category?.identity) {
       case "metal-work":
