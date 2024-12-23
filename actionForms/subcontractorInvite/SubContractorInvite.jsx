@@ -22,13 +22,12 @@ function SubContractorInvite({ handleCloseModal, company, sites }) {
         setLoading(true);
         try {
           const formData = new FormData();
-            formData.append("site", values.site)
+          formData.append("site", values.site);
           formData.append("company", values.company);
           formData.append("email", values.email);
-          console.log(formData)
-          // await sendSubContractorInvite(values, axios);
+          await sendSubContractorInvite(values, axios);
           toast?.success("Invite sent successfully. Refreshing page...");
-          // handleCloseModal();
+          handleCloseModal();
           setLoading(false);
         } catch (error) {
           toast?.error("Failed to send invite");
@@ -46,30 +45,24 @@ function SubContractorInvite({ handleCloseModal, company, sites }) {
             type="email"
             placeholder="Enter email"
           />
-        <div>
-                <div className="flex justify-between items-center pt-3">
-                <span className="text-lg underline">Allocate site(s) to subcontractor:</span>
-                </div>
-                <Field as="select" name="site" className='p-2 rounded-lg'>
-                  <option value="">Select a site </option>
-                  {sites?.map((site) => (
-                    <option key={site?.reference} value={site?.reference}>
-                      {site?.name}-{site?.address}
-                    </option>
-                  ))}
-                </Field>
-              </div>
+          <div>
+            <div className="flex justify-between items-center pt-3">
+              <span className="text-lg underline">
+                Allocate site(s) to subcontractor:
+              </span>
+            </div>
+            <Field as="select" name="site" className="p-2 rounded-lg">
+              <option value="">Select a site </option>
+              {sites?.map((site) => (
+                <option key={site?.reference} value={site?.reference}>
+                  {site?.name}-{site?.address}
+                </option>
+              ))}
+            </Field>
+          </div>
 
-          <Button
-            type="submit"
-            className="mt-3"
-            disabled={loading}
-          >
-            {loading ? (
-              <Loader2 className="animate-spin" />
-            ) : (
-              "Invite"
-            )}
+          <Button type="submit" className="mt-3" disabled={loading}>
+            {loading ? <Loader2 className="animate-spin" /> : "Invite"}
           </Button>
         </Form>
       )}
