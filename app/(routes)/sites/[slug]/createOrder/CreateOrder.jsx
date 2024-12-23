@@ -2,7 +2,7 @@
 
 import CreateOrderForm from "@/actionForms/orders/CreateOrderForm";
 import { Button } from "@/app/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog";
 import UserTable from "@/components/tables/InfoTable";
 import { shellEquipmentColumn } from "@/data/columns";
 import { X } from "lucide-react";
@@ -60,6 +60,9 @@ function CreateOrder({ site, company, supplierProducts, onOpenChange }) {
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
                 <DialogTitle>Order this product</DialogTitle>
+                <DialogDescription>
+                  Confirm your order of this product from the supplier.
+                </DialogDescription>
                 <CreateOrderForm
                 company={company}
                 site={site}
