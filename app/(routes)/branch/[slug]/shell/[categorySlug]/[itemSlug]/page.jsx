@@ -69,7 +69,14 @@ export default function ItemDetail({
       case "detail-subcomponentsaccessories":
         return <AddAccessories />;
       case "walls":
-        return <AddWalls />;
+        return (
+          <AddWalls
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+          />
+        );
       case "roof":
         return <AddRoof />;
       case "pre-cast":
