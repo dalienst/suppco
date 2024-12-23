@@ -44,11 +44,12 @@ export default function ItemDetail({
   } = useFetchSubCategoryItemShellEquipment(subCategoryItem?.id);
 
   if (isLoadingBranch || isLoadingCategory || isLoadingSubCategoryItem) {
-    return <div className="h-[90vh] flex justify-center items-center">
-    <Loader2 className="animate-spin"/>
-  </div>;
+    return (
+      <div className="h-[90vh] flex justify-center items-center">
+        <Loader2 className="animate-spin" />
+      </div>
+    );
   }
-  console.log(category?.identity)
   const renderForm = () => {
     switch (category?.identity) {
       case "metal-work":
@@ -62,7 +63,7 @@ export default function ItemDetail({
             item={subCategoryItem}
             category={category}
             refetchShell={refetchShell}
-            employees={branch?.branch_employees}
+            employees={branch?.employees}
           />
         );
       case "detail-subcomponentsaccessories":
@@ -74,13 +75,14 @@ export default function ItemDetail({
       case "pre-cast":
         return <AddPrecast />;
       case "cement":
-        return( 
-        <AddCement
-        branch={branch}
+        return (
+          <AddCement
+            branch={branch}
             item={subCategoryItem}
             category={category}
-            refetchShell={refetchShell} 
-        />);
+            refetchShell={refetchShell}
+          />
+        );
       case "formwork":
         return <AddFormwork />;
       default:
@@ -94,7 +96,7 @@ export default function ItemDetail({
         <span>Products</span> <ChevronRight size={14} />{" "}
         <span className="text-blue800">{subCategoryItem?.name}</span>{" "}
       </span>
-      <hr className="mb-4 mt-3"/>
+      <hr className="mb-4 mt-3" />
       {renderForm()}
     </div>
   );

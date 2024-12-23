@@ -57,7 +57,7 @@ function SiteDashboard({ params: { slug } }) {
 
   return (
   <div className="h-[calc(100vh-115px)]">
-    <div className="py-4 lg:p-4 h-full">
+    <div className="p-4 lg:p-4 h-full">
       <div className="lg:hidden flex flex-col">
       <span className="text-lg md:text-xl font-semibold">{branch?.name}</span> 
       <span className="text-[#707070] text-sm">{branch?.address} Site</span>

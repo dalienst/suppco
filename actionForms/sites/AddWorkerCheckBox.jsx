@@ -1,10 +1,11 @@
+import { Button } from "@/app/components/ui/button";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { updateSite } from "@/services/sites";
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 
-function AddWorkerCheckbox({ site, profile, slug, refetchSite }) {
+function AddWorkerCheckbox({ site, profile, slug, refetchSite, closeEmployeeSelectionPanel }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
 
@@ -21,7 +22,6 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite }) {
           values.employees.forEach((employee) =>
             formData.append("employees", employee)
           );
-
           await updateSite(slug, formData, axios);
           toast.success("Workers added successfully. Refreshing...");
           refetchSite();
@@ -34,11 +34,9 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite }) {
     >
       {({ values, setFieldValue }) => (
         <Form>
-          <section>
-            <div className="border mt-3 rounded-xl">
               <div>
-                <div className="flex justify-between items-center py-6 px-4">
-                  <label className="text-sm font-semibold">Select Worker</label>
+                <div className="flex justify-between items-center">
+                <span className="text-lg underline">Select employee(s) :</span>
                   <div className="flex items-center">
                     <input
                       type="checkbox"
@@ -56,15 +54,15 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite }) {
                         profile?.companies?.company_workers?.length
                       }
                     />
-                    <label className="text-sm">Select All</label>
+                    <span className="text-sm">Select All</span>
                   </div>
                 </div>
-                <div className="px-4">
+                <ul className="max-h-[300px] overflow-auto">
                   {profile?.companies?.company_workers?.map((worker) => (
-                    <div key={worker?.id} className="flex items-center mb-2">
+                    <li key={worker?.id} className="flex items-center py-2">
                       <input
                         type="checkbox"
-                        id={`worker-${worker?.id}`}
+                        id={worker?.id}
                         className="mr-2"
                         value={worker?.email}
                         checked={values.employees.includes(worker?.email)}
@@ -79,28 +77,28 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite }) {
                         }}
                       />
                       <label
-                        htmlFor={`worker-${worker?.id}`}
+                        htmlFor={worker?.id}
                         className="text-sm"
                       >
                         {worker?.email}
                       </label>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-            </div>
-          </section>
-          <div className="mt-3">
-            <button
-              type="submit"
-              disabled={loading}
-              className={`bg-primary text-white px-4 py-2 rounded-lg ${
-                loading ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-            >
-              {loading ? "Processing..." : "Add Worker"}
-            </button>
-          </div>
+          <div className="w-[300px] mt-3 flex justify-between gap-2">
+                          <Button disabled={loading}>
+                            Add employee(s)
+                          </Button>
+                          <Button
+                            variant="outline"
+                            disabled={loading}
+                            type='button'
+                            onClick={closeEmployeeSelectionPanel}
+                          >
+                            Cancel
+                          </Button>
+                        </div>
         </Form>
       )}
     </Formik>

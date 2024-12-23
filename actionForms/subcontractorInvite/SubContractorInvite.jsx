@@ -1,6 +1,6 @@
 "use client";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import FormInput from "../formStructures/FormInput";
@@ -8,7 +8,7 @@ import { sendSubContractorInvite } from "@/services/subcontractorInvite";
 import { Button } from "@/app/components/ui/button";
 import { Loader2 } from "lucide-react";
 
-function SubContractorInvite({ handleCloseModal, company }) {
+function SubContractorInvite({ handleCloseModal, company, sites }) {
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
   return (
@@ -16,13 +16,19 @@ function SubContractorInvite({ handleCloseModal, company }) {
       initialValues={{
         company: company?.name,
         email: "",
+        site: "",
       }}
       onSubmit={async (values) => {
         setLoading(true);
         try {
-          await sendSubContractorInvite(values, axios);
+          const formData = new FormData();
+            formData.append("site", values.site)
+          formData.append("company", values.company);
+          formData.append("email", values.email);
+          console.log(formData)
+          // await sendSubContractorInvite(values, axios);
           toast?.success("Invite sent successfully. Refreshing page...");
-          handleCloseModal();
+          // handleCloseModal();
           setLoading(false);
         } catch (error) {
           toast?.error("Failed to send invite");
@@ -32,7 +38,7 @@ function SubContractorInvite({ handleCloseModal, company }) {
         }
       }}
     >
-      {({ setFieldValue }) => (
+      {({ values, setFieldValue }) => (
         <Form>
           <FormInput
             name="email"
@@ -40,6 +46,19 @@ function SubContractorInvite({ handleCloseModal, company }) {
             type="email"
             placeholder="Enter email"
           />
+        <div>
+                <div className="flex justify-between items-center pt-3">
+                <span className="text-lg underline">Allocate site(s) to subcontractor:</span>
+                </div>
+                <Field as="select" name="site" className='p-2 rounded-lg'>
+                  <option value="">Select a site </option>
+                  {sites?.map((site) => (
+                    <option key={site?.reference} value={site?.reference}>
+                      {site?.name}-{site?.address}
+                    </option>
+                  ))}
+                </Field>
+              </div>
 
           <Button
             type="submit"

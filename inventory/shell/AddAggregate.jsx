@@ -56,7 +56,7 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
           standards_certifications: "",
           environmental_specifications: "",
           other: "",
-          employees: [],
+          employees: employees || [],
           delivery_mode: "",
         }}
         onSubmit={async (values, { resetForm }) => {
@@ -129,18 +129,43 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
               "rate_per_unit",
               supplierInputValues?.rate_per_unit
             );
-            formData.append("plan_type", supplierInputValues?.plan_type);
+
             formData.append(
               "deposit_percentage",
               supplierInputValues?.deposit_percentage
             );
-            if (values.employees && values.employees.length > 0) {
+            if (
+              Array.isArray(values.employees) &&
+              values.employees.length > 0
+            ) {
               values.employees.forEach((employee) =>
                 formData.append("employees", employee)
               );
             }
             formData.append("delivery_mode", values.delivery_mode);
-
+            formData.append("fixed_terms", supplierInputValues?.fixed_terms);
+            formData.append(
+              "fixed_fifty_terms",
+              supplierInputValues?.fixed_fifty_terms
+            );
+            formData.append("pod_terms", supplierInputValues?.pod_terms);
+            formData.append(
+              "negotiable_terms",
+              supplierInputValues?.negotiable_terms
+            );
+            formData.append("is_fixed", supplierInputValues?.is_fixed);
+            formData.append(
+              "is_fixed_fifty",
+              supplierInputValues?.is_fixed_fifty
+            );
+            formData.append(
+              "is_payment_on_delivery",
+              supplierInputValues?.is_payment_on_delivery
+            );
+            formData.append(
+              "is_negotiable",
+              supplierInputValues?.is_negotiable
+            );
             await createShellEquipment(formData, axios);
             toast?.success(
               "Shell Equipment created successfully. Refreshing..."
@@ -208,18 +233,21 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
                     as="select"
                     id="employee"
                     name="employees"
+                    multiple
                     className="bg-white border-[1px] p-2 rounded-lg"
+                    onChange={(e) => {
+                      const selectedOptions = Array.from(
+                        e.target.selectedOptions,
+                        (option) => option.value
+                      );
+                      setFieldValue("employees", selectedOptions);
+                    }}
                   >
                     <option value="">N/A</option>
                     {employees?.length &&
-                      employees.map((employee) => (
-                        <option
-                          key={employee.slug}
-                          value={employee.slug}
-                          id={employee.slug}
-                          className=""
-                        >
-                          {employee.user.first_name} {employee.user.last_name}
+                      employees.map((employee, index) => (
+                        <option key={index} value={employee} id={employee}>
+                          {employee}
                         </option>
                       ))}
                   </Field>

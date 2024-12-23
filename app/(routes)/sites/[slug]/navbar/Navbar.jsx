@@ -7,6 +7,7 @@ import {
   ChevronLeft,
   LayoutDashboard,
   Menu,
+  Package,
   Settings,
   Users,
 } from "lucide-react";
@@ -52,6 +53,17 @@ function Navbar() {
               >
                 <Users />
                 Employees
+              </Link>
+            </li>
+          ) : null}
+          {site?.name !== null ? (
+            <li className="rounded">
+              <Link
+                href={`/sites/${slug}/orders`}
+                className="flex items-center gap-1"
+              >
+                <Package />
+                Orders
               </Link>
             </li>
           ) : null}
