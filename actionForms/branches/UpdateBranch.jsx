@@ -69,7 +69,7 @@ function UpdateBranch({ branch, refetchBranch, isLoading }) {
                     alt="logo"
                     width={60}
                     height={60}
-                    className="rounded-full"
+                    className="rounded-full w-[60px] h-[60px] object-cover"
                   />
                 ) : (
                   <CircleUser
