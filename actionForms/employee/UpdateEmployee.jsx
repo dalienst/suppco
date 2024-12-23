@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import { updateEmployee } from "@/services/employees";
+import { Button } from "@/app/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 function UpdateEmployee({ employee, refetchEmployee }) {
   const axios = useAxiosAuth();
@@ -48,22 +50,17 @@ function UpdateEmployee({ employee, refetchEmployee }) {
             </label>
           </div>
 
-          <button
+          <Button
             type="submit"
             className="btn btn-sm btn-outline-success mt-3"
             disabled={loading}
           >
             {loading ? (
-              <div
-                className="spinner-border spinner-border-sm text-success"
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
+              <Loader2 className="animate-spin"/>
             ) : (
               "Update"
             )}
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>

@@ -25,8 +25,7 @@ import useUserId from "@/hooks/useUserId";
 
 function BranchEmployees() {
   const [selectedEmployeeIds, setSelectedEmployeeIds] = useState([]);
-  const [openEmployeeSelectionPanel, setOpenEmployeeSelectionPanel] =
-    useState(false);
+  const [openEmployeeSelectionPanel, setOpenEmployeeSelectionPanel] = useState(false);
   const { slug } = useParams();
   const {
     isLoading: isLoadingBranch,
@@ -35,27 +34,12 @@ function BranchEmployees() {
     isSuccess,
   } = useFetchBranchDetail(slug);
 
-  console.log(branch)
-
   const axios = useAxiosAuth();
   const userId = useUserId();
   const { isLoading: isLoadingUser, data: profile } = useQuery({
     queryKey: ["profile"],
     queryFn: () => getUser(userId, axios),
   });
-  const [rows, setRows] = useState([]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      const rows = branch?.employees?.map((obj, index) => {
-        return {
-          ...obj,
-          id: index,
-        };
-      });
-      setRows(rows);
-    }
-  }, [branch, isSuccess]);
 
   return (
     <div>
@@ -90,7 +74,7 @@ function BranchEmployees() {
       {isLoadingBranch ? (
         <SupplierLoadingSpinner />
       ) : branch?.employees?.length > 0 ? (
-        <UserTable rows={rows} columns={employeeColumn} />
+        <UserTable rows={branch?.employees_details} columns={employeeColumn} redirectLink=''/>
       ) : (
         <div className="place-content-center text-center">
           <h6>You have no Employees</h6>

@@ -1,6 +1,9 @@
 "use client";
 import UpdateEmployee from "@/actionForms/employee/UpdateEmployee";
+import { Button } from "@/app/components/ui/button";
+import SupplierLoadingSpinner from "@/components/supplier/LoadingSpinner";
 import { useFetchEmployeeDetail } from "@/dataActions/employees/employeesActions";
+import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -12,75 +15,65 @@ function EmployeeDetail({ params: { empSlug } }) {
     data: employee,
     refetch: refetchEmployee,
   } = useFetchEmployeeDetail(empSlug);
-
+console.log(employee,'from employee slug page')
   if (isLoadingEmployee) {
     return (
-      <section
-        className="p-2 mt-3 d-flex justify-content-center align-items-center flex-column"
-        style={{ height: "100vh" }}
-      >
-        <div className="spinner-border text-success" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </section>
+      <SupplierLoadingSpinner/>
     );
   }
 
   return (
-      <div className="min-vh-100">
-        <div className="card bg-white mt-3">
-          <div className="card-header bg-white d-flex justify-content-between align-content-center">
-            <div className="d-flex gap-3 align-items-center flex-row">
-              <button
-                className="btn btn-sm"
-                onClick={() => router.back()}
-              >
-                <i className="bi bi-arrow-left text-success"></i>
-              </button>
-              <h5 className="card-title">{employee?.reference}</h5>
-            </div>
-          </div>
+    <div className="p-3">
+    <div className="">
+          <Button
+          variant='outline'
+            onClick={() => router.back()}
+          >
+           <ChevronLeft/> Back
+          </Button>
 
-          <div className="card-body">
-            <h6 className="card-title">Employee Details</h6>
+      <div className="mt-3">
+        <h1 className="font-semibold text-lg">Employee Details</h1>
+        <div className="border rounded-lg p-3">
+        <p className="mb-1">
+          <span className="font-medium text-lg block mb-1">Email</span> 
+          <span className="border p-2 rounded-lg">{employee?.email}</span>
+        </p>
+        {employee?.user?.first_name === null ? (
+          <div className="bg-red-50 border border-red-400 rounded-xl px-2 py-4 m-6">
+          <p className='text-lg'>Your employee is yet to setup their account.</p>
+        </div> 
+        ) : (
+          <div className="space-y-2">
+            
             <p className="card-text">
-              <strong>Email:</strong> {employee?.email}
-            </p>
-            {employee?.user?.first_name === null ? (
-              <p className="card-text">
-                Employee has not updated their profile.
-              </p>
-            ) : (
-              <>
-                <p className="card-text">
-                  <strong>First Name:</strong> {employee?.user?.first_name}
-                </p>
-                <p className="card-text">
-                  <strong>Last Name:</strong> {employee?.user?.last_name}
-                </p>
-                <p className="card-text">
-                  <strong>Phone:</strong> {employee?.user?.phone}
-                </p>
-                <p className="card-text">
-                  <strong>Identification:</strong>{" "}
-                  {employee?.user?.identification}
-                </p>
-                <p className="card-text">
-                  <strong>KRA Pin:</strong> {employee?.user?.kra_pin}
-                </p>
-                <p className="card-text">
-                  <strong>Location:</strong> {employee?.user?.phone}
-                </p>
-              </>
-            )}
-
-            <UpdateEmployee
-              employee={employee}
-              refetchEmployee={refetchEmployee}
-            />
+          <span className="font-medium text-lg block mb-1">Name</span> 
+          <span className="border p-2 rounded-lg ">{employee?.user?.first_name}{' '}{employee?.user?.last_name}</span>
+          </p>
+            <p className="card-text">
+          <span className="font-medium text-lg block mb-1">Phone</span> 
+          <span className="border p-2 rounded-lg ">{employee?.user?.phone ? `${employee?.user?.phone}` : 'N\A'}</span>
+          </p>
+            <p className="card-text">
+          <span className="font-medium text-lg block mb-1">Identification</span> 
+          <span className="border p-2 rounded-lg ">{employee?.user?.identification ? `${employee?.user?.identification}` : 'N\A'}</span>
+          </p>
+            <p className="card-text">
+          <span className="font-medium text-lg block mb-1">KRA Pin</span> 
+          <span className="border p-2 rounded-lg ">{employee?.user?.kra_pin ? `${employee?.user?.kra_pin}` : 'N\A'}</span>
+          </p>
+            
           </div>
+        )}
         </div>
+
+        <UpdateEmployee
+          employee={employee}
+          refetchEmployee={refetchEmployee}
+        />
       </div>
+    </div>
+  </div>
   );
 }
 

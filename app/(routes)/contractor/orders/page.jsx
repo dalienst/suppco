@@ -39,7 +39,7 @@ function AllOrders() {
     
     useEffect(() => {
         if (isSuccess) {
-          const rows = sites?.map((obj) => {
+          const rows = orders?.map((obj) => {
             return {
               ...obj,
               id: obj.slug,
