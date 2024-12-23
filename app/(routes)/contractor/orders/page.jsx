@@ -50,6 +50,7 @@ function AllOrders() {
   }, [orders, isSuccess]);
 
   if (isLoadingOrders) return <SupplierLoadingSpinner />;
+  
   return (
     <section className="p-5">
       <h2 className="font-semibold text-lg">Your Company&apos;s Orders</h2>

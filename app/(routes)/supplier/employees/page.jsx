@@ -1,15 +1,11 @@
 "use client";
-import ProfileWarning from "@/components/supplier/ProfileWarning";
 import useFetchProfile from "@/dataActions/accounts/FetchProfile";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import SendInvitation from "@/actionForms/invitation/SendInvitation";
-import FormModals from "@/components/forms/FormModals";
 import SupplierLoadingSpinner from "@/components/supplier/LoadingSpinner";
-import EmployeesTable from "@/components/supplier/EmployeesTable";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog";
 import { Button } from "@/app/components/ui/button";
-import { employeeColumn } from "@/data/columns";
+import { supplierEmployeeColumn } from "@/data/columns";
 import UserTable from "@/components/tables/InfoTable";
 
 function Employees() {
@@ -37,10 +33,7 @@ function Employees() {
 
   if (isLoadingUser) {
     return (
-
-        <div className="flex items-center justify-center h-full">
-          <span>Loading...</span>
-        </div>
+      <SupplierLoadingSpinner/>
     );
   }
 
@@ -72,8 +65,7 @@ function Employees() {
           {isLoadingUser ? (
             <SupplierLoadingSpinner />
           ) : profile?.companies?.company_employees?.length > 0 ? (
-            // <EmployeesTable employees={profile?.companies?.company_employees} />
-            <UserTable rows={rows} columns={employeeColumn} redirectLink="/supplier/employees" />
+            <UserTable rows={rows} columns={supplierEmployeeColumn} redirectLink="/supplier/employees" />
           ) : (
             <div className="text-center">
               <h6>You have no Employees</h6>

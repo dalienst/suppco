@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import FormInput from "../formStructures/FormInput";
 import { sendInvite } from "@/services/invites";
 import { Button } from "@/app/components/ui/button";
+import { Loader2 } from "lucide-react";
 
 function SendInvite({ handleCloseModal, company }) {
   const [loading, setLoading] = useState(false);
@@ -47,12 +48,7 @@ function SendInvite({ handleCloseModal, company }) {
             disabled={loading}
           >
             {loading ? (
-              <div
-                className="spinner-border spinner-border-sm text-primary"
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
+              <Loader2 className="animate-spin" />
             ) : (
               "Invite"
             )}

@@ -24,6 +24,23 @@ export const companyBranchesColumn = [
 
   export const employeeColumn = [
     {
+      field: 'first_name',
+      headerName: 'First Name',
+      width: 180,
+    },
+    {
+      field: 'last_name',
+      headerName: 'Last Name',
+      width: 180,
+    },
+    {
+      field: 'email',
+      headerName: 'Email Address',
+      width: 180,
+    },
+  ]
+  export const supplierEmployeeColumn = [
+    {
       field: 'email',
       headerName: 'Email Address',
       width: 180,

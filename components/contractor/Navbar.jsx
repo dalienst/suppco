@@ -74,7 +74,7 @@ function ContractorNavbar() {
               Sites
             </Link>
           </li>
-          <li className="nav-item rounded">
+          {/* <li className="nav-item rounded">
             <Link
               href="/contractor/inventory"
               className="flex items-center gap-1"
@@ -82,7 +82,7 @@ function ContractorNavbar() {
               <Boxes />
               Inventory
             </Link>
-          </li>
+          </li> */}
           <li className="nav-item rounded">
             <Link
               href="/contractor/orders"
@@ -92,7 +92,7 @@ function ContractorNavbar() {
               Orders
             </Link>
           </li>
-          <li className="nav-item rounded">
+          {/* <li className="nav-item rounded">
             <Link
               href="/contractor/delivery"
               className="flex items-center gap-1"
@@ -100,8 +100,8 @@ function ContractorNavbar() {
               <Truck />
               Delivery
             </Link>
-          </li>
-          <li className="nav-item rounded">
+          </li> */}
+          {/* <li className="nav-item rounded">
             <Link
               href="/contractor/books"
               className="flex items-center gap-1"
@@ -109,7 +109,7 @@ function ContractorNavbar() {
               <BookOpen />
               Books
             </Link>
-          </li>
+          </li> */}
 
           {profile?.companies?.name !== null ? (
               <>

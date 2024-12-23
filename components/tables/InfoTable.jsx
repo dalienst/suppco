@@ -83,17 +83,19 @@ function CustomNoRowsOverlay() {
 }
 
 export default function UserTable({ rows, columns, redirectLink }) {
-  console.log(rows);
 
   const actionColumn = {
     field: "action",
     headerName: "Action",
     width: 80,
     renderCell: (params) => {
-      const targetSlug =
-        redirectLink === "/contractor/employees/" || "/supplier/employees/"
-          ? params.row?.slug
-          : params.row?.id;
+      // const targetSlug =
+      //   redirectLink === "/contractor/employees/" || "/supplier/employees/"
+      //     ? params.row?.slug
+      //     : params.row?.id;
+      const targetSlug = redirectLink?.includes("employees")
+        ? params.row?.slug
+        : params.row?.id;
       return (
         <div className="flex h-full items-center justify-center">
           <Popover>
