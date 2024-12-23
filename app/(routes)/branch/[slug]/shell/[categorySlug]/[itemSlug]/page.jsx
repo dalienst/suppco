@@ -71,6 +71,7 @@ export default function ItemDetail({
       case "walls":
         return (
           <AddWalls
+            branch={branch}
             item={subCategoryItem}
             category={category}
             refetchShell={refetchShell}
