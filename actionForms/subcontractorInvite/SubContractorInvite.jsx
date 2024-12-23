@@ -25,7 +25,7 @@ function SubContractorInvite({ handleCloseModal, company, sites }) {
           formData.append("site", values.site);
           formData.append("company", values.company);
           formData.append("email", values.email);
-          await sendSubContractorInvite(values, axios);
+          await sendSubContractorInvite(formData, axios);
           toast?.success("Invite sent successfully. Refreshing page...");
           handleCloseModal();
           setLoading(false);

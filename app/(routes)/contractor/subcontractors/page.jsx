@@ -42,7 +42,6 @@ function SubContractors() {
     queryKey: ["sites"],
     queryFn: () => getSites(axios),
   });
-  console.log(sites,'sites from subContractor page');
 
   return (
     <div className="p-3">
