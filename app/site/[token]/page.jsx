@@ -18,6 +18,8 @@ function WorkerRegistration({ params: { token } }) {
     <div className="h-screen grid place-content-center">
       <Formik
         initialValues={{
+          first_name: "",
+          last_name: "",
           email: "",
           password: "",
           confirmPassword: "",
@@ -45,68 +47,92 @@ function WorkerRegistration({ params: { token } }) {
         }}
       >
         {({ touched }) => (
-            <Form className="p-3 rounded-lg max-w-[460px] mx-4 border space-y-3">
-              <div className="mb-3">
-                <h3 className="text-xl font-semibold">Site Employee</h3>
-                <p className="text-[#6c6c6c]">
-                  Create your Employee Account to access the application
-                </p>
-              </div>
-              <div className="flex flex-col gap-1">
-                            <Label htmlFor="email">Email</Label>
-                            <Field
-                              type="email"
-                              required
-                              name="email"
-                              className="border rounded-lg p-2"
-                            />
-                             <ErrorMessage
-                                name="email"
-                                component="p"
-                                className="text-red-400 text-sm"
-                              />
-                          </div>
-              <div className="flex flex-col gap-1">
-                            <Label htmlFor="password">Password</Label>
-                            <Field
-                              type="password"
-                              required
-                              name="password"
-                              className="border rounded-lg p-2"
-                            />
-                             <ErrorMessage
-                                name="password"
-                                component="p"
-                                className="text-red-400 text-sm"
-                              />
-                          </div>
-              <div className="flex flex-col gap-1">
-                            <Label htmlFor="confirmPassword">Confirm Password</Label>
-                            <Field
-                              type="password"
-                              required
-                              name="confirmPassword"
-                              className="border rounded-lg p-2"
-                            />
-                             <ErrorMessage
-                                name="confirmPassword"
-                                component="p"
-                                className="text-red-400 text-sm"
-                              />
-                          </div>
+          <Form className="p-3 rounded-lg max-w-[460px] mx-4 border space-y-3">
+            <div className="mb-3">
+              <h3 className="text-xl font-semibold">Site Employee</h3>
+              <p className="text-[#6c6c6c]">
+                Create your Employee Account to access the application
+              </p>
+            </div>
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="first_name">First Name</Label>
+              <Field
+                type="text"
+                required
+                name="first_name"
+                className="border rounded-lg p-2"
+              />
+              {/* <ErrorMessage
+                name="first_name"
+                component="p"
+                className="text-red-400 text-sm"
+              /> */}
+            </div>
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="last_name">Last Name</Label>
+              <Field
+                type="text"
+                required
+                name="last_name"
+                className="border rounded-lg p-2"
+              />
+              {/* <ErrorMessage
+                name="last_name"
+                component="p"
+                className="text-red-400 text-sm"
+              /> */}
+            </div>
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="email">Email</Label>
+              <Field
+                type="email"
+                required
+                name="email"
+                className="border rounded-lg p-2"
+              />
+              <ErrorMessage
+                name="email"
+                component="p"
+                className="text-red-400 text-sm"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="password">Password</Label>
+              <Field
+                type="password"
+                required
+                name="password"
+                className="border rounded-lg p-2"
+              />
+              <ErrorMessage
+                name="password"
+                component="p"
+                className="text-red-400 text-sm"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <Label htmlFor="confirmPassword">Confirm Password</Label>
+              <Field
+                type="password"
+                required
+                name="confirmPassword"
+                className="border rounded-lg p-2"
+              />
+              <ErrorMessage
+                name="confirmPassword"
+                component="p"
+                className="text-red-400 text-sm"
+              />
+            </div>
 
-              <Button
-                type="submit"
-                className="btn w-100 contractor-btn"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <Loader2 className="animate-spin" />
-                ) : (
-                  "Create"
-                )}
-              </Button>
-            </Form>
+            <Button
+              type="submit"
+              className="btn w-100 contractor-btn"
+              disabled={isLoading}
+            >
+              {isLoading ? <Loader2 className="animate-spin" /> : "Create"}
+            </Button>
+          </Form>
         )}
       </Formik>
     </div>
