@@ -62,7 +62,7 @@ function UpdateBranch({ branch, refetchBranch, isLoading }) {
           <section className="py-3">
             <h2 className="text-xl font-semibold">Branch Information</h2>
             <div className="border mt-3 rounded-xl px-4 py-6">
-              <div>
+              <div className="mb-3">
                 {branch?.logo ? (
                   <Image
                     src={branch?.logo}
