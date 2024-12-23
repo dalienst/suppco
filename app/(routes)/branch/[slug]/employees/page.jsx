@@ -13,7 +13,7 @@ import {
   DialogTrigger,
 } from "@/app/components/ui/dialog";
 import { useParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/app/components/ui/button";
 import SendInvitation from "@/actionForms/invitation/SendInvitation";
 import { ChevronDown } from "lucide-react";
@@ -35,12 +35,27 @@ function BranchEmployees() {
     isSuccess,
   } = useFetchBranchDetail(slug);
 
+  console.log(branch)
+
   const axios = useAxiosAuth();
   const userId = useUserId();
   const { isLoading: isLoadingUser, data: profile } = useQuery({
     queryKey: ["profile"],
     queryFn: () => getUser(userId, axios),
   });
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      const rows = branch?.employees?.map((obj, index) => {
+        return {
+          ...obj,
+          id: index,
+        };
+      });
+      setRows(rows);
+    }
+  }, [branch, isSuccess]);
 
   return (
     <div>
@@ -75,7 +90,7 @@ function BranchEmployees() {
       {isLoadingBranch ? (
         <SupplierLoadingSpinner />
       ) : branch?.employees?.length > 0 ? (
-        <UserTable rows={branch?.employees} columns={employeeColumn} />
+        <UserTable rows={rows} columns={employeeColumn} />
       ) : (
         <div className="place-content-center text-center">
           <h6>You have no Employees</h6>
