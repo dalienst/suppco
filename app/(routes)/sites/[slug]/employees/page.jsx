@@ -53,36 +53,38 @@ function SiteEmployees({ params: { slug } }) {
       <div>
         <div className="flex justify-between my-3">
           <h2 className="text-xl font-semibold">Your Employees</h2>
-          
+
           <div className="relative">
-              <button
-                onClick={() => setOpenEmployeeSelectionPanel((prev) => !prev)}
-                className="border border-grayBlue rounded-lg p-2 flex gap-2 items-center"
-              >
-                <span>Add employee(s) to this site</span>
-                <ChevronDown size={16} />
-              </button>
-             
+            <button
+              onClick={() => setOpenEmployeeSelectionPanel((prev) => !prev)}
+              className="border border-grayBlue rounded-lg p-2 flex gap-2 items-center"
+            >
+              <span>Add employee(s) to this site</span>
+              <ChevronDown size={16} />
+            </button>
+
             {openEmployeeSelectionPanel && (
               <div className="absolute bg-white z-50 mt-2 border shadow rounded-lg right-0 p-2 w-[320px]">
                 <AddWorkerCheckbox
-              site={site}
-              profile={profile}
-              slug={slug}
-              refetchSite={refetchSite}
-              closeEmployeeSelectionPanel={()=>setOpenEmployeeSelectionPanel(false)}
-            />
+                  site={site}
+                  profile={profile}
+                  slug={slug}
+                  refetchSite={refetchSite}
+                  closeEmployeeSelectionPanel={() =>
+                    setOpenEmployeeSelectionPanel(false)
+                  }
+                />
               </div>
             )}
           </div>
         </div>
         {siteLoading ? (
           <SupplierLoadingSpinner />
-        ) : site?.employees && site?.employees?.length > 0 ? (
+        ) : site?.employees_details && site?.employees_details?.length > 0 ? (
           <UserTable
-            rows={site?.employees}
+            rows={site?.employees_details}
             columns={employeeColumn}
-            redirectLink={`/sites/${slug}/employees/`}
+            redirectLink=""
           />
         ) : (
           <div className="place-content-center text-center">
