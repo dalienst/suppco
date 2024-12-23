@@ -73,7 +73,7 @@ function Employees() {
             <SupplierLoadingSpinner />
           ) : profile?.companies?.company_employees?.length > 0 ? (
             // <EmployeesTable employees={profile?.companies?.company_employees} />
-            <UserTable rows={rows} columns={employeeColumn} />
+            <UserTable rows={rows} columns={employeeColumn} redirectLink="/supplier/employees" />
           ) : (
             <div className="text-center">
               <h6>You have no Employees</h6>
