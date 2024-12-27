@@ -7,6 +7,10 @@ export const createShellEquipment = async (formData, axios) => {
     axios
   );
 };
+export const getShellEquipment = async (slug, axios) => {
+  const response = await urlMultipartActions?.get(`/api/shellequipment/detail/${slug}/`,axios);
+  return response.data?.results;
+};
 
 export const getAllShellEquipment = async () => {
   const response = await urlMultipartActions?.get("/api/shellequipment/");

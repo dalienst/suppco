@@ -93,7 +93,7 @@ export default function UserTable({ rows, columns, redirectLink }) {
       //   redirectLink === "/contractor/employees/" || "/supplier/employees/"
       //     ? params.row?.slug
       //     : params.row?.id;
-      const targetSlug = redirectLink?.includes("employees")
+      const targetSlug = redirectLink?.includes("employees") || redirectLink?.includes('product-detail')
         ? params.row?.slug
         : params.row?.id;
       return (

@@ -92,7 +92,6 @@ function BranchDashboard({ params: { slug } }) {
               <Button variant='outline' className='border border-[#707070] text-[#707070]' onClick={()=>handleView(name)}>View products</Button>
               </td>
             </tr>
-  
         ))}
           </tbody>
         </table>
@@ -101,7 +100,7 @@ function BranchDashboard({ params: { slug } }) {
         {newRows.length > 0 && secondTable ? 
         <div>
           <Button className='mb-3' onClick={()=>setSecondTable(false)}>Close</Button>
-          <UserTable rows={newRows} columns={branchColumn} redirectLink='' />
+          <UserTable rows={newRows} columns={branchColumn} redirectLink={`${slug}/product-detail`} />
         </div>
          : null}
       </div>
