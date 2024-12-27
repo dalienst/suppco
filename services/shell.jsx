@@ -7,12 +7,27 @@ export const createShellEquipment = async (formData, axios) => {
     axios
   );
 };
-export const getShellEquipment = async (slug, axios) => {
-  const response = await urlMultipartActions?.get(`/api/shellequipment/detail/${slug}/`,axios);
+export const getShellEquipment = async (axios) => {
+  // this endpoint fetches all shell belonging to a supplier
+  const response = await urlMultipartActions?.get(
+    `/api/shellequipment/create/`,
+    axios
+  );
   return response.data?.results;
 };
 
+export const getShellEquipmentDetail = async (slug, axios) => {
+  // this fetches a specific shell belonging to a supplier
+  // requires auth
+  const response = await urlMultipartActions?.get(
+    `/api/shellequipment/detail/${slug}/`,
+    axios
+  );
+  return response.data || {};
+};
+
 export const getAllShellEquipment = async () => {
+  // fetches all shell for the public
   const response = await urlMultipartActions?.get("/api/shellequipment/");
   return response.data?.results;
 };
