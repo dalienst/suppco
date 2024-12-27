@@ -88,8 +88,13 @@ export const companyBranchesColumn = [
   ]
   export const ordersColumn = [
     {
+      field: 'reference',
+      headerName: 'Order reference',
+      width: 180,
+    },
+    {
       field: 'status',
       headerName: 'Order status',
       width: 180,
-    },
+    }
   ]

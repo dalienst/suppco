@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { getUser } from "@/services/accounts";
-import { companyBranchesColumn } from "@/data/columns";
+import { companyBranchesColumn, ordersColumn } from "@/data/columns";
 import { getOrders } from "@/services/orders";
 
 function AllOrders() {
@@ -60,7 +60,7 @@ function AllOrders() {
         ) : orders && orders.length > 0 ? (
           <UserTable
             rows={rows}
-            columns={companyBranchesColumn}
+            columns={ordersColumn}
             redirectLink="contractor/orders/"
           />
         ) : (
