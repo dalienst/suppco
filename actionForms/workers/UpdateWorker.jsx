@@ -35,13 +35,12 @@ function UpdateWorker({ worker, refetchWorker }) {
     >
       {({ setFieldValue, values }) => (
         <Form className="m-2">
-          <div className=" mb-2">
+          <div className="mb-2">
             <Field
               type="checkbox"
               role="switch"
               id="is_admin"
               name="is_admin"
-              className="form-check-input"
               checked={values.is_admin}
               onChange={() => setFieldValue("is_admin", !values.is_admin)}
             />

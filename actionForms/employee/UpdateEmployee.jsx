@@ -34,25 +34,23 @@ function UpdateEmployee({ employee, refetchEmployee }) {
       }}
     >
       {({ setFieldValue, values }) => (
-        <Form>
-          <div className="mb-3 form-check form-switch">
+        <Form className="m-2">
+          <div className="mb-2">
             <Field
               type="checkbox"
               role="switch"
               id="is_admin"
               name="is_admin"
-              className="form-check-input"
               checked={values.is_admin}
               onChange={() => setFieldValue("is_admin", !values.is_admin)}
             />
-            <label htmlFor="is_admin" className="form-label">
+            <label htmlFor="is_admin" className="pl-2">
               Admin Status
             </label>
           </div>
 
           <Button
             type="submit"
-            className="btn btn-sm btn-outline-success mt-3"
             disabled={loading}
           >
             {loading ? (

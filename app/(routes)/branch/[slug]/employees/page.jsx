@@ -25,8 +25,7 @@ import useUserId from "@/hooks/useUserId";
 
 function BranchEmployees() {
   const [selectedEmployeeIds, setSelectedEmployeeIds] = useState([]);
-  const [openEmployeeSelectionPanel, setOpenEmployeeSelectionPanel] =
-    useState(false);
+  const [openEmployeeSelectionPanel, setOpenEmployeeSelectionPanel] = useState(false);
   const { slug } = useParams();
   const {
     isLoading: isLoadingBranch,
@@ -34,7 +33,6 @@ function BranchEmployees() {
     refetch: refetchBranch,
     isSuccess,
   } = useFetchBranchDetail(slug);
-
 
   const axios = useAxiosAuth();
   const userId = useUserId();
@@ -79,7 +77,7 @@ function BranchEmployees() {
         <UserTable
           rows={branch?.employees_details}
           columns={employeeColumn}
-          redirectLink=""
+          redirectLink={`/branch/${slug}/employees`}
         />
       ) : (
         <div className="place-content-center text-center">

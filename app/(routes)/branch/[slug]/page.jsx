@@ -4,7 +4,6 @@ import { Input } from "@/app/components/ui/input";
 import UserTable from "@/components/tables/InfoTable";
 import { branchColumn } from "@/data/columns";
 import { useFetchBranchDetail } from "@/dataActions/branches/branchesActions";
-import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
