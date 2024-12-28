@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 function AddWorkerCheckbox({ site, profile, slug, refetchSite, closeEmployeeSelectionPanel }) {
   const [loading, setLoading] = useState(false);
-  const axios = useAxiosAuth();
+  const axios = useAxiosAuth("application/json");
 
   return (
     <Formik
@@ -18,10 +18,9 @@ function AddWorkerCheckbox({ site, profile, slug, refetchSite, closeEmployeeSele
       onSubmit={async (values) => {
         setLoading(true);
         try {
-          const formData = new FormData();
-          values.employees.forEach((employee) =>
-            formData.append("employees", employee)
-          );
+          const formData = {
+            employees: values.employees,
+          };
           await updateSite(slug, formData, axios);
           toast.success("Workers added successfully. Refreshing...");
           refetchSite();
