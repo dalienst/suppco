@@ -3,8 +3,8 @@
 import { Button } from "@/app/components/ui/button"
 import useFetchShellEquipmentDetail from "@/dataActions/shell/fetchShellEquipment"
 
-function ProductDetail() {
-    const {isLoading , data} = useFetchShellEquipmentDetail()
+function ProductDetail({params:{id}}) {
+    const {isLoading , data} = useFetchShellEquipmentDetail(id)
     console.log(data,'data from shell equipment detail')
   return (
     <div className="pt-4 overflow-hidden">
