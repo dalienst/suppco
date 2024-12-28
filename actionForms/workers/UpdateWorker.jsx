@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
 import { updateWorkerDetail } from "@/services/workers";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/app/components/ui/button";
 
 function UpdateWorker({ worker, refetchWorker }) {
   const axios = useAxiosAuth();
@@ -32,8 +34,8 @@ function UpdateWorker({ worker, refetchWorker }) {
       }}
     >
       {({ setFieldValue, values }) => (
-        <Form>
-          <div className="mb-3 form-check form-switch">
+        <Form className="m-2">
+          <div className=" mb-2">
             <Field
               type="checkbox"
               role="switch"
@@ -43,27 +45,21 @@ function UpdateWorker({ worker, refetchWorker }) {
               checked={values.is_admin}
               onChange={() => setFieldValue("is_admin", !values.is_admin)}
             />
-            <label htmlFor="is_admin" className="form-label">
+            <label htmlFor="is_admin" className="pl-2">
               Admin Status
             </label>
           </div>
 
-          <button
+          <Button
             type="submit"
-            className="btn btn-sm btn-outline-info mt-3"
             disabled={loading}
           >
             {loading ? (
-              <div
-                className="spinner-border spinner-border-sm text-info"
-                role="status"
-              >
-                <span className="visually-hidden">Loading...</span>
-              </div>
+              <Loader2 className="animate-spin" />
             ) : (
               "Update"
             )}
-          </button>
+          </Button>
         </Form>
       )}
     </Formik>
