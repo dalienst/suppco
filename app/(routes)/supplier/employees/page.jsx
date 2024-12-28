@@ -5,8 +5,9 @@ import SendInvitation from "@/actionForms/invitation/SendInvitation";
 import SupplierLoadingSpinner from "@/components/supplier/LoadingSpinner";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/app/components/ui/dialog";
 import { Button } from "@/app/components/ui/button";
-import { supplierEmployeeColumn } from "@/data/columns";
-import UserTable from "@/components/tables/InfoTable";
+import { Popover, PopoverContent, PopoverTrigger } from "@/app/components/ui/popover";
+import { Ellipsis } from "lucide-react";
+import Link from "next/link";
 
 function Employees() {
   const [rows, setRows] = useState([]);
@@ -65,7 +66,44 @@ function Employees() {
           {isLoadingUser ? (
             <SupplierLoadingSpinner />
           ) : profile?.companies?.company_employees?.length > 0 ? (
-            <UserTable rows={rows} columns={supplierEmployeeColumn} redirectLink="/supplier/employees" />
+            <div className="w-full overflow-auto">
+            <table className="w-full min-w-[500px]">
+          <thead>
+            <tr>
+              <td>Name</td>
+              <td>Email</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            {profile?.companies?.company_employees?.map((worker)=>(
+            <tr key={worker.reference}>
+              <td>{worker?.user?.first_name} {worker?.user?.last_name}</td>
+              <td>{worker?.user?.email}</td>
+              <td>
+              <Popover>
+            <PopoverTrigger>
+              <Ellipsis
+                size={18}
+                style={{ marginRight: "10px", cursor: "pointer" }}
+              />
+            </PopoverTrigger>
+              <PopoverContent className="flex flex-col gap-2 w-fit">
+                <Link
+                  href={`/supplier/employees/${worker?.user?.slug}`}
+                  className="flex items-center gap-1 cursor-pointer hover:text-primary"
+                >
+                  View Details
+                </Link>
+              </PopoverContent>
+          </Popover>
+              </td>
+            </tr>
+            ))
+            }
+          </tbody>
+        </table>
+        </div>
           ) : (
             <div className="text-center">
               <h6>You have no Employees</h6>
