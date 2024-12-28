@@ -1,6 +1,6 @@
 import { Button } from "@/app/components/ui/button";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
-import { updateBranch } from "@/services/branches";
+import { addRemoveEmployee, updateBranch } from "@/services/branches";
 import { Field, Form, Formik } from "formik";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
@@ -13,7 +13,7 @@ function AddEmployeeToBranch({
   closeEmployeeSelectionPanel,
 }) {
   const [loading, setLoading] = useState(false);
-  const axios = useAxiosAuth();
+  const axios = useAxiosAuth("application/json");
 
   return (
     <Formik
@@ -24,10 +24,9 @@ function AddEmployeeToBranch({
       onSubmit={async (values) => {
         setLoading(true);
         try {
-          const formData = new FormData();
-          values.employees.forEach((employee) =>
-            formData.append("employees", employee)
-          );
+          const formData = {
+            employees: values.employees,
+          };
           await updateBranch(formData, axios, slug);
           toast.success("Employee(s) added successfully. Refreshing...");
           refetchBranch();
