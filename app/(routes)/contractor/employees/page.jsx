@@ -86,7 +86,7 @@ function ContractorEmployees() {
             </PopoverTrigger>
               <PopoverContent className="flex flex-col gap-2 w-fit">
                 <Link
-                  href={`/contractor/employees/${worker?.slug}`}
+                  href={`/contractor/employees/${worker?.user?.slug}`}
                   className="flex items-center gap-1 cursor-pointer hover:text-primary"
                 >
                   View Details

@@ -94,7 +94,7 @@ export default function UserTable({ rows, columns, redirectLink }) {
       //     ? params.row?.slug
       //     : params.row?.id;
       const targetSlug = redirectLink?.includes("employees") || redirectLink?.includes('product-detail')
-        ? params.row?.slug
+        ? params.row?.user?.slug
         : params.row?.id;
       return (
         <div className="flex h-full items-center justify-center">

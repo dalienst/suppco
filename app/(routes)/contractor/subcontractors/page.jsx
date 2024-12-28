@@ -24,7 +24,11 @@ import { ChevronDown, Ellipsis } from "lucide-react";
 import { getSites } from "@/services/sites";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
-import { Popover, PopoverContent, PopoverTrigger } from "@/app/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/app/components/ui/popover";
 
 function SubContractors() {
   const [open, setOpen] = useState(false);
@@ -36,14 +40,11 @@ function SubContractors() {
     refetch: refetchProfile,
   } = useFetchProfile();
 
-  const {
-    data: sites,
-    isSuccess,
-  } = useQuery({
+  const { data: sites, isSuccess } = useQuery({
     queryKey: ["sites"],
     queryFn: () => getSites(axios),
   });
-console.log(profile, 'subcontractors')
+  console.log(profile, "subcontractors");
   return (
     <div className="p-3 overflow-hidden">
       <div>
@@ -66,10 +67,10 @@ console.log(profile, 'subcontractors')
                 </DialogDescription>
               </DialogHeader>
               <SubContractorInvite
-                  handleCloseModal={setOpen}
-                  company={profile?.companies}
-                  sites={sites}
-                />
+                handleCloseModal={setOpen}
+                company={profile?.companies}
+                sites={sites}
+              />
             </DialogContent>
           </Dialog>
         </div>
@@ -78,42 +79,43 @@ console.log(profile, 'subcontractors')
         ) : profile?.companies?.company_subcontractors?.length > 0 ? (
           <div className="w-full overflow-auto">
             <table className="w-full min-w-[500px]">
-          <thead>
-            <tr>
-              <td>Name</td>
-              <td>Email</td>
-              <td>Action</td>
-            </tr>
-          </thead>
-          <tbody>
-            {profile?.companies?.company_subcontractors?.map((worker)=>(
-            <tr key={worker.reference}>
-              <td>{worker?.user?.first_name} {worker?.user?.last_name}</td>
-              <td>{worker?.user?.email}</td>
-              <td>
-              <Popover>
-            <PopoverTrigger>
-              <Ellipsis
-                size={18}
-                style={{ marginRight: "10px", cursor: "pointer" }}
-              />
-            </PopoverTrigger>
-              <PopoverContent className="flex flex-col gap-2 w-fit">
-                <Link
-                  href={`/contractor/subcontractors/${worker?.slug}`}
-                  className="flex items-center gap-1 cursor-pointer hover:text-primary"
-                >
-                  View Details
-                </Link>
-              </PopoverContent>
-          </Popover>
-              </td>
-            </tr>
-            ))
-            }
-          </tbody>
-        </table>
-        </div>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Email</td>
+                  <td>Action</td>
+                </tr>
+              </thead>
+              <tbody>
+                {profile?.companies?.company_subcontractors?.map((worker) => (
+                  <tr key={worker.reference}>
+                    <td>
+                      {worker?.user?.first_name} {worker?.user?.last_name}
+                    </td>
+                    <td>{worker?.user?.email}</td>
+                    <td>
+                      <Popover>
+                        <PopoverTrigger>
+                          <Ellipsis
+                            size={18}
+                            style={{ marginRight: "10px", cursor: "pointer" }}
+                          />
+                        </PopoverTrigger>
+                        <PopoverContent className="flex flex-col gap-2 w-fit">
+                          <Link
+                            href={`/contractor/subcontractors/${worker?.user?.slug}`}
+                            className="flex items-center gap-1 cursor-pointer hover:text-primary"
+                          >
+                            View Details
+                          </Link>
+                        </PopoverContent>
+                      </Popover>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
           <div className="place-content-center text-center">
             <h6>You have no Subcontractors</h6>

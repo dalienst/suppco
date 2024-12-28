@@ -25,7 +25,8 @@ import useUserId from "@/hooks/useUserId";
 
 function BranchEmployees() {
   const [selectedEmployeeIds, setSelectedEmployeeIds] = useState([]);
-  const [openEmployeeSelectionPanel, setOpenEmployeeSelectionPanel] = useState(false);
+  const [openEmployeeSelectionPanel, setOpenEmployeeSelectionPanel] =
+    useState(false);
   const { slug } = useParams();
   const {
     isLoading: isLoadingBranch,
@@ -33,6 +34,7 @@ function BranchEmployees() {
     refetch: refetchBranch,
     isSuccess,
   } = useFetchBranchDetail(slug);
+
 
   const axios = useAxiosAuth();
   const userId = useUserId();
@@ -74,7 +76,11 @@ function BranchEmployees() {
       {isLoadingBranch ? (
         <SupplierLoadingSpinner />
       ) : branch?.employees?.length > 0 ? (
-        <UserTable rows={branch?.employees_details} columns={employeeColumn} redirectLink=''/>
+        <UserTable
+          rows={branch?.employees_details}
+          columns={employeeColumn}
+          redirectLink=""
+        />
       ) : (
         <div className="place-content-center text-center">
           <h6>You have no Employees</h6>
