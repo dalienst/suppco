@@ -29,149 +29,38 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
     <div className="">
       <Formik
         initialValues={{
-          branch: branch?.reference,
-          company: branch?.company,
-          sublayeritem: item?.name,
-          layer: category?.name,
-          image: null,
-          source_location: "",
-          product_name: "",
-          description: "",
-          units_of_measurement: "",
-          manufacturer: "",
-          identification_number: "",
-          features: "", // textfield
-          condition: "", // textfield
-          date_of_manufacture: "",
-          minimum_order_quantity: "",
-          texture: "", // select field: fine, coarse
-          dimensions: "", // select field: inch, mm, cm, m
-          shape: "",
-          density: "",
-          compressive_strength: "",
-          moisture_content: "",
-          contamination_levels: "",
-          silt_content: "",
-          gradiation: "",
-          standards_certifications: "",
-          environmental_specifications: "",
-          other: "",
-          employees: employees || [],
-          delivery_mode: "",
+          source_location:'',
+          name:'',
+          shape:'',
+          size:'',
+          density:'',
+          compressive_strength:'',
+          moisture_content:'',
+          size_dimensions:'',
+          silt_content:'',
+          gradiation:'',
         }}
         onSubmit={async (values, { resetForm }) => {
           setLoading(true);
           try {
             const formData = new FormData();
-            formData?.append("branch", branch?.reference);
-            formData?.append("company", branch?.company);
-            formData?.append("sublayeritem", item?.name);
-            formData?.append("layer", category?.name);
-            if (values.image) {
-              formData.append("image", values.image);
-            }
             formData.append("source_location", values.source_location);
-            formData.append("product_name", values.product_name);
-            formData.append("description", values.description);
-            formData.append(
-              "units_of_measurement",
-              values.units_of_measurement
-            );
-            formData.append("manufacturer", values.manufacturer);
-            formData.append(
-              "identification_number",
-              values.identification_number
-            );
-            formData.append("features", values.features);
-            formData.append("condition", values.condition);
-            formData.append("date_of_manufacture", values.date_of_manufacture);
-            formData.append(
-              "minimum_order_quantity",
-              values.minimum_order_quantity
-            );
-            formData.append("texture", values.texture);
-            formData.append("dimensions", values.dimensions);
+            formData.append("name", values.name);
             formData.append("shape", values.shape);
+            formData.append("size", values.size);
             formData.append("density", values.density);
             formData.append(
               "compressive_strength",
               values.compressive_strength
             );
             formData.append("moisture_content", values.moisture_content);
-            formData.append(
-              "contamination_levels",
-              values.contamination_levels
-            );
+            formData.append("size_dimensions", values.size_dimensions);
             formData.append("silt_content", values.silt_content);
             formData.append("gradiation", values.gradiation);
-            formData.append(
-              "standards_certifications",
-              values.standards_certifications
-            );
-            formData.append(
-              "environmental_specifications",
-              values.environmental_specifications
-            );
-            formData.append("other", values.other);
-            formData.append(
-              "offers_delivery",
-              supplierInputValues?.offers_delivery
-            );
-            formData.append(
-              "delivery_charges",
-              supplierInputValues?.delivery_charges
-            );
-            formData.append(
-              "quantity_available",
-              supplierInputValues?.quantity_available
-            );
-            formData.append(
-              "rate_per_unit",
-              supplierInputValues?.rate_per_unit
-            );
-
-            formData.append(
-              "deposit_percentage",
-              supplierInputValues?.deposit_percentage
-            );
-            if (
-              Array.isArray(values.employees) &&
-              values.employees.length > 0
-            ) {
-              values.employees.forEach((employee) =>
-                formData.append("employees", employee)
-              );
-            }
-            formData.append("delivery_mode", values.delivery_mode);
-            formData.append("fixed_terms", supplierInputValues?.fixed_terms);
-            formData.append(
-              "fixed_fifty_terms",
-              supplierInputValues?.fixed_fifty_terms
-            );
-            formData.append("pod_terms", supplierInputValues?.pod_terms);
-            formData.append(
-              "negotiable_terms",
-              supplierInputValues?.negotiable_terms
-            );
-            formData.append("is_fixed", supplierInputValues?.is_fixed);
-            formData.append(
-              "is_fixed_fifty",
-              supplierInputValues?.is_fixed_fifty
-            );
-            formData.append(
-              "is_payment_on_delivery",
-              supplierInputValues?.is_payment_on_delivery
-            );
-            formData.append(
-              "is_negotiable",
-              supplierInputValues?.is_negotiable
-            );
             await createShellEquipment(formData, axios);
             toast?.success(
               "Shell Equipment created successfully. Refreshing..."
             );
-            // refetchShell();
-            router.push(`/branch/${slug}`);
             setLoading(false);
             resetForm();
           } catch (error) {

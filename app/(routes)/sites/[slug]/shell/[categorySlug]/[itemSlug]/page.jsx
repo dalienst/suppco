@@ -1,25 +1,29 @@
 "use client";
 
 import { useFetchCategoryDetail } from "@/dataActions/categories/categoryActions";
-import { useFetchBranchDetail } from "@/dataActions/branches/branchesActions";
 import { useFetchSubCategoryItemDetail } from "@/dataActions/subcategoryitems/subCategoryItemActions";
 import { useFetchSubCategoryItemShellEquipment } from "@/dataActions/shell/shellCategory";
-import AddMetalWork from "@/inventory/shell/AddMetalWork";
-import AddReadyMix from "@/inventory/shell/AddReadyMix";
-import AddAggregate from "@/inventory/shell/AddAggregate";
-import AddAccessories from "@/inventory/shell/AddAccessories";
-import AddWalls from "@/inventory/shell/AddWalls";
-import AddRoof from "@/inventory/shell/AddRoof";
-import AddPrecast from "@/inventory/shell/AddPrecast";
-import AddCement from "@/inventory/shell/AddCement";
-import AddFormwork from "@/inventory/shell/AddFormwork";
 import { ChevronRight, Loader2 } from "lucide-react";
 import useFetchSiteDetail from "@/dataActions/site-equipment/FetchSiteDetail";
-import CreateOrder from "../../../createOrder/CreateOrder";
+import { aggregateSearchFilters } from "@/data/searchFiltersGenerator";
+import FiltersGenerator from "@/components/filtersGenerator/FiltersGenerator";
+import { useState } from "react";
+import { Button } from "@/app/components/ui/button";
 
 export default function ItemDetail({
   params: { slug, categorySlug, itemSlug },
 }) {
+  const [filters, setFilters] = useState({})
+  const handleFilterChange = (filterName, value) => {
+    setFilters(prevFilters => ({
+        ...prevFilters,
+        [filterName]: value,
+    }));
+};
+const handleSubmit = async(e)=>{
+  e.preventDefault();
+  console.log(filters,'filters')
+}
   const {
     isLoading: isLoadingBranch,
     data: branch,
@@ -44,7 +48,6 @@ export default function ItemDetail({
     data: shell,
     refetch: refetchShell,
   } = useFetchSubCategoryItemShellEquipment(subCategoryItem?.id);
-  console.log(subCategoryItem,'shell detail 2')
 
   if (isLoadingBranch || isLoadingCategory || isLoadingSubCategoryItem) {
     return (
@@ -54,54 +57,6 @@ export default function ItemDetail({
     );
   }
 
-  const renderForm = () => {
-    switch (category?.identity) {
-      case "metal-work":
-        return <AddMetalWork />;
-      case "ready-mix-concrete":
-        return <AddReadyMix />;
-      case "aggregate":
-        return (
-          <AddAggregate
-            branch={branch}
-            item={subCategoryItem}
-            category={category}
-            refetchShell={refetchShell}
-            employees={branch?.employees}
-          />
-        );
-      case "detail-subcomponentsaccessories":
-        return <AddAccessories />;
-      case "walls":
-        return (
-          <AddWalls
-            branch={branch}
-            item={subCategoryItem}
-            category={category}
-            refetchShell={refetchShell}
-            employees={branch?.employees}
-          />
-        );
-      case "roof":
-        return <AddRoof />;
-      case "pre-cast":
-        return <AddPrecast />;
-      case "cement":
-        return (
-          <AddCement
-            branch={branch}
-            item={subCategoryItem}
-            category={category}
-            refetchShell={refetchShell}
-          />
-        );
-      case "formwork":
-        return <AddFormwork />;
-      default:
-        return <div>No form available for this item</div>;
-    }
-  };
-
   return (
     <div className="p-3">
       <span className="flex items-center font-semibold text-lg lg:text-xl">
@@ -109,7 +64,23 @@ export default function ItemDetail({
         <span className="text-blue800">{subCategoryItem?.name}</span>{" "}
       </span>
       <hr className="mb-4 mt-3" />
-      {renderForm()}
+      <span className="block font-semibold text-lg mb-3">All filters</span>
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2 lg:gap-5">
+                  {aggregateSearchFilters.map((field) => (
+                    <FiltersGenerator
+                    handleFilterChange={handleFilterChange}
+                    filters={filters}
+                      key={field.name}
+                      name={field.name}
+                      placeholder={field.placeholder}
+                      label={field.placeholder}
+                      inputType={field.inputType}
+                      {...(field.options && { options: field.options })}
+                      type="text"
+                    />
+                  ))}
+                  <Button type='submit' >Filter</Button>
+                </form>
     </div>
   );
 }
