@@ -59,7 +59,7 @@ function Navbar() {
           {site?.name !== null ? (
             <li className="rounded">
               <Link
-                href={`/sites/${slug}/orders`}
+                href={`/sites/${slug}/shell`}
                 className="flex items-center gap-1"
               >
                 <Package />
