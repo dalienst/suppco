@@ -20,12 +20,6 @@ import CreateOrder from "../../../createOrder/CreateOrder";
 export default function ItemDetail({
   params: { slug, categorySlug, itemSlug },
 }) {
-  // const {
-  //   isLoading: isLoadingBranch,
-  //   data: branch,
-  //   refetch: refetchBranch,
-  //   isSuccess,
-  // } = useFetchBranchDetail(slug);
   const {
     isLoading: isLoadingBranch,
     data: branch,
@@ -50,6 +44,7 @@ export default function ItemDetail({
     data: shell,
     refetch: refetchShell,
   } = useFetchSubCategoryItemShellEquipment(subCategoryItem?.id);
+  console.log(subCategoryItem,'shell detail 2')
 
   if (isLoadingBranch || isLoadingCategory || isLoadingSubCategoryItem) {
     return (
@@ -59,19 +54,62 @@ export default function ItemDetail({
     );
   }
 
+  const renderForm = () => {
+    switch (category?.identity) {
+      case "metal-work":
+        return <AddMetalWork />;
+      case "ready-mix-concrete":
+        return <AddReadyMix />;
+      case "aggregate":
+        return (
+          <AddAggregate
+            branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+          />
+        );
+      case "detail-subcomponentsaccessories":
+        return <AddAccessories />;
+      case "walls":
+        return (
+          <AddWalls
+            branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+          />
+        );
+      case "roof":
+        return <AddRoof />;
+      case "pre-cast":
+        return <AddPrecast />;
+      case "cement":
+        return (
+          <AddCement
+            branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+          />
+        );
+      case "formwork":
+        return <AddFormwork />;
+      default:
+        return <div>No form available for this item</div>;
+    }
+  };
+
   return (
-    <div className="py-3">
+    <div className="p-3">
       <span className="flex items-center font-semibold text-lg lg:text-xl">
         <span>Products</span> <ChevronRight size={14} />{" "}
         <span className="text-blue800">{subCategoryItem?.name}</span>{" "}
       </span>
       <hr className="mb-4 mt-3" />
-      <CreateOrder
-            site={site}
-            company={profile?.companies}
-            onOpenChange={() => setOpen(false)}
-            supplierProducts={supplierProducts}
-          />
+      {renderForm()}
     </div>
   );
 }

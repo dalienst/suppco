@@ -51,7 +51,6 @@ function Site() {
       setRows(rows);
     }
   }, [sites, isSuccess]);
-  console.log(rows,'rows i want')
 
   if (isLoadingUser) return <SupplierLoadingSpinner />;
   return (

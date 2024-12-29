@@ -61,7 +61,7 @@ function AllOrders() {
           <UserTable
             rows={rows}
             columns={ordersColumn}
-            redirectLink="contractor/orders/"
+            redirectLink="/contractor/orders"
           />
         ) : (
           <p className="text-center text-bg-warning rounded p-2">
