@@ -24,7 +24,6 @@ function Navbar() {
     data: site,
     refetch: refetchBranch,
   } = useFetchSiteDetail(slug);
-  console.log(site)
 
   const SidebarComponent = (
     <div className="flex flex-col h-full justify-between">

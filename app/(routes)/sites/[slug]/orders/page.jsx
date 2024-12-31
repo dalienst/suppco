@@ -76,7 +76,6 @@ function SiteOrders({ params: { slug } }) {
   if (isLoadingSite) {
     return <SupplierLoadingSpinner />;
   }
-  console.log(orders,'the orders i want now')
 
   return (
     <div className="pt-4 px-2 md:p-6">

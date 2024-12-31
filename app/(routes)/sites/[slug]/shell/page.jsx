@@ -21,7 +21,6 @@ function ShellOrder({ params: { slug } }) {
     refetch: refetchCategories,
   } = useFetchCategoryByInventory("shell");
 
-
   const processedCategories = useMemo(() => {
     if (!categories) return null;
 

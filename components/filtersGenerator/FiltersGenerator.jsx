@@ -5,6 +5,8 @@ import { Label } from "@/app/components/ui/label";
 import { Textarea } from "@/app/components/ui/textarea";
 
 function FiltersGenerator({type, filters, handleFilterChange, inputType, options, name, label, placeholder}) {
+    const key = name;
+const value = filters[key]; 
     switch (inputType) {
         case 'input':
             return(
@@ -16,7 +18,7 @@ function FiltersGenerator({type, filters, handleFilterChange, inputType, options
                         id={`input-${label}`}
                         name={name}
                         type={type}
-                        value={filters.name}
+                        value={value}
                         placeholder={placeholder}
                         onChange={(e)=>handleFilterChange(name, e.target.value)}
                         className="bg-transparent border p-2 rounded-lg border-gray-300 text-gray-300"
@@ -33,7 +35,7 @@ function FiltersGenerator({type, filters, handleFilterChange, inputType, options
                     <select 
                         id={`select-${label}`}
                         name={name}
-                        value={filters.name}
+                        value={value}
                         onChange={(e)=>handleFilterChange(name, e.target.value)}
                         className="bg-white border-[1px] p-2 rounded-lg"
                     >
@@ -57,7 +59,7 @@ function FiltersGenerator({type, filters, handleFilterChange, inputType, options
                         id={`textarea-${label}`}
                         rows={5}
                         name={name}
-                        value={filters.name}
+                        value={value}
                         placeholder={placeholder}
                         onChange={(e)=>handleFilterChange(name, e.target.value)}
                         className="bg-transparent border p-2 rounded-lg border-gray-300 text-gray-300"
