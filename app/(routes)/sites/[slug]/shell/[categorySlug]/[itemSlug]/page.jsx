@@ -244,7 +244,6 @@ export default function ItemDetail({
       </section>
     </div> : 
     <div>
-      <button onClick={()=>setCreateOrder(false)} className="border rounded-xl grid place-content-center size-8">X</button>
       {/* <CreateOrderForm
       company={profile?.companies}
       site={branch}
@@ -256,6 +255,7 @@ export default function ItemDetail({
       site={branch}
       supplier={supplier}
       filters={filters}
+      onClose={()=>setCreateOrder(false)}
       />
     </div>
     }
