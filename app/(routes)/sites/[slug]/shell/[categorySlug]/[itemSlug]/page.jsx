@@ -9,7 +9,6 @@ import { aggregateSearchFilters } from "@/data/searchFiltersGenerator";
 import FiltersGenerator from "@/components/filtersGenerator/FiltersGenerator";
 import React, { useState } from "react";
 import { Button } from "@/app/components/ui/button";
-import CreateOrderForm from "@/actionForms/orders/CreateOrderForm";
 import { getUser } from "@/services/accounts";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
@@ -89,17 +88,14 @@ export default function ItemDetail({
       if (value) {
         filteredData = filteredData?.filter((item) => {
           return (
-            item[key] &&
-            item[key].toString().toLowerCase().includes(value.toLowerCase())
+            item[key] && item[key].toString().toLowerCase().includes(value.toLowerCase())
           );
         });
       }
     });
     setData(filteredData);
-    console.log(filteredData);
     setHideFilters(true);
   };
-  console.log(filters)
 
   const getAssociatedTerm = (key) => {
     switch (key) {
@@ -155,23 +151,28 @@ export default function ItemDetail({
         {hideFilters ? <ChevronDown/> : <ChevronUp/>}
       </button>
       {!hideFilters && <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2 lg:gap-5 border rounded-xl p-2 md:border-none">
-        {aggregateSearchFilters.map((field) => (
+        {aggregateSearchFilters.map((field) => {
+          const key = field.name;
+          const value = filters[key]; 
+          return (
           <FiltersGenerator
             handleFilterChange={handleFilterChange}
             filters={filters}
             key={field.name}
             name={field.name}
+            value={value}
             placeholder={field.placeholder}
             label={field.placeholder}
             inputType={field.inputType}
             {...(field.options && { options: field.options })}
             type="text"
-          />
-        ))}
+          />)
+        })}
         <Button type="submit">Filter</Button>
       </form>}
       <section className="border rounded-xl p-3 mt-5">
       <h1 className="mb-3 font-semibold text-xl">Available suppliers</h1>
+      {data.length > 0 ? 
       <div>
         {data?.map((supplier, index) => {
           const filteredSupplierProductDetails = Object.entries(
@@ -185,7 +186,7 @@ export default function ItemDetail({
             !keysToExclude.includes(key)
           );
           return (
-            <div key={supplier?.reference} className="border rounded-xl p-2">
+            <div key={supplier?.reference} className="border rounded-xl p-2 mb-2">
               <span className="text-lg font-semibold w-full flex justify-between">
                 <span>{index + 1}. {supplier?.supplier_company?.name}
                   <span className="text-[#696969] block font-normal text-sm ml-3">{supplier?.supplier_company?.address}</span>
@@ -241,15 +242,83 @@ export default function ItemDetail({
           );
         })}
       </div>
+      :
+      <p>No suppliers found. Try changing your filters.</p>
+      }
+      {data.length === 0 && <div>
+        <h1 className="my-3 font-semibold text-xl">All suppliers with {subCategoryItem?.name}</h1>
+        {shell?.map((supplier, index) => {
+          const filteredSupplierProductDetails = Object.entries(
+            supplier
+          ).filter(
+            ([key, value]) =>
+              value !== "" &&
+            value !== null &&
+            value !== undefined &&
+            value !== false &&
+            !keysToExclude.includes(key)
+          );
+          return (
+            <div key={supplier?.reference} className="border rounded-xl p-2 mb-2">
+              <span className="text-lg font-semibold w-full flex justify-between">
+                <span>{index + 1}. {supplier?.supplier_company?.name}
+                  <span className="text-[#696969] block font-normal text-sm ml-3">{supplier?.supplier_company?.address}</span>
+                </span>
+                <Button onClick={()=>{setCreateOrder(true); setSupplier(supplier)}} className="font-medium text-sm">Select</Button>
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+              <div className="mt-3 mx-2">
+              <span className="font-medium ">Payment Information</span>
+              {data && 
+              <ul className="border p-2 rounded-xl">
+                {paymentInfoKeys.map((key) => {
+                      const value = supplier[key];
+                      if (value) {
+                        return (
+                            <li key={key} className="mb-3">
+                              {getFormattedKey(key)} 
+                              <span className="text-[#696969] text-sm block">{getAssociatedTermValue(key, supplier)}</span>
+                            </li>
+                        );
+                      }
+                      return null;
+                    })}
+              </ul>
+              }
+              </div>
+              <div className="mt-3 mx-3">
+              <span className="font-medium ">Delivery Information</span>
+              <div className="border p-2 rounded-xl">
+                <span>
+                <span>Delivery charges</span>
+                <span className="text-[#696969] text-sm block">{supplier?.delivery_charges && supplier?.delivery_charges }</span>
+                </span>
+                {supplier?.delivery_mode && <span>Delivery mode</span>}
+                <span className="text-[#696969] text-sm block">{supplier?.delivery_mode && supplier?.delivery_mode }</span>
+              </div>
+              </div>
+              </div>
+              <button onClick={()=>setShowDetails(prev=>!prev)} className="mt-3 mx-2 underline flex items-center">{showDetails ? 'Hide ':'Show '}Product details <ChevronDown size={16}/> </button>
+              {showDetails && <div className="overflow-auto">
+                <ul className="border rounded-xl p-3 mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-3">
+                  {filteredSupplierProductDetails.map(([key, value]) => (
+                    <li key={key} className="flex flex-col">
+                      <span className="font-medium">{formatKey(key)}</span>
+                      <span className="border rounded-lg p-2 text-sm text-[#696969]">
+                        {String(value)}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>}
+            </div>
+          );
+        })}
+      </div>}
       </section>
-    </div> : 
+    </div> 
+    : 
     <div>
-      {/* <CreateOrderForm
-      company={profile?.companies}
-      site={branch}
-      supplier={supplier}
-      filters={filters}
-      /> */}
       <OrderForm 
       company={profile?.companies}
       site={branch}

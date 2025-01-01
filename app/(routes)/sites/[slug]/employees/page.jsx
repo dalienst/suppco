@@ -84,7 +84,7 @@ function SiteEmployees({ params: { slug } }) {
           <UserTable
             rows={site?.employees_details}
             columns={employeeColumn}
-            redirectLink=""
+            redirectLink={`/sites/${slug}/employees`}
           />
         ) : (
           <div className="place-content-center text-center">

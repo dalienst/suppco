@@ -4,9 +4,8 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import { Textarea } from "@/app/components/ui/textarea";
 
-function FiltersGenerator({type, filters, handleFilterChange, inputType, options, name, label, placeholder}) {
-    const key = name;
-const value = filters[key]; 
+function FiltersGenerator({type, value, handleFilterChange, inputType, options, name, label, placeholder}) {
+    
     switch (inputType) {
         case 'input':
             return(

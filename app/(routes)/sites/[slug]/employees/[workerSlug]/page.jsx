@@ -1,87 +1,99 @@
 "use client";
-import UpdateWorker from '@/actionForms/workers/UpdateWorker';
-import useFetchSiteDetail from '@/dataActions/site-equipment/FetchSiteDetail';
-import { useFetchWorkerDetail } from '@/dataActions/workers/workersActions';
-import { useRouter } from 'next/navigation';
-import React from 'react'
+import SupplierLoadingSpinner from "@/components/supplier/LoadingSpinner";
+import { ChevronRight, CircleUser } from "lucide-react";
+import Image from "next/image";
+import UpdateEmployee from "@/actionForms/employee/UpdateEmployee";
+import { useFetchWorkerDetail } from "@/dataActions/workers/workersActions";
 
-function WorkerDetail({ params: { slug, workerSlug } }) {
-    const router = useRouter();
-
-    const { isLoading: siteLoading, data: site, refetch: refetchSite } = useFetchSiteDetail(slug);
-
-    const {
-        isLoading: isLoadingWorker,
-        data: worker,
-        refetch: refetchWorker
-    } = useFetchWorkerDetail(workerSlug);
-
-
-    if (isLoadingWorker || siteLoading) {
-        return (
-            <section
-                className="p-2 mt-3 d-flex justify-content-center align-items-center flex-column"
-                style={{ height: "100vh" }}
-            >
-                <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>
-            </section>
-        );
-    }
-
+function WorkerDetail({ params: { workerSlug } }) {
+  const {
+    isLoading: isLoadingWorker,
+    data: worker,
+    refetch: refetchWorker,
+  } = useFetchWorkerDetail(workerSlug);
+  if (isLoadingWorker) {
     return (
-        <div className="container py-3">
-            <div className="card bg-white mt-3">
-                <div className="card-header bg-white d-flex justify-content-between align-content-center">
-                    <div className="d-flex gap-3 align-items-center flex-row">
-                        <button className="btn btn-sm btn-outline-info" onClick={() => router.back()}>
-                            <i className="bi bi-box-arrow-left"></i>
-                        </button>
-                        <h5 className="card-title">{worker?.reference}</h5>
-                    </div>
-                </div>
+        <SupplierLoadingSpinner/>
+    );
+  }
 
-                <div className="card-body">
-                    <h6 className="card-title">
-                        Employee Details
-                    </h6>
-                    <p className="card-text">
-                        <strong>Email:</strong> {worker?.email}
-                    </p>
-                    {worker?.user?.first_name === null ? (
-                        <p className="card-text">
-                            Employee has not updated their profile.
-                        </p>
-                    ) : (
-
-                        <>
-                            <p className="card-text">
-                                <strong>First Name:</strong> {worker?.user?.first_name}
-                            </p>
-                            <p className="card-text">
-                                <strong>Last Name:</strong> {worker?.user?.last_name}
-                            </p>
-                            <p className="card-text">
-                                <strong>Phone:</strong> {worker?.user?.phone}
-                            </p>
-                            <p className="card-text">
-                                <strong>Identification:</strong> {worker?.user?.identification}
-                            </p>
-                            <p className="card-text">
-                                <strong>KRA Pin:</strong> {worker?.user?.kra_pin}
-                            </p>
-                            <p className="card-text">
-                                <strong>Location:</strong> {worker?.user?.phone}
-                            </p>
-                        </>
-                    )}
-
-                    <UpdateWorker worker={worker} refetchWorker={refetchWorker} reference={site?.reference} />
-                </div>
+  return (
+          <div className="p-4 bg-[#f9f9f9] h-full">
+            <h1 className="flex items-center gap-2">Employees <ChevronRight size={16}/> <span className="bg-[#ececec] rounded-full px-3 py-1 text-[13px]">{worker?.user?.first_name} {worker?.user?.last_name}</span> </h1>
+            <div className="my-4 flex items-center gap-4">
+            <div>
+            {worker?.user?.avatar ? (
+              <div>
+                <Image
+                src={worker?.user?.avatar}
+                alt="logo"
+                width={70}
+                height={70}
+                className="rounded-full h-[70px] w-[70px] object-cover"
+              />
+              </div>
+            ) : (
+              <CircleUser
+                strokeWidth={1}
+                className="size-[70px] text-neutral-700"
+              />
+            )}
             </div>
-        </div>
-    )
+            <div>
+              <span className="font-semibold text-lg">{worker?.user?.first_name} {worker?.user?.last_name}</span>
+              <span className="leading-none block text-sm">Role</span>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-3 md:p-5">
+            <div className="border rounded-xl p-3">
+            <span className="font-semibold block mb-3">Personal Information</span>
+            <ul className="flex flex-col md:flex-row justify-between gap-2 md:gap-5">
+              <li className="flex md:block justify-between items-center">
+                <span className='text-[#565b64] text-sm font-medium'>First Name</span>
+                <span className="text-[15px] block">{worker?.user?.first_name}</span>
+              </li>
+              <li className="flex md:block justify-between items-center">
+                <span className='text-[#565b64] text-sm font-medium'>Last Name</span>
+                <span className="text-[15px] block">{worker?.user?.last_name}</span>
+              </li>
+              <li className="flex md:block justify-between items-center">
+                <span className='text-[#565b64] text-sm font-medium'>Email</span>
+                <span className="text-[15px] block">{worker?.user?.email}</span>
+              </li>
+              <li className="flex md:block justify-between items-center">
+                <span className='text-[#565b64] text-sm font-medium'>Phone</span>
+                <span className="text-[15px] block">{worker?.user?.phone ? worker?.user?.phone : '-' }</span>
+              </li>
+            </ul>
+            </div>
+            <div className="border rounded-xl p-3 mt-5">
+            <span className="font-semibold block mb-3">Other Details</span>
+            <ul className="flex flex-col md:flex-row justify-between gap-2 md:gap-5">
+            <li className="flex md:block justify-between items-center">
+                <span className='text-[#565b64] text-sm font-medium'>Branch</span>
+                <span className="text-[15px] block">{worker?.branch ? worker?.branch : '-'}</span>
+              </li>
+            <li className="flex md:block justify-between items-center">
+                <span className='text-[#565b64] text-sm font-medium'>KRA PIN</span>
+                <span className="text-[15px] block">{worker?.user?.kra_pin ? worker?.user?.kra_pin : '-'}</span>
+              </li>
+              <li className="flex md:block justify-between items-center">
+                <span className='text-[#565b64] text-sm font-medium'>Location</span>
+                <span className="text-[15px] block">{worker?.user?.location ? worker?.user?.location : '-'}</span>
+              </li>
+              <li className="flex md:block justify-between items-center">
+                <span className='text-[#565b64] text-sm font-medium'>Identification</span>
+                <span className="text-[15px] block">{worker?.user?.identification ? worker?.user?.identification : '-'}</span>
+              </li>
+            </ul>
+            </div>
+            <div className="border rounded-xl p-3 mt-5">
+            <span className="font-semibold block mb-3">Roles and Responsibilities</span>
+            <UpdateEmployee employee={worker} refetchEmployee={refetchWorker} />
+            </div>
+          </div>
+          </div>
+  );
 }
 
-export default WorkerDetail
+export default WorkerDetail;
