@@ -3,17 +3,20 @@
 import { Button } from "@/app/components/ui/button";
 import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
-import { ChevronDown } from "lucide-react";
+import useAxiosAuth from "@/hooks/useAxiosAuth";
+import { createOrder } from "@/services/orders";
+import { ChevronDown, Loader2 } from "lucide-react";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 function OrderForm({ company, site, supplier, filters, onClose }) {
   const [data, setData] = useState({
     company: "",
-    site: "", // Use site reference if available
-    shell_equipment: "", // Use shell equipment reference
-    employees: [], // Not necessarily required
+    site: "",
+    shell_equipment: "",
+    employees: [],
     status: "Pending",
-    orderSpecifications: {}, // Initialize as an empty object
+    orderSpecifications: {},
     self_delivery: false,
     quantity: "",
     destination: "",
@@ -21,7 +24,9 @@ function OrderForm({ company, site, supplier, filters, onClose }) {
     delivery_charges: "",
     paymentType: "",
   });
-  const [showEmployees, setShowEmployees] = useState(false)
+  const [showEmployees, setShowEmployees] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const axios =useAxiosAuth()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -45,8 +50,9 @@ function OrderForm({ company, site, supplier, filters, onClose }) {
       return { ...prevData, employees: newEmployees };
     });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    setLoading(true);
     const finalData = {
       ...data,
       company: company?.reference,
@@ -56,7 +62,14 @@ function OrderForm({ company, site, supplier, filters, onClose }) {
       orderSpecifications: filters,
     };
 
-    console.log("Form data submitted:", finalData);
+    try{
+        await createOrder(finalData, axios);
+        toast.success("Order created successfully. Refreshing...");
+} catch (error) {
+    toast.error("Failed to create order");
+  } finally {
+    setLoading(false);
+  }
   };
 
   return (
@@ -126,7 +139,6 @@ function OrderForm({ company, site, supplier, filters, onClose }) {
             name="destination"
             value={data.destination}
             onChange={handleChange}
-            required
             className="border rounded-lg p-2"
           />
         </div>
@@ -137,12 +149,11 @@ function OrderForm({ company, site, supplier, filters, onClose }) {
             name="eta"
             value={data.eta}
             onChange={handleChange}
-            required
             className="border rounded-lg p-2"
           />
         </div>
       </div>
-      <span className="font-medium block text-lg">Payment Details</span>
+      <span className="font-medium block text-lg mt-3">Payment Details</span>
       <div className="border rounded-xl p-2 grid grid-cols-1 sm:grid-cols-2">
         <span className="">
         <span>Delivery charges</span>
@@ -187,7 +198,7 @@ function OrderForm({ company, site, supplier, filters, onClose }) {
         </div>
         </div>
       </div>
-      <Button className='mt-5' type="submit">Submit</Button>
+      <Button disabled={loading} className='mt-5' type="submit">{loading ? <Loader2 className="animate-spin" /> : 'Create order'}</Button>
     </form>
   );
 }
