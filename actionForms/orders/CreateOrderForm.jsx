@@ -14,15 +14,29 @@ const paymentInfoKeys = [
   "is_negotiable",
   "deposit_percentage",
 ];
+const employees = [
+  {email:'john', id:1},
+  {email:'mike', id:2},
+  {email:'tony', id:3},
+  {email:'andy', id:4},
+]
 
 function CreateOrderForm({ company, site, supplier, filters}) {
   const [loading, setLoading] = useState(false);
+  
   const params = new URLSearchParams();
 
 // Append each key-value pair from the filters object
 for (const [key, value] of Object.entries(filters)) {
     params.append(key, value);
 }
+const employeesArr = [
+  {id:1,email:'john'},
+  {id:2,email:'andy'},
+  {id:3,email:'mishi'},
+  {id:4,email:'tracy'},
+  {id:5,email:'mike'},
+]
   const getFormattedKey = (key) => {
     switch (key) {
       case "is_fixed":
@@ -37,7 +51,6 @@ for (const [key, value] of Object.entries(filters)) {
         return null;
     }
   };
-
   return (
     <Formik
       initialValues={{
@@ -60,11 +73,12 @@ for (const [key, value] of Object.entries(filters)) {
         setLoading(true);
         try {
           const formData = new FormData();
+          const jsonSpecifications = JSON.stringify(filters);
           formData.append("company", company?.reference);
           formData.append("site", site?.reference);
           formData.append("shell_equipment", supplier?.reference);
           formData.append("delivery_charges", supplier?.delivery_charges);
-          formData.append("orderSpecifications", params.toString());
+          formData.append("orderSpecifications", jsonSpecifications);
           formData.append("status", "Pending");
           formData.append("employees", values.employees);
           formData.append("quantity", values.quantity);
@@ -76,10 +90,12 @@ for (const [key, value] of Object.entries(filters)) {
           formData.append("is_fixed_fifty", values.is_fixed_fifty);
           formData.append("is_negotiable", values.is_negotiable);
           console.log(formData)
+          
           // await createOrder(formData, axios);
           // toast.success("Order created successfully. Refreshing...");
         } catch (error) {
           toast.error("Failed to create order");
+          console.log(error)
         } finally {
           setLoading(false);
         }
@@ -122,7 +138,8 @@ for (const [key, value] of Object.entries(filters)) {
                         htmlFor={worker?.id}
                         className="text-sm"
                       >
-                        {worker?.first_name} {worker?.last_name}
+                        {/* {worker?.first_name} {worker?.last_name} */}
+                        {worker?.email}
                       </label>
                     </li>
                   ))}

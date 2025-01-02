@@ -281,3 +281,49 @@ export const wallsInputFields = [
   { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },
   { name: "other", inputType: "input", placeholder: "Other" }
 ];
+
+export const roofInputFields = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+  { name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+      id:1, value:'Kgs',
+    },
+    {
+      id:2, value:'Grams',
+    },
+    {
+      id:3, value:'Mgs',
+    },] },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "identification_number", inputType: "input", placeholder: "Identification Number" },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "date_of_manufacture", inputType: "date", placeholder: "Date of Manufacture" },
+  { name: "minimum_order_quantity", inputType: "input", placeholder: "Minimum Order Quantity" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+    { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "wood_species", inputType: "input", placeholder: "Wood species" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "treatment", inputType: "input", placeholder: "Treatment" },
+  { name: "surface_finish", inputType: "input", placeholder: "Surface finish" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+  { name: "moisture_content", inputType: "input", placeholder: "Moisture Content" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];

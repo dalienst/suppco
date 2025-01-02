@@ -33,6 +33,13 @@ return (
             <a href={link.href}>{link.name}</a>
           </li>
       ))}
+      <li>
+      <Link href='/auth/login'>
+    <Button className="bg-blue900 md:hidden ml-6 mb-4 px-6 rounded-full hover:bg-blue700">
+      Sign in
+    </Button>
+    </Link>
+      </li>
     </ul>
     <Link href='/auth/login'>
     <Button className="hidden mr-[2rem] bg-blue900 md:block rounded-full hover:bg-blue700">

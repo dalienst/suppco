@@ -9,6 +9,7 @@ import SupplierInputForm from "./SupplierInputForm";
 import FormGenerator from "@/components/formGenerator/FormGenerator";
 import { Button } from "@/app/components/ui/button";
 import { readyMixInputFields } from "@/data/formGeneratorInputTypes";
+import Image from "next/image";
 
 function AddReadyMix({ branch, item, category, refetchShell }) {
   const [loading, setLoading] = useState(false);
@@ -84,9 +85,10 @@ function AddReadyMix({ branch, item, category, refetchShell }) {
 
             await createShellEquipment(formData, axios);
             toast?.success(
-              "Shell Equipment created successfully. Refreshing..."
+              "Shell Equipment created successfully."
             );
-            refetchShell();
+            // refetchShell();
+            router.push(`/branch/${slug}`);
             setLoading(false);
           } catch (error) {
             toast?.error("Failed to create shell equipment");
@@ -157,19 +159,32 @@ function AddReadyMix({ branch, item, category, refetchShell }) {
               </div>
             ) : page === 3 ? (
               <div>
-                <div className="grid place-content-center">
-                  <p className="">You&apos;re done. <ThumbsUp/></p>
-                  <p>Click submit to save this information.</p>
-                {supplierInputValues && (
-                  <Button
-                  disabled={loading}
-                  type="submit"
-                  className="mt-10 mb-5"
-                  >
-                    {loading ? <Loader2 className="animate-spin" /> : "Submit"}
-                  </Button>
-                )}
-                </div>
+                <div className="grid h-[70vh] place-content-center">
+                                  <Image
+                                    src="/thumbs.webp"
+                                    alt="thumbs up"
+                                    width={150}
+                                    height={150}
+                                    className="mx-auto"
+                                  />
+                                  <span className="font-semibold text-2xl text-center">
+                                    You&apos;re done.
+                                  </span>
+                                  <p>Click submit to save this information.</p>
+                                  {supplierInputValues && (
+                                    <Button
+                                      disabled={loading}
+                                      type="submit"
+                                      className="mt-10 mb-5"
+                                    >
+                                      {loading ? (
+                                        <Loader2 className="animate-spin" />
+                                      ) : (
+                                        "Submit"
+                                      )}
+                                    </Button>
+                                  )}
+                                </div>
                 <div className="flex justify-between gap-2 ">
                   <Button disabled={loading} onClick={() => setPage(2)}>
                     <ChevronLeft /> Back

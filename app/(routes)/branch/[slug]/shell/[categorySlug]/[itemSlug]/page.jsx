@@ -53,9 +53,21 @@ export default function ItemDetail({
   const renderForm = () => {
     switch (category?.identity) {
       case "metal-work":
-        return <AddMetalWork />;
+        return <AddMetalWork 
+          branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+        />;
       case "ready-mix-concrete":
-        return <AddReadyMix />;
+        return <AddReadyMix 
+          branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+        />;
       case "aggregate":
         return (
           <AddAggregate
@@ -67,7 +79,13 @@ export default function ItemDetail({
           />
         );
       case "detail-subcomponentsaccessories":
-        return <AddAccessories />;
+        return <AddAccessories 
+          branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+        />;
       case "walls":
         return (
           <AddWalls
@@ -79,9 +97,21 @@ export default function ItemDetail({
           />
         );
       case "roof":
-        return <AddRoof />;
+        return <AddRoof 
+          branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+        />;
       case "pre-cast":
-        return <AddPrecast />;
+        return <AddPrecast 
+          branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+        />;
       case "cement":
         return (
           <AddCement
@@ -92,7 +122,13 @@ export default function ItemDetail({
           />
         );
       case "formwork":
-        return <AddFormwork />;
+        return <AddFormwork 
+          branch={branch}
+            item={subCategoryItem}
+            category={category}
+            refetchShell={refetchShell}
+            employees={branch?.employees}
+        />;
       default:
         return <div>No form available for this item</div>;
     }

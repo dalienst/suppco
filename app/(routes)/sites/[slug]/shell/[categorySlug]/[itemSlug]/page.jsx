@@ -14,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import useUserId from "@/hooks/useUserId";
 import OrderForm from "@/actionForms/orders/OrderForm";
+import CreateOrderForm from "@/actionForms/orders/CreateOrderForm";
 
 const paymentInfoKeys = [
   "is_payment_on_delivery",
@@ -47,7 +48,6 @@ export default function ItemDetail({
     queryKey: ["profile"],
     queryFn: () => getUser(userId, axios),
   });
-
   const {
     isLoading: isLoadingBranch,
     data: branch,
@@ -172,7 +172,7 @@ export default function ItemDetail({
       </form>}
       <section className="border rounded-xl p-3 mt-5">
       <h1 className="mb-3 font-semibold text-xl">Available suppliers</h1>
-      {data.length > 0 ? 
+      {data?.length > 0 ? 
       <div>
         {data?.map((supplier, index) => {
           const filteredSupplierProductDetails = Object.entries(
