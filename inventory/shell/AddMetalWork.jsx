@@ -9,12 +9,16 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import SupplierInputForm from "./SupplierInputForm";
 import { metalWorkInputFields } from "@/data/formGeneratorInputTypes";
+import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 function AddMetalWork({ branch, item, category, refetchShell }) {
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [supplierInputValues, setSupplierInputValues] = useState(null);
   const axios = useAxiosAuth();
+  const router = useRouter();
+  const { slug } = useParams();
 
   const handleSupplierInputValues = (data) => {
     setSupplierInputValues(data);
@@ -100,8 +104,10 @@ function AddMetalWork({ branch, item, category, refetchShell }) {
 
             await createShellEquipment(formData, axios);
             toast?.success(
-              "Shell Equipment created successfully. Refreshing..."
+              "Shell Equipment created successfully."
             );
+            // refetchShell();
+            router.push(`/branch/${slug}`);
             setLoading(false);
             refetchShell();
           } catch (error) {

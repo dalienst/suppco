@@ -10,9 +10,19 @@ import toast from "react-hot-toast";
 import SupplierInputForm from "./SupplierInputForm";
 import FormGenerator from "@/components/formGenerator/FormGenerator";
 import { wallsInputFields } from "@/data/formGeneratorInputTypes";
+import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 function AddWalls({ branch, item, category, refetchShell }) {
   const [loading, setLoading] = useState(false);
+  const [supplierInputValues, setSupplierInputValues] = useState(null);
+  const [page, setPage] = useState(1);
+  const router = useRouter();
+  const { slug } = useParams();
+
+  const handleSupplierInputValues = (data) => {
+    setSupplierInputValues(data);
+  };
   const axios = useAxiosAuth();
 
   return (
@@ -136,9 +146,10 @@ function AddWalls({ branch, item, category, refetchShell }) {
 
             await createShellEquipment(formData, axios);
             toast?.success(
-              "Shell Equipment created successfully. Refreshing..."
+              "Shell Equipment created successfully."
             );
-            refetchShell();
+            // refetchShell();
+            router.push(`/branch/${slug}`);
             setLoading(false);
           } catch (error) {
             toast?.error("Failed to create shell equipment");

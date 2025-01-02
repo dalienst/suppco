@@ -103,6 +103,9 @@ function SupplierInputForm({ onSupplierInputValues }) {
                   value={supplierInput.delivery_mode}
                   required
                 >
+                  <option value="">
+                    Choose delivery mode
+                  </option>
                   <option value="distance">
                     Charged based on distance (km)
                   </option>
