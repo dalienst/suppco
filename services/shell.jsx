@@ -26,6 +26,17 @@ export const getShellEquipmentDetail = async (slug, axios) => {
   return response.data || {};
 };
 
+export const updateShellEquipmentDetail = async (slug, formData, axios) => {
+  const response = await urlMultipartActions?.patch(
+    `/api/shellequipment/detail/${slug}/`,formData, axios
+  );
+  return response.data || {};
+};
+
+export const deleteShellEquipment = async (slug, axios) => {
+  await urlMultipartActions?.delete(`/api/shellequipment/detail/${slug}/`,axios);
+};
+
 export const getAllShellEquipment = async () => {
   // fetches all shell for the public
   const response = await urlMultipartActions?.get("/api/shellequipment/");
