@@ -23,6 +23,7 @@ import {
   DialogTrigger,
 } from "@/app/components/ui/dialog";
 import { Button } from "@/app/components/ui/button";
+import { useFetchSupplierOrders } from "@/dataActions/orders/ordersActions";
 
 function SupplierDashboard() {
   const axios = useAxiosAuth();
@@ -35,6 +36,9 @@ function SupplierDashboard() {
     queryKey: ["profile"],
     queryFn: () => getUser(userId, axios),
   });
+    const {
+      data: orders,
+    } = useFetchSupplierOrders();
 
   const {
     isLoading: isLoadingBranch,

@@ -40,7 +40,6 @@ function SiteOrders({ params: { slug } }) {
     queryKey: ["orders"],
     queryFn: () => getOrders(axios),
   });
-console.log(orders)
   const { isLoading: isLoadingsupplierProducts, data: supplierProducts } =
     useQuery({
       queryKey: ["supplierProducts"],

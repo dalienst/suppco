@@ -14,6 +14,7 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  Package,
   Settings,
   Users,
 } from "lucide-react";
@@ -60,6 +61,18 @@ function Navbar() {
               >
                 <Users />
                 Employees
+              </Link>
+            </li>
+          ) : null}
+
+          {branch?.name !== null ? (
+            <li className="rounded">
+              <Link
+                href={`/branch/${slug}/orders/${branch?.id}`}
+                className="flex items-center gap-1"
+              >
+                 <Package />
+                Orders
               </Link>
             </li>
           ) : null}
