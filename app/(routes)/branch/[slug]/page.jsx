@@ -8,9 +8,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 function BranchDashboard({ params: { slug } }) {
-  // TODO: the dashboard for the branch.
-  // As branch is only for the supplier, the code for the dashboard can be written here unlike in the previous where there
-  // were different layouts.
   const [rows, setRows] = useState([])
   const [groupedData, setGroupedData] = useState([]);
   const [newRows, setNewRows] = useState([]);
@@ -24,6 +21,8 @@ function BranchDashboard({ params: { slug } }) {
     refetch: refetchBranch,
     isSuccess
   } = useFetchBranchDetail(slug);
+
+  console.log('my branch',branch)
 
   useEffect(() => {
     if (isSuccess) {

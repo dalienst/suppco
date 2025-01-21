@@ -40,7 +40,6 @@ function SiteOrders({ params: { slug } }) {
     queryKey: ["orders"],
     queryFn: () => getOrders(axios),
   });
-console.log(orders)
   const { isLoading: isLoadingsupplierProducts, data: supplierProducts } =
     useQuery({
       queryKey: ["supplierProducts"],
@@ -67,7 +66,7 @@ console.log(orders)
     <div className="pt-4 px-2 md:p-6">
       <section className="mt-5">
         <div className="flex justify-between my-4">
-          <h2 className="font-semibold text-lg">Your Site&apos;s Orders</h2>
+          <h2 className="font-semibold text-lg">Orders</h2>
           <Button>
             <Link href={`/sites/${slug}/shell`} onClick={() => setOpen(true)}>Create order</Link>
           </Button>

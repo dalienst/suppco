@@ -2,6 +2,7 @@
 
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import {
+  getBranchOrders,
   getOrder,
   getOrders,
   getSupplierOrderDetail,
@@ -34,6 +35,14 @@ export function useFetchSupplierOrders() {
   return useQuery({
     queryKey: ["supplierOrders"],
     queryFn: () => getSupplierOrders(axios),
+  });
+}
+export function useFetchBranchOrders(id) {
+  const axios = useAxiosAuth();
+
+  return useQuery({
+    queryKey: ["branchOrders",id],
+    queryFn: () => getBranchOrders(axios,id),
   });
 }
 
