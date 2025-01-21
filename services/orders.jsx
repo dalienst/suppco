@@ -30,5 +30,5 @@ export const getSupplierOrderDetail = async (slug, axios) => {
 }
 
 export const supplierUpdateOrder = async (slug, values, axios) => {
-    await urlMultipartActions?.patch(`/api/orders/supplier/${slug}/`, values, axios);
+    await urlMultipartActions?.patch(`/api/orders/supplier/detail/${slug}/`, values, axios);
 }
