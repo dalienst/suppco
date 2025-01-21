@@ -5,7 +5,7 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createOrder } from "@/services/orders";
-import { Loader2 } from "lucide-react";
+import { ChevronDown, Loader2 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -14,7 +14,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
     company: "",
     site: "",
     shell_equipment: "",
-    employees: "",
+    employees: [],
     status: "Pending",
     orderSpecifications: {},
     self_delivery: false,
@@ -28,6 +28,11 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
   const [showEmployees, setShowEmployees] = useState(false);
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
+  const myEmployees = [
+    {id: 1, name: 'Tony', email:'tony@gmail.com'},
+    {id: 2, name: 'Tracy', email:'tracy@gmail.com'},
+    {id: 3, name: 'Peter', email:'peter@gmail.com'},
+  ]
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,27 +47,33 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
       [e.target.name]: e.target.value,
     }));
   };
-  // const handleEmployeeChange = (e) => {
-  //   const { value, checked } = e.target;
-  //   setData((prevData) => {
-  //     const newEmployees = checked
-  //       ? [...prevData.employees, value]
-  //       : prevData.employees.filter((employee) => employee !== value);
-  //     return { ...prevData, employees: newEmployees };
-  //   });
-  // };
+  const handleEmployeeChange = (e) => {
+    const { value, checked } = e.target;
+    setData((prevData) => {
+      const newEmployees = checked
+        ? [...prevData.employees, value]
+        : prevData.employees.filter((employee) => employee !== value);
+      return { ...prevData, employees: newEmployees };
+    });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
     const jsonSpecifications = JSON.stringify(filters);
+    const formData = new FormData();
+    data.employees.forEach(email => {
+      formData.append('employees[]', email); // Use 'employees[]' to indicate an array
+  });
     const finalData = {
       ...data,
       company: company?.reference,
       site: site?.reference,
+      employees:formData,
       shell_equipment: supplier?.reference,
       delivery_charges: supplier?.delivery_charges,
       orderSpecifications: jsonSpecifications,
     };
+    console.log(finalData)
     try {
       await createOrder(finalData, axios);
       toast.success("Order created successfully.");
@@ -70,6 +81,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
       onRedirect();
     } catch (error) {
       toast.error("Failed to create order");
+      console.log(error)
     } finally {
       setLoading(false);
     }
@@ -100,12 +112,12 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
             className="border rounded-lg p-2"
           />
         </div>
-        {/* <div>
+        <div>
             <span className="block">Allocate staff</span>
         <div className="relative px-2 py-1.5 rounded-lg border w-[250px]">
           <button type='button' onClick={()=>setShowEmployees(prev=>!prev)} className="flex items-center gap-2">Choose employee <ChevronDown size={16}/></button>
           {showEmployees && <div className="absolute shadow-md bg-white z-50 w-[250px] left-0 px-2 top-10">
-          {site?.employees_details?.map((employee) => (
+          {myEmployees?.map((employee) => (
               <div key={employee.id} className="pb-2">
                 <input
                 type="checkbox"
@@ -115,14 +127,14 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
                 className="mr-1"
               />
             <label>
-              {employee?.first_name} {employee?.last_name}
+              {employee?.name} 
             </label>
               </div>
           ))}
           
             </div>}
         </div>
-        </div> */}
+        </div>
         <div className="flex flex-col gap-1">
           <Label className="text-base font-normal" htmlFor="employees">
             Allocate staff

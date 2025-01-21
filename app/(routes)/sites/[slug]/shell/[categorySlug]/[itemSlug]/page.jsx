@@ -5,7 +5,7 @@ import { useFetchSubCategoryItemDetail } from "@/dataActions/subcategoryitems/su
 import { useFetchSubCategoryItemShellEquipment } from "@/dataActions/shell/shellCategory";
 import { ChevronDown, ChevronRight, ChevronUp, Loader2 } from "lucide-react";
 import useFetchSiteDetail from "@/dataActions/site-equipment/FetchSiteDetail";
-import { aggregateSearchFilters } from "@/data/searchFiltersGenerator";
+import { aggregateSearchFilters, metalWorkSearchFilters, readyMixSearchFilters,wallsGlassFilters,roofTrussFilters,precastFilters,cementSearhFilters,formWorkFilters, roofTilesFilters, roofBracingFilters, roofInsulationFilters, roofMetalFilters, roofConnectorsFilters, roofMembraneFilters, roofUnderlaymentFilters, roofFlashingFilters, roofShinglesFilters, roofSheatingFilters, wallsBrickStoneFilters, wallsDrywallMDFFilters, wallsWoodFilters } from "@/data/searchFiltersGenerator";
 import FiltersGenerator from "@/components/filtersGenerator/FiltersGenerator";
 import React, { useState } from "react";
 import { Button } from "@/app/components/ui/button";
@@ -62,13 +62,14 @@ export default function ItemDetail({
     data: category,
     refetch: refetchCategory,
   } = useFetchCategoryDetail(categorySlug);
-
+  
   const {
     isLoading: isLoadingSubCategoryItem,
     data: subCategoryItem,
     refetch: refetchSubCategoryItem,
   } = useFetchSubCategoryItemDetail(itemSlug);
-
+  console.log('my subCategoryItem',subCategoryItem)
+  
   const {
     isLoading: isLoadingShell,
     data: shell,
@@ -138,6 +139,66 @@ export default function ItemDetail({
       .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(' '); 
   };
+  const renderFilter = () =>{
+    switch (category?.identity) {
+      case "metal-work":
+        return metalWorkSearchFilters;
+      case "ready-mix-concrete":
+        return readyMixSearchFilters;
+      case "aggregate":
+        return aggregateSearchFilters;
+      case "walls":
+        switch (subCategoryItem?.sublayer) {
+          case "Glass Wall":
+            return wallsGlassFilters;
+          case "Stone Wall":
+            return wallsBrickStoneFilters;
+          case "Brick Wall":
+            return wallsBrickStoneFilters;
+          case "Dry Wall":
+            return wallsDrywallMDFFilters;
+          case "Wood Wall":
+            return wallsWoodFilters;
+          default:
+            return wallsWoodFilters;
+        };
+      case "roof":
+        switch (subCategoryItem?.sublayer) {
+          case "Roof Tiles":
+            return roofTilesFilters;
+          case "Roof Bracing":
+            return roofBracingFilters;
+          case "Roof Insulation":
+            return roofInsulationFilters;
+          case "Metal Roof":
+            return roofMetalFilters;
+          case "Roof Connectors":
+            return roofConnectorsFilters;
+          case "Roof Membrane":
+            return roofMembraneFilters;
+          case "Roof Underlayment":
+            return roofUnderlaymentFilters;
+          case "Roof Flashing":
+            return roofFlashingFilters;
+          case "Roof Shingles":
+            return roofShinglesFilters;
+          case "Roof Sheathing":
+            return roofSheatingFilters;
+          case "Roof Truss":
+            return roofTrussFilters;
+          default:
+            return roofTrussFilters;
+        };
+      case "pre-cast":
+        return precastFilters;
+      case "cement":
+        return cementSearhFilters;
+      case "formwork":
+        return formWorkFilters;
+      default:
+        return [];
+    }
+  }
 
   return (
     <>
@@ -153,7 +214,7 @@ export default function ItemDetail({
         {hideFilters ? <ChevronDown/> : <ChevronUp/>}
       </button>
       {!hideFilters && <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-2 lg:gap-5 border rounded-xl p-2 md:border-none">
-        {aggregateSearchFilters.map((field) => {
+        {renderFilter().map((field) => {
           const key = field.name;
           const value = filters[key]; 
           return (
