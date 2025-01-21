@@ -5,11 +5,11 @@ import { Input } from "@/app/components/ui/input";
 import { Label } from "@/app/components/ui/label";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { createOrder } from "@/services/orders";
-import { ChevronDown, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
-function OrderForm({ company, site, supplier, filters, onClose }) {
+function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
   const [data, setData] = useState({
     company: "",
     site: "",
@@ -24,6 +24,7 @@ function OrderForm({ company, site, supplier, filters, onClose }) {
     delivery_charges: "",
     paymentType: "",
   });
+ 
   const [showEmployees, setShowEmployees] = useState(false);
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
@@ -64,7 +65,9 @@ function OrderForm({ company, site, supplier, filters, onClose }) {
     };
     try {
       await createOrder(finalData, axios);
-      toast.success("Order created successfully. Refreshing...");
+      toast.success("Order created successfully.");
+      onClose();
+      onRedirect();
     } catch (error) {
       toast.error("Failed to create order");
     } finally {

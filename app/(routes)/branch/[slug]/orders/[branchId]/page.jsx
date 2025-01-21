@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { SquareX } from "lucide-react";
+import { Button } from "../../../../../components/ui/button";
 import SupplierLoadingSpinner from "@/components/supplier/LoadingSpinner";
 import { useFetchBranchOrders } from "@/dataActions/orders/ordersActions";
-import { Button } from "@/app/components/ui/button";
-import { SquareX } from "lucide-react";
 
 const keysToExclude = ['user', 'company_info', 'slug','paymentType', 'reference', 'site', 'status', 'created_at', 'employees', 'is_fixed', 'is_fixed_fifty', 'is_negotiable', 'id', 'updated_at', 'company','orderSpecifications','shell_equipment_info','shell_equipment'];
 
@@ -16,7 +16,6 @@ function BranchOrders({ params }) {
     isLoading: isLoadingBranchOrders,
     data: branchOrders,
   } = useFetchBranchOrders(params?.branchId);
-  console.log(branchOrders)
 
     const filteredOrderDetails = Object.entries(details || {})?.filter(
       ([key, value]) =>

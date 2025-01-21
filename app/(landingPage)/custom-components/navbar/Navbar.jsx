@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from "../../../components/ui/button";
+import { Button } from "@/app/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -35,7 +35,7 @@ return (
       ))}
       <li>
       <Link href='/auth/login'>
-    <Button className="bg-blue900 md:hidden ml-6 mb-4 px-6 rounded-full hover:bg-blue700">
+    <Button className="bg-blue900 md:hidden ml-6 mb-4 rounded-full hover:bg-blue700">
       Sign in
     </Button>
     </Link>

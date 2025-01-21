@@ -1,8 +1,8 @@
 import Site from '../../../../assets/site.jpg'
 import Image from 'next/image'
 import { CircleCheckBig } from 'lucide-react'
-import { Button } from '@/app/components/ui/button'
 import Link from 'next/link'
+import { Button } from '@/app/components/ui/button'
 
 function Contractors() {
   return (

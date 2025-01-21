@@ -15,6 +15,7 @@ import useAxiosAuth from "@/hooks/useAxiosAuth";
 import useUserId from "@/hooks/useUserId";
 import OrderForm from "@/actionForms/orders/OrderForm";
 import CreateOrderForm from "@/actionForms/orders/CreateOrderForm";
+import { useRouter } from "next/navigation";
 
 const paymentInfoKeys = [
   "is_payment_on_delivery",
@@ -44,6 +45,7 @@ export default function ItemDetail({
   };
   const axios = useAxiosAuth();
   const userId = useUserId();
+  const router = useRouter()
   const { data: profile } = useQuery ({
     queryKey: ["profile"],
     queryFn: () => getUser(userId, axios),
@@ -325,6 +327,7 @@ export default function ItemDetail({
       supplier={supplier}
       filters={filters}
       onClose={()=>setCreateOrder(false)}
+      onRedirect={()=>router.push(`/sites/${slug}/orders`)}
       />
     </div>
     }

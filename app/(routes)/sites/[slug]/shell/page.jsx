@@ -58,11 +58,11 @@ function ShellOrder({ params: { slug } }) {
 
   return (
     <div className="py-3 md:p-4">
-      <span className="flex items-center font-semibold text-lg lg:text-xl">
+      <span className="flex items-center font-semibold px-4 md:px-0 text-lg lg:text-xl">
         <span>Categories</span> <ChevronRight size={14} />{" "}
         <span className="text-blue800">Shell Equipment</span>{" "}
       </span>
-      <div className="my-4">
+      <div className="my-4 px-4 md:px-0">
         <Input
           type="text"
           className="w-fit"
