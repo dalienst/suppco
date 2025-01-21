@@ -1,20 +1,27 @@
 "use client";
 
 import { useState } from "react";
-import { SquareX } from "lucide-react";
+import { Loader2, SquareX } from "lucide-react";
 import { Button } from "../../../../../components/ui/button";
 import SupplierLoadingSpinner from "@/components/supplier/LoadingSpinner";
 import { useFetchBranchOrders } from "@/dataActions/orders/ordersActions";
+import useAxiosAuth from "@/hooks/useAxiosAuth";
+import { supplierUpdateOrder } from "@/services/orders";
+import toast from "react-hot-toast";
 
 const keysToExclude = ['user', 'company_info', 'slug','paymentType', 'reference', 'site', 'status', 'created_at', 'employees', 'is_fixed', 'is_fixed_fifty', 'is_negotiable', 'id', 'updated_at', 'company','orderSpecifications','shell_equipment_info','shell_equipment'];
 
 
 function BranchOrders({ params }) {
   const [details, setDetails] = useState(null);
+  const axios = useAxiosAuth()
+  const[accepting, setAccepting] = useState(false);
+  const[declining, setDeclining] = useState(false);
 
   const {
     isLoading: isLoadingBranchOrders,
     data: branchOrders,
+    refetch
   } = useFetchBranchOrders(params?.branchId);
 
     const filteredOrderDetails = Object.entries(details || {})?.filter(
@@ -52,6 +59,35 @@ function BranchOrders({ params }) {
     }
   };
 
+  const handleDecline = async() =>{
+    const values = {status:'Declined'}
+    setDeclining(true);
+    try {
+      await supplierUpdateOrder(details?.slug, values, axios);
+      toast.success('Order declined')
+      refetch()
+      setDetails(null)
+    } catch(error){
+      toast.error('Failed to decline order. Please try again later')
+    }finally{
+      setDeclining(false);
+    }
+  }
+  const handleAccept = async() =>{
+    const values = {status:'Active'}
+    setAccepting(true);
+    try {
+      await supplierUpdateOrder(details?.slug, values, axios);
+      toast.success('Order accepted')
+      refetch()
+      setDetails(null)
+    } catch {
+      toast.error('Failed to accept order. Please try again later')
+    }finally{
+      setAccepting(false);
+    }
+  }
+
   return (
     <div className="pt-4 px-2 md:p-4">
       <section className="mt-5">
@@ -77,7 +113,7 @@ function BranchOrders({ params }) {
               <td>{order?.company_info?.name}</td>
               <td>{order?.shell_equipment_info?.product_name}</td>
               <td>{order?.reference}</td>
-              <td>{order?.status}</td>
+              <td className={`${order?.status === 'Active' ? 'text-green-600' : order?.status === 'Declined' ? 'text-red-600' : order?.status === 'Completed' ? 'text-blue-600' : 'text-yellow-500' }`}>{order?.status}</td>
               <td className="text-center">
                 <Button onClick={()=>setDetails(order)}>Details</Button>
               </td>
@@ -101,36 +137,40 @@ function BranchOrders({ params }) {
             <SquareX />
             </button>
           </div>
-          <section className="border-t p-2 mt-4 space-y-3">
-            <div className="text-lg space-y-3">
-              <div className="flex gap-2">
-                <span className="font-semibold">Ordered by:</span>
+          <section className="border-y p-2 mt-4 space-y-2">
+            <div className="text-lg space-y-2">
+              <div className="grid grid-cols-2 bg-slate-100 p-2 gap-2">
+                <span className="font-semibold">Ordered by</span>
                 <span className="">{details?.company_info?.name}</span>
               </div>
-              <div className="flex gap-2">
-                <span className="font-semibold">Item:</span>
+              <div className="grid grid-cols-2 gap-2 bg-slate-100 p-2">
+                <span className="font-semibold">Item</span>
                 <span className="">{details?.shell_equipment_info?.product_name}</span>
               </div>
-              <div className="flex gap-2">
-                <span className="font-semibold">Order reference:</span>
+              <div className="grid grid-cols-2 gap-2 bg-slate-100 p-2">
+                <span className="font-semibold">Order reference</span>
                 <span className="">{details?.reference}</span>
               </div>
-              <div className="flex gap-2">
-                <span className="font-semibold">Order status:</span>
+              <div className="grid grid-cols-2 gap-2 bg-slate-100 p-2">
+                <span className="font-semibold">Order status</span>
                 <span className="">{details?.status}</span>
               </div>
             </div>
             {filteredOrderDetails?.map((item)=>(
-              <div key={item[0]} className="flex gap-2 text-lg">
-                <span className="font-semibold">{formatKey(item[0])}:</span>
+              <div key={item[0]} className="grid grid-cols-2 gap-2 bg-slate-100 p-2 text-lg">
+                <span className="font-semibold">{formatKey(item[0])}</span>
                 <span>{formatKey(String(item[1]))}</span>
               </div>
             ))}
-              <div className="flex gap-2 text-lg">
-                <span className="font-semibold">Payment type:</span>
+              <div className="grid grid-cols-2 gap-2 bg-slate-100 p-2 text-lg">
+                <span className="font-semibold">Payment type</span>
                 <span>{formatKey(getFormattedKey(details?.paymentType))}</span>
               </div>
           </section>
+          <div className="mt-5 px-2 flex gap-5 justify-between ">
+            <Button variant='destructive' disabled={declining || accepting} onClick={handleDecline}>{declining ? <Loader2 className="animate-spin" /> : 'Decline'}</Button>
+            <Button disabled={accepting || declining} onClick={handleAccept}>{accepting ? <Loader2 className="animate-spin" /> : 'Accept'}</Button>
+          </div>
         </div>
         }
       </section>
