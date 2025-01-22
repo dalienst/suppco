@@ -14,7 +14,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
     company: "",
     site: "",
     shell_equipment: "",
-    employees: [],
+    employees: '',
     status: "Pending",
     orderSpecifications: {},
     self_delivery: false,
@@ -61,9 +61,9 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
     // setLoading(true);
     const jsonSpecifications = JSON.stringify(filters);
     const formData = new FormData();
-    data.employees.forEach(email => {
-      formData.append('employees[]', email); // Use 'employees[]' to indicate an array
-  });
+  //   data.employees.forEach(email => {
+  //     formData.append('employees[]', email);
+  // });
     const finalData = {
       ...data,
       company: company?.reference,
