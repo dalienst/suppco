@@ -47,15 +47,15 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
       [e.target.name]: e.target.value,
     }));
   };
-  const handleEmployeeChange = (e) => {
-    const { value, checked } = e.target;
-    setData((prevData) => {
-      const newEmployees = checked
-        ? [...prevData.employees, value]
-        : prevData.employees.filter((employee) => employee !== value);
-      return { ...prevData, employees: newEmployees };
-    });
-  };
+  // const handleEmployeeChange = (e) => {
+  //   const { value, checked } = e.target;
+  //   setData((prevData) => {
+  //     const newEmployees = checked
+  //       ? [...prevData.employees, value]
+  //       : prevData.employees.filter((employee) => employee !== value);
+  //     return { ...prevData, employees: newEmployees };
+  //   });
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setLoading(true);
@@ -68,12 +68,11 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
       ...data,
       company: company?.reference,
       site: site?.reference,
-      // employees:formData,
       shell_equipment: supplier?.reference,
+      employees: data.employees || [],
       delivery_charges: supplier?.delivery_charges,
       orderSpecifications: jsonSpecifications,
     };
-    console.log(finalData)
     try {
       await createOrder(finalData, axios);
       toast.success("Order created successfully.");
@@ -81,7 +80,6 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
       onRedirect();
     } catch (error) {
       toast.error("Failed to create order");
-      console.log(error)
     } finally {
       setLoading(false);
     }
