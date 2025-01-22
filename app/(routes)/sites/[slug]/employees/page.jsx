@@ -52,14 +52,14 @@ function SiteEmployees({ params: { slug } }) {
     <div className="p-3 h-[calc(100vh-55px)] ">
       <div>
         <div className="flex justify-between my-3">
-          <h2 className="text-xl font-semibold">Your Employees</h2>
+          <h2 className="text-xl font-semibold">Employees</h2>
 
           <div className="relative">
             <button
               onClick={() => setOpenEmployeeSelectionPanel((prev) => !prev)}
               className="border border-grayBlue rounded-lg p-2 flex gap-2 items-center"
             >
-              <span>Add employee(s) to this site</span>
+              <span>Add employee(s)</span>
               <ChevronDown size={16} />
             </button>
 

@@ -356,3 +356,30 @@ export const roofInputFields = [
   { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
   { name: "other", inputType: "input", placeholder: "Other" }
 ];
+
+export const accessoriesFields = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+  { name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+      id:1, value:'Kgs',
+    },
+    {
+      id:2, value:'Grams',
+    },
+    {
+      id:3, value:'Mgs',
+    },] },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "identification_number", inputType: "input", placeholder: "Identification Number" },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "date_of_manufacture", inputType: "date", placeholder: "Date of Manufacture" },
+  { name: "minimum_order_quantity", inputType: "input", placeholder: "Minimum Order Quantity" },
+  { name: "shelf_life", inputType: "input", placeholder: "Shelf life" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "packaging", inputType: "input", placeholder: "Packaging" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
