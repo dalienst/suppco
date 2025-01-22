@@ -49,7 +49,7 @@ function SiteEmployees({ params: { slug } }) {
   }
 
   return (
-    <div className="p-3">
+    <div className="p-3 h-[calc(100vh-55px)] ">
       <div>
         <div className="flex justify-between my-3">
           <h2 className="text-xl font-semibold">Your Employees</h2>
