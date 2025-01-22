@@ -67,9 +67,7 @@ export default function ItemDetail({
     isLoading: isLoadingSubCategoryItem,
     data: subCategoryItem,
     refetch: refetchSubCategoryItem,
-  } = useFetchSubCategoryItemDetail(itemSlug);
-  console.log('my subCategoryItem',subCategoryItem)
-  
+  } = useFetchSubCategoryItemDetail(itemSlug);  
   const {
     isLoading: isLoadingShell,
     data: shell,

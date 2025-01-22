@@ -68,7 +68,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
       ...data,
       company: company?.reference,
       site: site?.reference,
-      employees:formData,
+      // employees:formData,
       shell_equipment: supplier?.reference,
       delivery_charges: supplier?.delivery_charges,
       orderSpecifications: jsonSpecifications,
@@ -112,7 +112,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
             className="border rounded-lg p-2"
           />
         </div>
-        <div>
+        {/* <div>
             <span className="block">Allocate staff</span>
         <div className="relative px-2 py-1.5 rounded-lg border w-[250px]">
           <button type='button' onClick={()=>setShowEmployees(prev=>!prev)} className="flex items-center gap-2">Choose employee <ChevronDown size={16}/></button>
@@ -134,7 +134,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
           
             </div>}
         </div>
-        </div>
+        </div> */}
         <div className="flex flex-col gap-1">
           <Label className="text-base font-normal" htmlFor="employees">
             Allocate staff
