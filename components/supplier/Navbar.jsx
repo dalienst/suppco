@@ -96,7 +96,7 @@ function Navbar() {
             </li>
         </ul>
       </div>
-      <Button onClick={() => signOut()} variant="outline" className="">
+      <Button onClick={() => signOut()} variant="outline" className="bg-transparent border-black">
         <LogOut color="#000000" />
         Log Out
       </Button>

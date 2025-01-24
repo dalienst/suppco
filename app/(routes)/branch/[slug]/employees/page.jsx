@@ -52,7 +52,7 @@ function BranchEmployees() {
             onClick={() => setOpenEmployeeSelectionPanel((prev) => !prev)}
             className="border border-grayBlue rounded-lg p-2 flex gap-2 items-center"
           >
-            <span>Add employee(s) to this branch</span>
+            <span>Add employee(s)</span>
             <ChevronDown size={16} />
           </button>
 
