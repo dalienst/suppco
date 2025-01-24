@@ -69,14 +69,14 @@ function AddShell({branch, item, category, refetchShell, employees}) {
             formData?.append("company", branch?.company);
             formData?.append("sublayeritem", item?.name);
             formData?.append("layer", category?.name);
-    console.log('Form submitted:', formData);
     try {
       await createShellEquipment(formData, axios);
             toast?.success(
               "Shell Equipment created successfully. Refreshing..."
             );
-    } catch (error) {
-      console.log(error)
+            router.push(`/branch/${slug}`);
+    } catch {
+      toast?.error("Failed to create shell equipment");
     }finally{
       setLoading(false)
     }
