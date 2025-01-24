@@ -31,14 +31,12 @@ export default function ItemDetail({
     data: category,
     refetch: refetchCategory,
   } = useFetchCategoryDetail(categorySlug);
-  console.log('my category',category)
   
   const {
     isLoading: isLoadingSubCategoryItem,
     data: subCategoryItem,
     refetch: refetchSubCategoryItem,
   } = useFetchSubCategoryItemDetail(itemSlug);
-  console.log('my subcategory item',subCategoryItem)
 
   const {
     isLoading: isLoadingShell,
