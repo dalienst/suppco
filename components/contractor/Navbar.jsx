@@ -145,7 +145,7 @@ function ContractorNavbar() {
             </li>
         </ul>
       </div>
-      <Button onClick={() => signOut()} variant="outline" className="">
+      <Button onClick={() => signOut()} variant="outline" className="bg-transparent border-black ">
         <LogOut color="#000000" />
         Log Out
       </Button>
@@ -157,11 +157,11 @@ function ContractorNavbar() {
     <div className="md:hidden fixed my-4">
       <Sheet>
         <SheetTrigger asChild className="ml-2">
-          <Button variant="ghost" className="mt-[2px">
+          <Button variant="ghost" className="mt-[2px]">
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="p-0 pl-4 pr-10 h-full">
+        <SheetContent side="right" className="p-0 pl-4 pr-10 h-full">
           {SidebarComponent}
         </SheetContent>
       </Sheet>

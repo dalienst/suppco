@@ -357,6 +357,763 @@ export const roofInputFields = [
   { name: "other", inputType: "input", placeholder: "Other" }
 ];
 
+export const wallsBrickStoneDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+    id:1, value:'inch',
+  },
+  {
+    id:2, value:'mm',
+  },
+  {
+    id:3, value:'cm',
+  },] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "color", inputType: "input", placeholder: "Color" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "compressive_strength", inputType: "input", placeholder: "Compressive strength" },
+  { name: "r_value", inputType: "input", placeholder: "R value" },
+  { name: "moisture_absorption", inputType: "input", placeholder: "Moisture absorption" },
+  { name: "mortar_type", inputType: "input", placeholder: "Mortar type " },
+  { name: "packaging", inputType: "input", placeholder: "Packaging" },
+  { name: "stone_cut", inputType: "input", placeholder: "Edge type" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const wallsDrywallMDFDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+    id:1, value:'inch',
+  },
+  {
+    id:2, value:'mm',
+  },
+  {
+    id:3, value:'cm',
+  },] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "edge_type", inputType: "input", placeholder: "Edge type" },
+  { name: "fire_rating", inputType: "input", placeholder: "Fire rating" },
+  { name: "moisture_resistance", inputType: "input", placeholder: "Moisture resistance" },
+  { name: "sound_proofing", inputType: "input", placeholder: "Sound proofing" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "packaging", inputType: "input", placeholder: "Packaging" },
+  { name: "density", inputType: "input", placeholder: "Density" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const wallsWoodDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+    id:1, value:'inch',
+  },
+  {
+    id:2, value:'mm',
+  },
+  {
+    id:3, value:'cm',
+  },] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "veneer_species", inputType: "input", placeholder: "Veneer species" },
+  { name: "core_material", inputType: "input", placeholder: "Core material" },
+  { name: "glue_bonding", inputType: "input", placeholder: "Glue bonding" },
+  { name: "fire_rating", inputType: "input", placeholder: "Fire rating" },
+  { name: "moisture_resistance", inputType: "input", placeholder: "Moisture resistance" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "moisture_content", inputType: "input", placeholder: "Moisture content" },
+  { name: "wood_species", inputType: "input", placeholder: "Wood species" },
+  { name: "fe_emission", inputType: "input", placeholder: "Fe emission" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const wallsPlywoodDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+    id:1, value:'inch',
+  },
+  {
+    id:2, value:'mm',
+  },
+  {
+    id:3, value:'cm',
+  },] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "veneer_species", inputType: "input", placeholder: "Veneer species" },
+  { name: "core_material", inputType: "input", placeholder: "Core material" },
+  { name: "glue_bonding", inputType: "input", placeholder: "Glue bonding" },
+  { name: "fire_rating", inputType: "input", placeholder: "Fire rating" },
+  { name: "moisture_resistance", inputType: "input", placeholder: "Moisture resistance" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const wallsSolidWoodDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+    id:1, value:'inch',
+  },
+  {
+    id:2, value:'mm',
+  },
+  {
+    id:3, value:'cm',
+  },] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "moisture_content", inputType: "input", placeholder: "Moisture content" },
+  { name: "fire_rating", inputType: "input", placeholder: "Fire rating" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const wallsEngineeredWoodDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+    id:1, value:'inch',
+  },
+  {
+    id:2, value:'mm',
+  },
+  {
+    id:3, value:'cm',
+  },] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "moisture_resistance", inputType: "input", placeholder: "Moisture resistance" },
+  { name: "wood_species", inputType: "input", placeholder: "Wood species" },
+  { name: "fe_emission", inputType: "input", placeholder: "Fe emission" },
+  { name: "fire_rating", inputType: "input", placeholder: "Fire rating" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const wallsGlassDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+    id:1, value:'inch',
+  },
+  {
+    id:2, value:'mm',
+  },
+  {
+    id:3, value:'cm',
+  },] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "glass_coating", inputType: "input", placeholder: "Glass coating" },
+  { name: "transparency", inputType: "input", placeholder: "Transparency" },
+  { name: "edge_type", inputType: "input", placeholder: "Edge type" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofTrussDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+    { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "wood_species", inputType: "input", placeholder: "Wood species" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "treatment", inputType: "input", placeholder: "Treatment" },
+  { name: "surface_finish", inputType: "input", placeholder: "Surface finish" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+  { name: "moisture_content", inputType: "input", placeholder: "Moisture Content" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofSheatingDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+  { name: "moisture_resistance", inputType: "input", placeholder: "Moisture resistance" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "edge_profile", inputType: "input", placeholder: "Edge profile" },
+  { name: "sheathing_compatibility", inputType: "input", placeholder: "Sheathing compatibility" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofShinglesDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "style", inputType: "input", placeholder: "Style" },
+  { name: "color", inputType: "input", placeholder: "Color" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofFlashingDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "color", inputType: "input", placeholder: "Color" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofUnderlaymentDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "color", inputType: "input", placeholder: "Color" },
+  { name: "permeability", inputType: "input", placeholder: "Permeability" },
+  { name: "slip_resistance", inputType: "input", placeholder: "Slip resistance" },
+  { name: "compatibility", inputType: "input", placeholder: "Compatibility" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofTilesDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "color", inputType: "input", placeholder: "Color" },
+  { name: "weight", inputType: "input", placeholder: "Weight" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "profile", inputType: "input", placeholder: "Profile" },
+  { name: "compatibility", inputType: "input", placeholder: "Compatibility" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofMembraneDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "color", inputType: "input", placeholder: "Color" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+  { name: "ultra_violet_resistance", inputType: "input", placeholder: "Ultra violet resistance" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofConnectorsDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "profile", inputType: "input", placeholder: "Profile" },
+  { name: "tooth_configuration", inputType: "input", placeholder: "Tooth configuration" },
+  { name: "load_capacity", inputType: "input", placeholder: "Load capacity" },
+  { name: "hole_pattern", inputType: "input", placeholder: "Hole pattern" },
+  { name: "coating", inputType: "input", placeholder: "Coating" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofMetalDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "profile", inputType: "input", placeholder: "Profile" },
+  { name: "coating", inputType: "input", placeholder: "Coating" },
+  { name: "color", inputType: "input", placeholder: "Color" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofBracingDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "coating", inputType: "input", placeholder: "Coating" },
+  { name: "grade", inputType: "input", placeholder: "Grade" },
+  { name: "connection_detail", inputType: "input", placeholder: "Connection detail" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const roofInsulationDetails = [
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "material", inputType: "input", placeholder: "Material" },
+  { name: "finish", inputType: "input", placeholder: "Finish" },
+  { name: "density", inputType: "input", placeholder: "Density" },
+  { name: "r_value", inputType: "input", placeholder: "R value" },
+  { name: "vapor_barrier", inputType: "input", placeholder: "Vapor barrier" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+   { name: "description", inputType: "textarea", placeholder: "Description" },
+{ name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+    id:1, value:'Kgs',
+  },
+  {
+    id:2, value:'Grams',
+  },
+  {
+    id:3, value:'Mgs',
+  },] },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+// ACCESSORIES
+
 export const cementDetails = [
   { name: "source_location", inputType: "input", placeholder: "Source Location" },
   { name: "product_name", inputType: "input", placeholder: "Product Name" },
@@ -1257,6 +2014,327 @@ export const foundationDampDetails = [
   { name: "durability", inputType: "input", placeholder: "Durability" },
   { name: "chemical_resistance", inputType: "input", placeholder: "Chemical resistance" },
   { name: "flexibility", inputType: "input", placeholder: "Flexibility" },
+
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const formWorkSupportDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+  { name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+      id:1, value:'Metres',
+    },
+    {
+      id:2, value:'Feet',
+    },
+    {
+      id:3, value:'Cms',
+    },] },
+    { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "gauge_diameter", inputType: "input", placeholder: "Gauge diameter" },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "volume", inputType: "input", placeholder: "Volume" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "model_number", inputType: "input", placeholder: "Model Number" },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "application", inputType: "input", placeholder: "Application" },
+  { name: "accessories", inputType: "input", placeholder: "Accessories" },
+  { name: "base_material", inputType: "input", placeholder: "Base material" },
+  { name: "coating", inputType: "input", placeholder: "Coating" },
+  { name: "adjustability", inputType: "input", placeholder: "Adjustability" },
+  { name: "head_plates", inputType: "input", placeholder: "Head plates" },
+  { name: "base_plates", inputType: "input", placeholder: "Base plates" },
+  { name: "strength", inputType: "input", placeholder: "Strength" },
+  { name: "durability", inputType: "input", placeholder: "Durability" },
+  { name: "load_capacity", inputType: "input", placeholder: "Load capacity" },
+  { name: "flexibility", inputType: "input", placeholder: "Flexibility" },
+
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },
+  { name: "safety_features", inputType: "input", placeholder: "Safety features" },
+  { name: "warranty", inputType: "input", placeholder: "Warranty" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const formWorkHardwareDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+  { name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+      id:1, value:'Metres',
+    },
+    {
+      id:2, value:'Feet',
+    },
+    {
+      id:3, value:'Cms',
+    },] },
+    { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "gauge_diameter", inputType: "input", placeholder: "Gauge diameter" },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "volume", inputType: "input", placeholder: "Volume" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "model_number", inputType: "input", placeholder: "Model Number" },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "application", inputType: "input", placeholder: "Application" },
+  { name: "accessories", inputType: "input", placeholder: "Accessories" },
+  { name: "base_material", inputType: "input", placeholder: "Base material" },
+  { name: "coating", inputType: "input", placeholder: "Coating" },
+  { name: "shape", inputType: "input", placeholder: "Shape" },
+  { name: "load_capacity", inputType: "input", placeholder: "Load capacity" },
+  { name: "bolts_fasteners", inputType: "input", placeholder: "Bolts and fasteners" },
+  { name: "adjustability", inputType: "input", placeholder: "Adjustability" },
+  { name: "welding", inputType: "input", placeholder: "Welding" },
+  { name: "strength", inputType: "input", placeholder: "Strength" },
+  { name: "durability", inputType: "input", placeholder: "Durability" },
+  { name: "compatibility", inputType: "input", placeholder: "Compatibility" },
+
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const formWorkSealingDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+  { name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+      id:1, value:'Metres',
+    },
+    {
+      id:2, value:'Feet',
+    },
+    {
+      id:3, value:'Cms',
+    },] },
+    { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "gauge_diameter", inputType: "input", placeholder: "Gauge diameter" },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "volume", inputType: "input", placeholder: "Volume" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "model_number", inputType: "input", placeholder: "Model Number" },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "application", inputType: "input", placeholder: "Application" },
+  { name: "accessories", inputType: "input", placeholder: "Accessories" },
+  { name: "surface_finish", inputType: "input", placeholder: "Surface finish" },
+  { name: "shape", inputType: "input", placeholder: "Shape" },
+  { name: "adhesion", inputType: "input", placeholder: "Adhesion" },
+  { name: "waterproofing", inputType: "input", placeholder: "Waterproofing" },
+  { name: "elasticity", inputType: "input", placeholder: "Elasticity" },
+  { name: "compression_set_resistance", inputType: "input", placeholder: "cCompression set resistance" },
+
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const wallsDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+  { name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+      id:1, value:'Metres',
+    },
+    {
+      id:2, value:'Feet',
+    },
+    {
+      id:3, value:'Cms',
+    },] },
+    { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "gauge_diameter", inputType: "input", placeholder: "Gauge diameter" },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "volume", inputType: "input", placeholder: "Volume" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "model_number", inputType: "input", placeholder: "Model Number" },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "application", inputType: "input", placeholder: "Application" },
+  { name: "accessories", inputType: "input", placeholder: "Accessories" },
+  { name: "shape", inputType: "input", placeholder: "Shape" },
+  { name: "base_material", inputType: "input", placeholder: "Base material" },
+  { name: "coating", inputType: "input", placeholder: "Coating" },
+  { name: "additives", inputType: "input", placeholder: "Additives" },
+  { name: "design_construction", inputType: "input", placeholder: "Design and construction" },
+  { name: "perfomance_characteristics", inputType: "input", placeholder: "Perfomance characteristics" },
+
+
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },
+  { name: "safety_features", inputType: "input", placeholder: "Safety features" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+
+export const wallsInsulationDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+  { name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+      id:1, value:'Metres',
+    },
+    {
+      id:2, value:'Feet',
+    },
+    {
+      id:3, value:'Cms',
+    },] },
+    { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "gauge_diameter", inputType: "input", placeholder: "Gauge diameter" },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "volume", inputType: "input", placeholder: "Volume" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "model_number", inputType: "input", placeholder: "Model Number" },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "application", inputType: "input", placeholder: "Application" },
+  { name: "accessories", inputType: "input", placeholder: "Accessories" },
+  { name: "base_material", inputType: "input", placeholder: "Base material" },
+  { name: "density", inputType: "input", placeholder: "Density" },
+  { name: "thermal", inputType: "input", placeholder: "Thermal" },
+  { name: "acoustic", inputType: "input", placeholder: "Acoustic" },
+  { name: "fire_resistance", inputType: "input", placeholder: "Fire resistance" },
+  { name: "moisture_resistance", inputType: "input", placeholder: "Moisture resistance" },
+
+
+  { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
+  { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },
+  { name: "safety_features", inputType: "input", placeholder: "Safety features" },
+  { name: "other", inputType: "input", placeholder: "Other" }
+];
+// for joint compound tape & treatment
+export const wallsTapeDetails = [
+  { name: "source_location", inputType: "input", placeholder: "Source Location" },
+  { name: "product_name", inputType: "input", placeholder: "Product Name" },
+  { name: "description", inputType: "textarea", placeholder: "Description" },
+  { name: "units_of_measurement", inputType: "select", placeholder: "Units of Measurement", options: [ {
+      id:1, value:'Metres',
+    },
+    {
+      id:2, value:'Feet',
+    },
+    {
+      id:3, value:'Cms',
+    },] },
+    { name: "dimensions", inputType: "select", placeholder: "Dimensions", options: [{
+      id:1, value:'inch',
+    },
+    {
+      id:2, value:'mm',
+    },
+    {
+      id:3, value:'cm',
+    },
+    {
+      id:4, value:'m',
+    },
+  ] },
+  { name: "gauge_diameter", inputType: "input", placeholder: "Gauge diameter" },
+  { name: "width", inputType: "input", placeholder: "Width" },
+  { name: "length", inputType: "input", placeholder: "Length" },
+  { name: "height", inputType: "input", placeholder: "Height" },
+  { name: "thickness", inputType: "input", placeholder: "Thickness" },
+  { name: "volume", inputType: "input", placeholder: "Volume" },
+  { name: "manufacturer", inputType: "input", placeholder: "Manufacturer" },
+  { name: "model_number", inputType: "input", placeholder: "Model Number" },
+  { name: "features", inputType: "textarea", placeholder: "Features" },
+  { name: "condition", inputType: "input", placeholder: "Condition" },
+  { name: "application", inputType: "input", placeholder: "Application" },
+  { name: "accessories", inputType: "input", placeholder: "Accessories" },
+  { name: "base_material", inputType: "input", placeholder: "Base material" },
+  { name: "adhesive", inputType: "input", placeholder: "Adhesive" },
+  { name: "additives", inputType: "input", placeholder: "Additives" },
+  { name: "shape", inputType: "input", placeholder: "Shape" },
+  { name: "color", inputType: "input", placeholder: "Color" },
+  { name: "consistency", inputType: "input", placeholder: "Consistency" },
+  { name: "drying_time", inputType: "input", placeholder: "Drying_time" },
+  { name: "workability", inputType: "input", placeholder: "Workability" },
+  { name: "surface_finish", inputType: "input", placeholder: "Surface finish" },
+  { name: "adhesion", inputType: "input", placeholder: "Adhesion" },
+  { name: "shrinkage", inputType: "input", placeholder: "Shrinkage" },
+  { name: "sandability", inputType: "input", placeholder: "Sandability" },
+  { name: "crack_resistance", inputType: "input", placeholder: "Crack resistance" },
+  { name: "moisture_resistance", inputType: "input", placeholder: "Moisture resistance" },
 
   { name: "standards_certifications", inputType: "input", placeholder: "Standards and Certifications" },
   { name: "environmental_specifications", inputType: "input", placeholder: "Environmental Specifications" },

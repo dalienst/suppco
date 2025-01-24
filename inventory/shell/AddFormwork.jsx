@@ -128,7 +128,7 @@ function AddFormwork({ branch, item, category, refetchShell }) {
             router.push(`/branch/${slug}`);
             setLoading(false);
           } catch (error) {
-            toast?.error("Failed to create shell equipment");
+            toast?.error("Failed to create shell equipment. Please try again later.");
           }
         }}
       >

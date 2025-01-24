@@ -91,7 +91,7 @@ function BranchOrders({ params }) {
   return (
     <div className="pt-4 px-2 md:p-4">
       <section className="mt-5">
-          {!details && <h2 className="font-semibold my-4 text-lg md:text-xl">Orders</h2>}
+          {!details && <h2 className="font-semibold mt-4 md:mt-0 mb-4 text-lg md:text-xl">Orders</h2>}
           {!details && <div>
             {isLoadingBranchOrders ? (
               <SupplierLoadingSpinner />
@@ -121,7 +121,7 @@ function BranchOrders({ params }) {
             ))}
           </tbody>
         </table>
-        </div>
+              </div>
             ) : (
               <p className="text-center text-bg-warning rounded p-2">
                 You have no orders yet.

@@ -170,12 +170,10 @@ function AddAggregate({ branch, item, category, refetchShell, employees }) {
             toast?.success(
               "Shell Equipment created successfully. Refreshing..."
             );
-            // refetchShell();
             router.push(`/branch/${slug}`);
             setLoading(false);
             resetForm();
           } catch (error) {
-            console.log(error);
             toast?.error("Failed to create shell equipment");
           } finally {
             setLoading(false);

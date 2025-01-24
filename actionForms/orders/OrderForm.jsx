@@ -58,7 +58,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
   // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
     const jsonSpecifications = JSON.stringify(filters);
     const formData = new FormData();
   //   data.employees.forEach(email => {

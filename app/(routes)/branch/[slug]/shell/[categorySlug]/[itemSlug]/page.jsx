@@ -14,6 +14,7 @@ import AddPrecast from "@/inventory/shell/AddPrecast";
 import AddCement from "@/inventory/shell/AddCement";
 import AddFormwork from "@/inventory/shell/AddFormwork";
 import { ChevronRight, Loader2 } from "lucide-react";
+import AddShell from "@/inventory/shell/AddShell";
 
 export default function ItemDetail({
   params: { slug, categorySlug, itemSlug },
@@ -30,7 +31,7 @@ export default function ItemDetail({
     data: category,
     refetch: refetchCategory,
   } = useFetchCategoryDetail(categorySlug);
-
+  
   const {
     isLoading: isLoadingSubCategoryItem,
     data: subCategoryItem,
@@ -78,32 +79,18 @@ export default function ItemDetail({
             employees={branch?.employees}
           />
         );
-      case "detail-subcomponentsaccessories":
-        return <AddAccessories 
-          branch={branch}
-            item={subCategoryItem}
-            category={category}
-            refetchShell={refetchShell}
-            employees={branch?.employees}
-        />;
       case "walls":
-        return (
-          <AddWalls
-            branch={branch}
-            item={subCategoryItem}
-            category={category}
-            refetchShell={refetchShell}
-            employees={branch?.employees}
-          />
-        );
-      case "roof":
-        return <AddRoof 
-          branch={branch}
-            item={subCategoryItem}
-            category={category}
-            refetchShell={refetchShell}
-            employees={branch?.employees}
-        />;
+        case "roof":
+          case "detail-subcomponentsaccessories":
+            return (
+              <AddShell
+                branch={branch}
+                item={subCategoryItem}
+                category={category}
+                refetchShell={refetchShell}
+                employees={branch?.employees}
+              />
+            );
       case "pre-cast":
         return <AddPrecast 
           branch={branch}

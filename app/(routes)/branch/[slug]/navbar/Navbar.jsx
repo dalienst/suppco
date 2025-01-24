@@ -91,7 +91,7 @@ function Navbar() {
         </ul>
       </div>
       <Link href="/supplier/dashboard" className="mb-5">
-        <Button className="flex items-center gap-2" variant="outline">
+        <Button className="flex items-center gap-2 bg-transparent border-black" variant="outline">
           <ChevronLeft />
           Back to Dashboard
         </Button>

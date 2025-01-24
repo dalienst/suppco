@@ -22,8 +22,6 @@ function BranchDashboard({ params: { slug } }) {
     isSuccess
   } = useFetchBranchDetail(slug);
 
-  console.log('my branch',branch)
-
   useEffect(() => {
     if (isSuccess) {
       const rows = branch?.shell_equipments_branch?.map((obj) => {
