@@ -28,7 +28,7 @@ function AddMetalWork({ branch, item, category, refetchShell }) {
       <Formik
         initialValues={{
           branch: branch?.reference,
-          company: company?.slug,
+          company: branch?.company,
           sublayeritem: item?.name,
           layer: category?.name,
           image: null,
@@ -106,11 +106,10 @@ function AddMetalWork({ branch, item, category, refetchShell }) {
             toast?.success(
               "Shell Equipment created successfully."
             );
-            // refetchShell();
             router.push(`/branch/${slug}`);
             setLoading(false);
-            refetchShell();
           } catch (error) {
+            console.log(error)
             toast?.error("Failed to create shell equipment");
           } finally {
             setLoading(false);
