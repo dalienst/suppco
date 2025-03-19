@@ -1,10 +1,14 @@
 import React from "react";
 import Navbar from "../../../components/supplier/Navbar";
+import Image from "next/image";
 
 function SupplierLayout({ children }) {
   return (
     <div className="bg-[#f8fbff]">
-      <h1 className="font-bold pt-3 px-4">SUPPCO</h1>
+      <div className="flex gap-1 mt-3 pl-2 md:pl-4">
+        <Image src='/logo.png' alt='logo' width={50} height={45} />
+        <h2 className="font-bold text-2xl">SUPPCO</h2>
+      </div>
       <div className="flex relative">
       <div className="absolute -top-[65px] md:-top-[30px] right-[40px] md:relative md:left-0 md:flex-1">
       <Navbar />

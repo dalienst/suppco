@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+
+import { useEffect, useState } from "react";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import useUserId from "@/hooks/useUserId";
 import { useQuery } from "@tanstack/react-query";
@@ -7,26 +8,12 @@ import { getUser } from "@/services/accounts";
 import Link from "next/link";
 import SupplierLoadingSpinner from "@/components/supplier/LoadingSpinner";
 import Image from "next/image";
-import UserTable from "@/components/tables/InfoTable";
-import { companyBranchesColumn } from "@/data/columns";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/app/components/ui/dialog";
-import { Button } from "@/app/components/ui/button";
-import AddSite from "@/actionForms/sites/AddSite";
 import { getSites } from "@/services/sites";
 
 function ContractorDashboard() {
   const axios = useAxiosAuth();
   const userId = useUserId();
 
-  const [open, setOpen] = useState(false);
   const [rows, setRows] = useState([]);
 
   const { isLoading: isLoadingUser, data: profile } = useQuery({
@@ -35,9 +22,7 @@ function ContractorDashboard() {
   });
 
   const {
-    isLoading: isLoadingSite,
     data: sites,
-    refetch: refetchSites,
     isSuccess,
   } = useQuery({
     queryKey: ["sites"],

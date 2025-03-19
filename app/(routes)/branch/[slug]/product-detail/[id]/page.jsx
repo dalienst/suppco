@@ -18,7 +18,7 @@ import useAxiosAuth from "@/hooks/useAxiosAuth";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { CircleArrowLeft, Loader2 } from "lucide-react";
 
 const keysToExclude = [
   "user",
@@ -32,6 +32,8 @@ const keysToExclude = [
   "company",
   "branch",
   "employees",
+  "image",
+  "itemSpecifications"
 ];
 
 function ProductDetail({ params: { id } }) {
@@ -41,7 +43,6 @@ function ProductDetail({ params: { id } }) {
   const [deleting, setDeleting] = useState(false);
   const router = useRouter()
   const axios=useAxiosAuth()
-  if (isLoading) return <SupplierLoadingSpinner />;
   const formatKey = (key) => {
     return key
       .replace(/_/g, " ")
@@ -49,7 +50,7 @@ function ProductDetail({ params: { id } }) {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(" ");
   };
-  const filteredData = Object.entries(data).filter(
+  const filteredData = data && Object.entries(data).filter(
     ([key, value]) =>
       value !== "" &&
       value !== null &&
@@ -93,13 +94,17 @@ function ProductDetail({ params: { id } }) {
   return (
     <div className="pt-4 overflow-hidden">
       <div className="flex justify-between items-center gap-5 mb-3">
+        <div className="flex gap-2 items-center ">
+          <button type='button' onClick={()=>router.back()}>
+        <CircleArrowLeft strokeWidth={1} />
+          </button>
         <span className="font-semibold text-xl">Product details</span>
+        </div>
         <div>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Button
-                variant="outline"
-                className="text-blue-600 h-8 mr-2 border-blue-600"
+                className="mr-2 h-7"
                 onClick={()=>setOpen(true)}
               >
                 Edit
@@ -122,8 +127,8 @@ function ProductDetail({ params: { id } }) {
           <Dialog>
             <DialogTrigger asChild>
               <Button
-                variant="outline"
-                className="text-red-500 h-8 border-red-500"
+                variant="destructive"
+                className="h-7"
               >
                 Delete
               </Button>
@@ -143,18 +148,32 @@ function ProductDetail({ params: { id } }) {
         </div>
       </div>
       <hr />
+      {isLoading ? 
+      <SupplierLoadingSpinner /> 
+      : 
       <div className="overflow-auto">
         <ul className="border rounded-xl p-3 mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-3">
           {filteredData.map(([key, value]) => (
             <li key={key} className="flex flex-col">
               <span className="font-medium">{formatKey(key)}</span>
-              <span className="border rounded-lg p-2 text-sm text-[#696969]">
+              <span className="border rounded-lg p-2 text-sm text-[#4d4d4d]">
                 {String(value)}
               </span>
             </li>
           ))}
+          {data?.image ? 
+          <li className="flex flex-col">
+            <span className="font-medium">Image</span>
+            <div>
+            <img className="w-auto h-auto max-h-[150px] max-w-[250px] object-contain" src={data?.image} alt="Product Image" />
+            </div>
+          </li>
+          :
+          null
+        }
         </ul>
       </div>
+      }
     </div>
   );
 }

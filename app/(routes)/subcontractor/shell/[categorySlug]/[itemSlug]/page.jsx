@@ -57,7 +57,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "@/hooks/useAxiosAuth";
 import useUserId from "@/hooks/useUserId";
 import OrderForm from "@/actionForms/orders/OrderForm";
-import CreateOrderForm from "@/actionForms/orders/CreateOrderForm";
 import { useRouter } from "next/navigation";
 
 const paymentInfoKeys = [
@@ -82,7 +81,7 @@ const keysToExclude = [
 ];
 
 export default function ItemDetail({
-  params: { slug, categorySlug, itemSlug },
+  params: { categorySlug, itemSlug },
 }) {
   const [filters, setFilters] = useState({});
   const [data, setData] = useState([]);

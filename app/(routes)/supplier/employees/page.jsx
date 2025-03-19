@@ -8,6 +8,8 @@ import { Button } from "@/app/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/app/components/ui/popover";
 import { Ellipsis } from "lucide-react";
 import Link from "next/link";
+import NoResults from "@/components/NoResults";
+import { TableSkeleton } from "@/components/Skeletons";
 
 function Employees() {
   const [rows, setRows] = useState([]);
@@ -32,17 +34,11 @@ function Employees() {
     }
   }, [profile, isSuccess]);
 
-  if (isLoadingUser) {
-    return (
-      <SupplierLoadingSpinner/>
-    );
-  }
-
   return (
     <div className="py-6 px-2 md:p-6">
       <section>
         <div className="flex justify-between my-3">
-          <h2 className="text-xl font-semibold">{profile?.companies?.name}&apos;s Employees</h2>
+          <h2 className="text-xl font-semibold">Employees</h2>
           <Dialog open={open} onOpenChange={setOpen}>
                   <DialogTrigger asChild>
                     <Button variant="outline" className='text-blue900 bg-blue-50 border-blue-200'>+ Invite Employee</Button>
@@ -59,12 +55,11 @@ function Employees() {
                         />
                     )}
                   </DialogContent>
-                </Dialog>
+          </Dialog>
         </div>
-
         <div>
           {isLoadingUser ? (
-            <SupplierLoadingSpinner />
+            <TableSkeleton />
           ) : profile?.companies?.company_employees?.length > 0 ? (
             <div className="w-full overflow-auto">
             <table className="w-full min-w-[500px]">
@@ -105,9 +100,7 @@ function Employees() {
         </table>
         </div>
           ) : (
-            <div className="text-center">
-              <h6>You have no Employees</h6>
-            </div>
+            <NoResults message='No results found for employees'/>
           )}
         </div>
       </section>

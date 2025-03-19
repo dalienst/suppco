@@ -28,11 +28,6 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
   const [showEmployees, setShowEmployees] = useState(false);
   const [loading, setLoading] = useState(false);
   const axios = useAxiosAuth();
-  const myEmployees = [
-    {id: 1, name: 'Tony', email:'tony@gmail.com'},
-    {id: 2, name: 'Tracy', email:'tracy@gmail.com'},
-    {id: 3, name: 'Peter', email:'peter@gmail.com'},
-  ]
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,15 +42,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
       [e.target.name]: e.target.value,
     }));
   };
-  // const handleEmployeeChange = (e) => {
-  //   const { value, checked } = e.target;
-  //   setData((prevData) => {
-  //     const newEmployees = checked
-  //       ? [...prevData.employees, value]
-  //       : prevData.employees.filter((employee) => employee !== value);
-  //     return { ...prevData, employees: newEmployees };
-  //   });
-  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -110,29 +97,6 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
             className="border rounded-lg p-2"
           />
         </div>
-        {/* <div>
-            <span className="block">Allocate staff</span>
-        <div className="relative px-2 py-1.5 rounded-lg border w-[250px]">
-          <button type='button' onClick={()=>setShowEmployees(prev=>!prev)} className="flex items-center gap-2">Choose employee <ChevronDown size={16}/></button>
-          {showEmployees && <div className="absolute shadow-md bg-white z-50 w-[250px] left-0 px-2 top-10">
-          {myEmployees?.map((employee) => (
-              <div key={employee.id} className="pb-2">
-                <input
-                type="checkbox"
-                value={employee.email}
-                checked={data.employees.includes(employee.email)}
-                onChange={handleEmployeeChange}
-                className="mr-1"
-              />
-            <label>
-              {employee?.name} 
-            </label>
-              </div>
-          ))}
-          
-            </div>}
-        </div>
-        </div> */}
         <div className="flex flex-col gap-1">
           <Label className="text-base font-normal" htmlFor="employees">
             Allocate staff
@@ -217,7 +181,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
                 checked={data.paymentType === "is_fixed"}
                 onChange={handlePaymentTypeChange}
               />
-              Is Fixed
+              Fixed
             </label>
             <label>
               <input
@@ -228,7 +192,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
                 checked={data.paymentType === "is_fixed_fifty"}
                 onChange={handlePaymentTypeChange}
               />
-              Is Fixed Fifty
+              Fixed Fifty
             </label>
             <label>
               <input
@@ -239,7 +203,7 @@ function OrderForm({ company, site, supplier, filters, onClose, onRedirect }) {
                 checked={data.paymentType === "is_negotiable"}
                 onChange={handlePaymentTypeChange}
               />
-              Is Negotiable
+              Negotiable
             </label>
           </div>
         </div>

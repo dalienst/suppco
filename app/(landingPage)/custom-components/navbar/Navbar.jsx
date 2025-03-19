@@ -2,6 +2,7 @@
 
 import { Button } from "@/app/components/ui/button";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -17,7 +18,10 @@ function NavBar() {
 return (
   <nav className="bg-white place-content-center md:flex md:items-center md:justify-between w-full h-[80px] z-50 fixed top-0 left-0 shadow-md">
     <div className=" flex justify-between items-center px-4 md:px-[2rem]">
-      <Link href='#' className="font-bold">SUPPCO</Link>
+      <Link href='#' className="flex gap-1 mb-3">
+                <Image src='/logo.png' alt='logo' width={50} height={45} />
+                <h2 className="font-bold text-2xl">SUPPCO</h2>
+              </Link>
       <span  onClick={()=>setOpenMenu(prev=>!prev)}>
           {openMenu ? 
           <Menu className="block cursor-pointer md:hidden h-6 w-6"/>

@@ -64,7 +64,6 @@ export const getSubCategoryDetail = async (axios, slug) => {
         `/api/sublayers/${slug}/`,
         axios
     )
-
     return response?.data
 }
 

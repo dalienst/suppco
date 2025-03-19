@@ -39,7 +39,7 @@ function Login() {
       }
 
       if (session?.user?.is_subcontractor === true) {
-        router.push("/subcontractor/dashboard");
+        router.push("/subcontractor");
       }
 
       if (session?.user?.is_worker === true) {

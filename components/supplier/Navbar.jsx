@@ -73,7 +73,6 @@ function Navbar() {
               Dashboard
             </Link>
           </li>
-
           {profile?.companies?.name !== null ? (
             <li className="nav-item supplier-sidebar rounded">
               <Link

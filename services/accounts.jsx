@@ -5,10 +5,7 @@ export const verifyAccount = async (uidb, token) => {
 };
 
 export const getUser = async (userId, axios) => {
-  const response = await urlActions?.get(
-    `/api/accounts/profile/${userId}/`,
-    axios
-  );
+  const response = await urlActions?.get(`/api/accounts/profile/${userId}/`,axios);
   return response.data;
 };
 

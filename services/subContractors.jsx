@@ -10,9 +10,6 @@ export const getSubContractors = async (axios) => {
 };
 
 export const getSubContractorDetail = async (axios, slug) => {
-  const response = await urlMultipartActions?.get(
-    `/api/subcontractors/${slug}/`,
-    axios
-  );
+  const response = await urlMultipartActions?.get(`/api/subcontractors/${slug}/`, axios);
   return response?.data;
 };

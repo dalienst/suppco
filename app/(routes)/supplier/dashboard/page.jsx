@@ -24,6 +24,7 @@ import {
 } from "@/app/components/ui/dialog";
 import { Button } from "@/app/components/ui/button";
 import { useFetchSupplierOrders } from "@/dataActions/orders/ordersActions";
+import { TableSkeleton, WidgetSkeleton } from "@/components/Skeletons";
 
 function SupplierDashboard() {
   const axios = useAxiosAuth();
@@ -36,6 +37,7 @@ function SupplierDashboard() {
     queryKey: ["profile"],
     queryFn: () => getUser(userId, axios),
   });
+
     const {
       data: orders,
     } = useFetchSupplierOrders();
@@ -49,6 +51,7 @@ function SupplierDashboard() {
     queryKey: ["branches"],
     queryFn: () => getBranches(axios),
   });
+
   useEffect(() => {
     if (isSuccess) {
       const rows = branches?.map((obj) => {
@@ -61,13 +64,23 @@ function SupplierDashboard() {
     }
   }, [branches, isSuccess]);
 
-  if (isLoadingUser) {
-    return <SupplierLoadingSpinner />;
-  }
-
   return (
     <>
-      {profile?.companies?.name !== null ? (
+    { isLoadingUser
+    ?
+    <div className='flex flex-col gap-6 p-4'>
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
+        <WidgetSkeleton/>
+        <WidgetSkeleton/>
+        <WidgetSkeleton/>
+      </div>
+      <TableSkeleton/>
+    </div>
+    :
+    <>
+      { profile?.companies?.name !== null 
+      ? 
+      (
         <div className="pt-4 px-2 md:p-6">
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-5">
             <div className="border p-2 lg:p-4 rounded-lg lg:rounded-xl flex items-center gap-1 lg:gap-4">
@@ -129,7 +142,7 @@ function SupplierDashboard() {
           <section className="mt-5">
             <hr />
             <div className="flex justify-between my-4">
-              <h2 className="font-semibold text-lg">Your Company&apos;s Branches</h2>
+              <h2 className="font-semibold text-lg">Branches</h2>
               <div>
                 <Dialog open={open} onOpenChange={setOpen}>
                   <DialogTrigger asChild>
@@ -164,11 +177,14 @@ function SupplierDashboard() {
             </div>
           </section>
         </div>
-      ):
+      )
+      :
       <div className="bg-red-50 border border-red-400 rounded-xl px-2 py-4 m-6">
         <p className='text-lg'>Setup your account information first! Click <Link href="/supplier/settings" className="text-blue-600">here</Link> or  &apos;Settings&apos; on the navbar.</p>
       </div> 
       }
+    </>
+    }
     </>
   );
 }

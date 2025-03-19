@@ -15,7 +15,6 @@ export function useFetchSubCategory() {
 
 export function useFetchSubCategoryDetail(slug) {
   const axios = useAxiosAuth();
-
   return useQuery({
     queryKey: ["subCategory", slug],
     queryFn: () => getSubCategoryDetail(axios, slug),

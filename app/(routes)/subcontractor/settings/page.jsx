@@ -7,83 +7,34 @@ import { updateUser } from "@/services/accounts";
 import Image from "next/image";
 import { Field, Form, Formik } from "formik";
 import toast from "react-hot-toast";
-import useFetchCompany from "@/dataActions/company/FetchCompany";
-import Link from "next/link";
-import UpdateCompany from "@/actionForms/company/UpdateCompany";
 import { useRouter } from "next/navigation";
 import { Label } from "@/app/components/ui/label";
 import { Button } from "@/app/components/ui/button";
-import { CircleUser, CircleUserRound, Loader2 } from "lucide-react";
-import { CardSkeleton, UserSkeleton } from "@/components/Skeletons";
-
-const links = [
-  { id: 1, href: "#personal", label: "Personal Info" },
-  { id: 2, href: "#public-profile", label: "Company Info" },
-  { id: 3, href: "#financials", label: "Financial settings" },
-  { id: 4, href: "#government", label: "Government Info" },
-  { id: 5, href: "#tax", label: "Tax Info" },
-];
+import { CircleUser, Loader2 } from "lucide-react";
 
 function SupplierSettings() {
   const axios = useAxiosAuth();
   const userId = useUserId();
   const [loading, setLoading] = useState(false);
-  const [settingId, setSettingId] = useState(1);
   const router = useRouter();
-
   const {
     isLoading: isLoadingUser,
     data: profile,
     refetch: refetchProfile,
   } = useFetchProfile();
-
-  const companySlug = profile?.companies?.slug;
-
-  const {
-    isLoading: isLoadingCompany,
-    data: company,
-    refetch: refetchCompany,
-  } = useFetchCompany(companySlug);
-
-  const handleDelete = async (companySlug) => {
-    setLoading(true);
-    try {
-      await deleteCompany(companySlug, axios);
-      toast.success("Company deleted successfully. Redirecting...");
-      router.push("/supplier/dashboard");
-    } catch (error) {
-      toast.error("Failed to delete company");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  if (isLoadingUser) {
+    return (
+      <section
+        className="grid place-content-center"
+      >
+        <Loader2 className="animate-spin" />
+      </section>
+    );
+  }
 
   return (
-    <div className="mx-4 mt-4 overflow-hidden p-2 lg:p-6 rounded-t-lg">
-      <h1 className="text-2xl mb-5">Account Settings</h1>
-      <div className="flex flex-col h-[calc(100vh-135px)] md:flex-row">
-        <ul className="flex flex-col md:flex-wrap rounded-lg p-2 px-2 md:px-8 md:pl-2 md:pt-4 w-full md:w-fit mb-2 md:mb-0  md:items-start md:flex-col md:border-r md:rounded-none md:rounded-l-xl gap-2 lg:gap-5">
-          {links.map((link) => (
-            <li
-              key={link.id}
-              onClick={() => setSettingId(link.id)}
-              className={`${
-                settingId === link.id ? "text-blue800 bg-blue-50" : ""
-              } cursor-pointer w-fit sm:w-auto p-1 md:py-2 px-4 rounded-full`}
-            >
-              <a href={link.href}>{link.label}</a>
-            </li>
-          ))}
-        </ul>
-        <div className="overflow-auto scroll-smooth flex-grow rounded-lg md:rounded-l-none p-2 md:p-6">
-          {isLoadingUser || isLoadingCompany ?
-          <div className='flex flex-col gap-6'>
-            <UserSkeleton/>
-            <CardSkeleton/>
-            <CardSkeleton/>
-          </div>
-          :
+    <div className="mt-2 overflow-hidden rounded-t-lg">
+        <div className="overflow-auto scroll-smooth flex-grow rounded-lg md:rounded-l-none p-2 md:p-4">
           <section id="personal" className="scroll-mt-3">
             <h2 className="text-xl font-semibold">Personal Info</h2>
             <div className="mt-3">
@@ -126,7 +77,10 @@ function SupplierSettings() {
               >
                 {({ setFieldValue }) => (
                   <Form>
-                    <div className="border rounded-xl px-4 py-6">
+                    {/* TODO: work on images */}
+                    <div className="mt-4 border py-6 px-4 rounded-xl">
+                      <h2 className="font-semibold">Personal Information</h2>
+                    <div className="">
                       <div>
                         {profile?.avatar ? (
                           <Image
@@ -157,8 +111,6 @@ function SupplierSettings() {
                         />
                       </div>
                     </div>
-                    <div className="mt-4 border py-6 px-4 rounded-xl">
-                      <h2 className="font-semibold">Personal Information</h2>
                       <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <div className="flex flex-col gap-1">
                           <Label htmlFor="first_name">First Name</Label>
@@ -235,7 +187,7 @@ function SupplierSettings() {
                     </div>
                     <Button
                       type="submit"
-                      className="mt-4 bg-blue900 hover:bg-blue700"
+                      className="mt-4 bg-blue800 hover:bg-blue700"
                       disabled={loading}
                     >
                       {loading ? (
@@ -249,16 +201,7 @@ function SupplierSettings() {
               </Formik>
             </div>
           </section>
-          }
-            {isLoadingUser || isLoadingCompany 
-            ? 
-            null
-            :
-              <section className="mt-8">
-              <UpdateCompany company={company?.slug} refetchCompany={refetchCompany} />
-            </section>}
         </div>
-      </div>
     </div>
   );
 }

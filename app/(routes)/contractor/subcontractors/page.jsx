@@ -39,12 +39,12 @@ function SubContractors() {
     data: profile,
     refetch: refetchProfile,
   } = useFetchProfile();
+  console.log(profile)
 
   const { data: sites, isSuccess } = useQuery({
     queryKey: ["sites"],
     queryFn: () => getSites(axios),
   });
-  console.log(profile, "subcontractors");
   return (
     <div className="p-3 overflow-hidden">
       <div>
