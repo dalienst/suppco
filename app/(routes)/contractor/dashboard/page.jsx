@@ -21,6 +21,7 @@ import {
 import { Button } from "@/app/components/ui/button";
 import AddSite from "@/actionForms/sites/AddSite";
 import { getSites } from "@/services/sites";
+import { useFetchProfile } from "@/hooks/accounts/actions";
 
 function ContractorDashboard() {
   const axios = useAxiosAuth();
@@ -29,12 +30,13 @@ function ContractorDashboard() {
   const [open, setOpen] = useState(false);
   const [rows, setRows] = useState([]);
 
-  const { isLoading: isLoadingUser, data: profile } = useQuery({
-    queryKey: ["profile"],
-    queryFn: () => getUser(userId, axios),
-  });
+  const {
+    isLoading: isLoadingUser,
+    data: profile,
+    refetch: refetchProfile,
+  } = useFetchProfile();
 
-  
+  console.log(profile)
 
   // const {
   //   isLoading: isLoadingSite,
