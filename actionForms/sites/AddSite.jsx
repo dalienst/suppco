@@ -52,7 +52,7 @@ function AddSite({ refetch,company, onOpenChange }) {
               <div>
                 {company?.logo && (
                   <Image
-                    src={branch?.logo}
+                    src={company?.logo}
                     alt="logo"
                     width={60}
                     height={60}

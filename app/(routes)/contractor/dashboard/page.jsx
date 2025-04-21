@@ -34,6 +34,8 @@ function ContractorDashboard() {
     queryFn: () => getUser(userId, axios),
   });
 
+  console.log(profile);
+
   const {
     isLoading: isLoadingSite,
     data: sites,
@@ -104,7 +106,7 @@ function ContractorDashboard() {
                 height={60}
               />
               <div className="flex-grow space-x-1 lg:space-x-4 text-sm lg:text-base">
-                <span>{profile?.companies?.workers?.length}</span>
+                <span>{profile?.companies?.company_workers?.length}</span>
                 <span className="">Workers</span>
               </div>
             </div>
