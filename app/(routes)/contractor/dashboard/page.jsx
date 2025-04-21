@@ -34,29 +34,31 @@ function ContractorDashboard() {
     queryFn: () => getUser(userId, axios),
   });
 
-  console.log(profile);
+  
 
-  const {
-    isLoading: isLoadingSite,
-    data: sites,
-    refetch: refetchSites,
-    isSuccess,
-  } = useQuery({
-    queryKey: ["sites"],
-    queryFn: () => getSites(axios),
-  });
+  // const {
+  //   isLoading: isLoadingSite,
+  //   data: sites,
+  //   refetch: refetchSites,
+  //   isSuccess,
+  // } = useQuery({
+  //   queryKey: ["sites"],
+  //   queryFn: () => getSites(axios),
+  // });
 
-  useEffect(() => {
-    if (isSuccess) {
-      const rows = sites?.map((obj) => {
-        return {
-          ...obj,
-          id: obj.slug,
-        };
-      });
-      setRows(rows);
-    }
-  }, [sites, isSuccess]);
+  // console.log(sites);
+
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     const rows = sites?.map((obj) => {
+  //       return {
+  //         ...obj,
+  //         id: obj.slug,
+  //       };
+  //     });
+  //     setRows(rows);
+  //   }
+  // }, [sites, isSuccess]);
 
   if (isLoadingUser) {
     return <SupplierLoadingSpinner />;
@@ -94,7 +96,7 @@ function ContractorDashboard() {
                 className="rounded-full"
               />
               <div className="flex-grow space-x-1 lg:space-x-4 text-sm lg:text-base">
-                <span>{sites?.length}</span>
+                <span>{profile?.companies?.company_sites?.length}</span>
                 <span>Sites</span>
               </div>
             </div>
