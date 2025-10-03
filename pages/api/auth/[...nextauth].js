@@ -19,7 +19,7 @@ export const authOptions = {
 
         // TODO: switch to axios
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/accounts/token/`,
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/login/`,
           {
             method: "POST",
             headers: {
